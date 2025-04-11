@@ -71,16 +71,14 @@ function Page() {
           forceHoverState={false}
         />
 
-        <div className="overflow-visible py-4 mb-2">
           <GradientText
             colors={["#40ffaa", "#4079ff", "#40ffaa", "#4079ff", "#40ffaa"]}
             animationSpeed={1}
             showBorder={false}
-            className="text-4xl sm:text-5xl md:text-6xl lg:text-[96px] font-normal p-1 pb-10 leading-loose mb-8 overflow-visible"
+            className="text-4xl sm:text-5xl md:text-6xl lg:text-[96px] font-normal p-1 leading-loose  overflow-visible"
           >
             Unleash the Future. Together.
           </GradientText>
-        </div>
 
         <p className="max-w-xs sm:max-w-md md:max-w-2xl lg:max-w-4xl xl:max-w-[1068px] text-lg md:text-xl lg:text-2xl font-sans font-normal text-center mt-4 md:mt-6">
           TiE Coimbatore&apos;s KOVAI Conference – a groundbreaking convergence of minds, innovation, and the transformative power of Artificial Intelligence.
