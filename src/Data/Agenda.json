@@ -1,0 +1,273 @@
+{
+    "conferenceOverview": {
+      "header": {
+        "title": "Conference Overview",
+        "subtitle": "Two days of inspiring sessions and workshops",
+        "description": "KovAI Conference 2025 features a comprehensive program with keynote presentations, panel discussions, technical sessions, and hands-on workshops. The agenda is designed to provide valuable insights and practical knowledge for professionals in manufacturing, healthcare, and textile industries."
+      },
+      
+      "days": [
+        {
+          "title": "Day 1 - October 2",
+          "date": "Thursday, October 2, 2025",
+          "tracks": ["Manufacturing", "Healthcare", "Textile"],
+          "sessions": [
+            {
+              "time": "08:00 - 09:00",
+              "title": "Registration & Networking Breakfast",
+              "description": "Welcome coffee and registration for all attendees",
+              "type": "General",
+              "location": "Main Lobby"
+            },
+            {
+              "time": "09:00 - 09:30",
+              "title": "Inaugural Ceremony",
+              "description": "Welcome Address and Lighting of the Lamp",
+              "type": "General",
+              "location": "Main Auditorium"
+            },
+            {
+              "time": "09:30 - 10:30",
+              "title": "Opening Keynote: The Future of AI in South India's Industrial Landscape",
+              "description": "A visionary perspective on how AI will transform South India's key industries",
+              "type": "Keynote",
+              "speaker": "TBA",
+              "location": "Main Auditorium"
+            },
+            {
+              "time": "10:30 - 11:00",
+              "title": "Networking Break",
+              "description": "Refreshments and networking",
+              "type": "General",
+              "location": "Exhibition Hall"
+            },
+            {
+              "time": "11:00 - 12:30",
+              "sessions": [
+                {
+                  "title": "AI-Driven Predictive Maintenance in Manufacturing",
+                  "description": "How AI is revolutionizing maintenance strategies and reducing downtime",
+                  "track": "Manufacturing",
+                  "speaker": "TBA",
+                  "location": "Room A"
+                },
+                {
+                  "title": "AI Applications in Medical Imaging and Diagnostics",
+                  "description": "Advancements in AI-powered medical imaging analysis and diagnostic tools",
+                  "track": "Healthcare",
+                  "speaker": "TBA",
+                  "location": "Room B"
+                },
+                {
+                  "title": "Smart Textiles and AI-Enabled Design",
+                  "description": "Exploring the intersection of AI, IoT, and textile design",
+                  "track": "Textile",
+                  "speaker": "TBA",
+                  "location": "Room C"
+                }
+              ]
+            },
+            {
+              "time": "12:30 - 13:30",
+              "title": "Lunch Break",
+              "description": "Networking lunch for all attendees",
+              "type": "General",
+              "location": "Dining Hall"
+            },
+            {
+              "time": "13:30 - 15:00",
+              "sessions": [
+                {
+                  "title": "Panel: AI-Powered Quality Control in Manufacturing",
+                  "description": "Industry experts discuss implementation strategies and ROI",
+                  "track": "Manufacturing",
+                  "format": "Panel Discussion",
+                  "location": "Room A"
+                },
+                {
+                  "title": "AI for Healthcare Resource Optimization",
+                  "description": "Improving patient care through AI-driven resource allocation",
+                  "track": "Healthcare",
+                  "speaker": "TBA",
+                  "location": "Room B"
+                },
+                {
+                  "title": "AI in Textile Supply Chain Management",
+                  "description": "Optimizing inventory, logistics, and demand forecasting",
+                  "track": "Textile",
+                  "speaker": "TBA",
+                  "location": "Room C"
+                }
+              ]
+            },
+            {
+              "time": "15:00 - 15:30",
+              "title": "Networking Break",
+              "description": "Refreshments and networking",
+              "type": "General",
+              "location": "Exhibition Hall"
+            },
+            {
+              "time": "15:30 - 16:30",
+              "title": "Plenary Session: Ethical AI and Responsible Innovation",
+              "description": "Addressing the societal implications of AI and promoting responsible development",
+              "type": "Plenary",
+              "speaker": "TBA",
+              "location": "Main Auditorium"
+            },
+            {
+              "time": "16:30 - 18:00",
+              "sessions": [
+                {
+                  "title": "Workshop: Implementing Computer Vision in Manufacturing",
+                  "description": "Hands-on session on deploying computer vision solutions",
+                  "track": "Manufacturing",
+                  "format": "Workshop",
+                  "location": "Workshop Room 1"
+                },
+                {
+                  "title": "Workshop: AI in Clinical Decision Support Systems",
+                  "description": "Practical implementation of AI for clinical decision support",
+                  "track": "Healthcare",
+                  "format": "Workshop",
+                  "location": "Workshop Room 2"
+                },
+                {
+                  "title": "Workshop: AI-Driven Pattern Recognition for Textiles",
+                  "description": "Practical session on implementing pattern recognition algorithms",
+                  "track": "Textile",
+                  "format": "Workshop",
+                  "location": "Workshop Room 3"
+                }
+              ]
+            },
+            {
+              "time": "18:30 - 20:30",
+              "title": "Welcome Reception & Networking Dinner",
+              "description": "Evening networking event with dinner and entertainment",
+              "type": "Networking",
+              "location": "Grand Ballroom"
+            }
+          ]
+        },
+        {
+          "title": "Day 2 - October 3",
+          "date": "Friday, October 3, 2025",
+          "tracks": ["Manufacturing", "Healthcare", "Textile"],
+          "sessions": [
+            {
+              "time": "08:30 - 09:00",
+              "title": "Morning Coffee & Networking",
+              "description": "Start the day with coffee and networking",
+              "type": "General",
+              "location": "Main Lobby"
+            },
+            {
+              "time": "09:00 - 10:00",
+              "title": "Keynote Address: AI for Sustainable Industrial Development",
+              "description": "How AI can drive sustainability in traditional industries",
+              "type": "Keynote",
+              "speaker": "TBA",
+              "location": "Main Auditorium"
+            },
+            {
+              "time": "10:00 - 10:30",
+              "title": "Networking Break",
+              "description": "Refreshments and networking",
+              "type": "General",
+              "location": "Exhibition Hall"
+            },
+            {
+              "time": "10:30 - 12:30",
+              "sessions": [
+                {
+                  "title": "Workshop: AI for Smart Factories",
+                  "description": "Hands-on implementation of AI in factory operations",
+                  "track": "Manufacturing",
+                  "format": "Workshop",
+                  "location": "Workshop Room 1"
+                },
+                {
+                  "title": "Workshop: Building Healthcare AI Models",
+                  "description": "Practical session on developing and validating healthcare AI models",
+                  "track": "Healthcare",
+                  "format": "Workshop",
+                  "location": "Workshop Room 2"
+                },
+                {
+                  "title": "Workshop: AI in Textile Quality Control",
+                  "description": "Implementing AI-based defect detection systems",
+                  "track": "Textile",
+                  "format": "Workshop",
+                  "location": "Workshop Room 3"
+                }
+              ]
+            },
+            {
+              "time": "12:30 - 13:30",
+              "title": "Lunch Break",
+              "description": "Networking lunch for all attendees",
+              "type": "General",
+              "location": "Dining Hall"
+            },
+            {
+              "time": "13:30 - 15:00",
+              "sessions": [
+                {
+                  "title": "Technical Session: Industry 4.0 and AI Integration",
+                  "description": "Technical deep dive into Industry 4.0 implementation strategies",
+                  "track": "Manufacturing",
+                  "format": "Technical",
+                  "location": "Room A"
+                },
+                {
+                  "title": "Technical Session: Personalized Medicine through AI",
+                  "description": "Technical exploration of AI in personalized treatment plans",
+                  "track": "Healthcare",
+                  "format": "Technical",
+                  "location": "Room B"
+                },
+                {
+                  "title": "Technical Session: AI-Driven Supply Chain Optimization",
+                  "description": "Technical session on implementing AI for textile supply chains",
+                  "track": "Textile",
+                  "format": "Technical",
+                  "location": "Room C"
+                }
+              ]
+            },
+            {
+              "time": "15:00 - 15:30",
+              "title": "Networking Break",
+              "description": "Final refreshment break and networking",
+              "type": "General",
+              "location": "Exhibition Hall"
+            },
+            {
+              "time": "15:30 - 16:30",
+              "title": "Panel Discussion: Future of AI in South Indian Industries",
+              "description": "Industry leaders discuss the roadmap for AI adoption",
+              "type": "Panel",
+              "participants": "Industry Leaders",
+              "location": "Main Auditorium"
+            },
+            {
+              "time": "16:30 - 17:30",
+              "title": "Closing Keynote: Building an AI-Powered Future Together",
+              "description": "Vision for collaborative AI development in South India",
+              "type": "Keynote",
+              "speaker": "TBA",
+              "location": "Main Auditorium"
+            },
+            {
+              "time": "17:30 - 18:00",
+              "title": "Closing Ceremony & Awards",
+              "description": "Concluding remarks and recognition of contributors",
+              "type": "Closing",
+              "location": "Main Auditorium"
+            }
+          ]
+        }
+      ]
+    }
+  }

@@ -1,0 +1,216 @@
+{
+    "conference": {
+      "hero": {
+        "title": "KovAI Conference 2025",
+        "tagline": "Powering South India's Industrial Future with AI",
+        "date": "October 2-3, 2025",
+        "location": "Coimbatore, Tamil Nadu",
+        "description": "The premier AI conference focused on manufacturing, healthcare, and textile industries in South India.",
+        "countdown": {
+          "days": 166,
+          "hours": 17,
+          "minutes": 48,
+          "seconds": 30
+        }
+      },
+  
+      "about": {
+        "title": "About KovAI Conference",
+        "description": "Driving AI innovation and collaboration in South India",
+        "vision": {
+          "title": "Our Vision",
+          "content": "To drive AI innovation and collaboration in South India, empowering a generation of thinkers and doers through our annual conference."
+        },
+        "mission": {
+          "title": "Our Mission",
+          "content": "To connect, inspire, and educate the AI community in South India through our annual conference, fostering a culture of collaboration, knowledge sharing, and ethical AI development."
+        },
+        "stats": [
+          {
+            "value": "500+",
+            "label": "Attendees"
+          },
+          {
+            "value": "50+",
+            "label": "Speakers"
+          },
+          {
+            "value": 3,
+            "label": "Industry Tracks"
+          },
+          {
+            "value": 2,
+            "label": "Days"
+          }
+        ]
+      },
+  
+      "focusAreas": {
+        "title": "Focus Areas",
+        "subtitle": "Exploring AI applications in key South Indian industries",
+        "areas": [
+          {
+            "title": "Manufacturing",
+            "description": "Discover how AI is transforming manufacturing through predictive maintenance, quality control, and smart factories. Learn from industry leaders implementing AI solutions in production environments."
+          },
+          {
+            "title": "Healthcare",
+            "description": "Explore AI applications in medical imaging, diagnostic tools, patient care optimization, and healthcare management. Connect with healthcare professionals leveraging AI for better outcomes."
+          },
+          {
+            "title": "Textile",
+            "description": "Learn how AI is revolutionizing the textile industry through design automation, quality control, supply chain optimization, and sustainable practices. Engage with textile innovators embracing AI."
+          }
+        ]
+      },
+  
+      "featuredSpeakers": {
+        "title": "Featured Speakers",
+        "subtitle": "Learn from industry leaders and AI experts",
+        "speakers": [
+          {
+            "name": "Coming Soon",
+            "title": "Keynote Speaker",
+            "image": "/images/speakers/placeholder.jpg"
+          },
+          {
+            "name": "Coming Soon",
+            "title": "Industry Leader",
+            "image": "/images/speakers/placeholder.jpg"
+          },
+          {
+            "name": "Coming Soon",
+            "title": "AI Researcher",
+            "image": "/images/speakers/placeholder.jpg"
+          },
+          {
+            "name": "Coming Soon",
+            "title": "Technology Expert",
+            "image": "/images/speakers/placeholder.jpg"
+          }
+        ]
+      },
+  
+      "agenda": {
+        "title": "Agenda Highlights",
+        "subtitle": "Two days of inspiring sessions and workshops",
+        "days": [
+          {
+            "title": "Day 1: October 2, 2025",
+            "sessions": [
+              {
+                "time": "09:00 - 09:30",
+                "title": "Inaugural Ceremony",
+                "description": "Welcome Address and Lighting of the Lamp"
+              },
+              {
+                "time": "09:30 - 10:30",
+                "title": "Opening Keynote",
+                "description": "The Future of AI in South India's Industrial Landscape"
+              },
+              {
+                "time": "11:00 - 12:30",
+                "title": "Parallel Tracks",
+                "description": "Manufacturing, Healthcare, and Textile Industry Sessions"
+              },
+              {
+                "time": "15:30 - 16:30",
+                "title": "Plenary Session",
+                "description": "Ethical AI and Responsible Innovation"
+              }
+            ]
+          },
+          {
+            "title": "Day 2: October 3, 2025",
+            "sessions": [
+              {
+                "time": "09:00 - 10:00",
+                "title": "Keynote Address",
+                "description": "AI for Sustainable Industrial Development"
+              },
+              {
+                "time": "10:30 - 12:30",
+                "title": "Workshops",
+                "description": "Hands-on Sessions for Manufacturing, Healthcare, and Textile"
+              },
+              {
+                "time": "13:30 - 15:00",
+                "title": "Technical Sessions",
+                "description": "Industry 4.0, Personalized Medicine, and Supply Chain Optimization"
+              },
+              {
+                "time": "16:30 - 17:30",
+                "title": "Closing Keynote",
+                "description": "Building an AI-Powered Future Together"
+              }
+            ]
+          }
+        ]
+      },
+  
+      "registration": {
+        "title": "Secure Your Spot Today",
+        "description": "Join 500+ industry professionals, researchers, and technology enthusiasts at the premier AI conference in South India.",
+        "tickets": [
+          {
+            "type": "General Admission",
+            "description": "Access to all keynotes, panel discussions, exhibition, and networking events"
+          },
+          {
+            "type": "Workshop Pass",
+            "description": "All General Admission benefits plus access to hands-on workshops"
+          },
+          {
+            "type": "Student Pass",
+            "description": "Discounted rate for students with special mentorship opportunities"
+          }
+        ],
+        "earlyBird": {
+          "text": "Early Bird Registration",
+          "date": "Available until July 31, 2025",
+          "countdown": {
+            "days": 104,
+            "hours": 8,
+            "minutes": 48
+          }
+        },
+        "note": "Group discounts available for 5+ attendees"
+      },
+  
+      "venue": {
+        "title": "Venue",
+        "subtitle": "Join us in Coimbatore, Tamil Nadu",
+        "name": "Coimbatore Venue",
+        "location": "Coimbatore, Tamil Nadu",
+        "description": "Known as the 'Manchester of South India,' Coimbatore is a major industrial hub with a strong focus on manufacturing, textile, and healthcare sectors.",
+        "details": "The exact venue details will be announced soon. The conference will be held in a central location with easy access to transportation, accommodations, and local attractions.",
+        "features": [
+          "Nearby Hotels",
+          "Airport Access",
+          "Dining Options",
+          "High-Speed WiFi"
+        ]
+      },
+  
+      "sponsors": {
+        "title": "Our Sponsors",
+        "subtitle": "Supporting AI innovation in South India",
+        "tiers": [
+          {
+            "name": "Platinum Sponsors",
+            "count": 2,
+            "placeholder": true
+          },
+          {
+            "name": "Gold Sponsors",
+            "count": 3,
+            "placeholder": true
+          }
+        ],
+        "cta": {
+          "text": "Become a Sponsor",
+          "description": "Showcase your brand to the AI community in South India"
+        }
+      }
+    }
+  }

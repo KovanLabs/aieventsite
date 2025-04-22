@@ -1,0 +1,120 @@
+{
+    "conference": {
+      "venue": {
+        "title": "Conference Venue",
+        "location": "Coimbatore, Tamil Nadu",
+        "description": "KovAI Conference 2025 will be held in Coimbatore, Tamil Nadu, known as the 'Manchester of South India' for its industrial significance. As a major hub for manufacturing, textile, and healthcare industries, Coimbatore provides the perfect backdrop for our AI conference focused on these sectors.",
+        "description2":"The exact venue details will be announced soon. The conference will be held in a central location with excellent facilities, including state-of-the-art presentation spaces, workshop rooms, exhibition areas, and networking zones",
+        "facilities": [
+          "High-Speed WiFi",
+          "Accessibility",
+          "Catering Services",
+          "Ample Parking",
+          "Modern AV Equipment",
+          "Refreshment Areas"
+        ]
+      },
+      
+      "aboutCoimbatore": {
+        "title": "About Coimbatore",
+        "subtitle": "The Manchester of South India",
+        "highlights": [
+          {
+            "title": "Industrial Hub",
+            "description": "Coimbatore is a major industrial center with a strong focus on manufacturing, particularly in textiles, automotive components, and engineering. The city is home to thousands of small, medium, and large industries, making it an ideal location for our conference's focus on AI in manufacturing."
+          },
+          {
+            "title": "Textile Capital",
+            "description": "Known as the 'Textile Capital of South India,' Coimbatore has a thriving textile and garment industry. The city's textile mills, garment factories, and research institutions make it a perfect setting for exploring AI applications in the textile sector."
+          },
+          {
+            "title": "Healthcare Excellence",
+            "description": "Coimbatore is renowned for its healthcare facilities, with numerous multi-specialty hospitals, medical colleges, and research centers. The city's focus on healthcare innovation aligns perfectly with our conference's exploration of AI in healthcare."
+          },
+          {
+            "title": "Educational Center",
+            "description": "With numerous engineering colleges, universities, and research institutions, Coimbatore is a major educational hub in South India. The city's academic environment fosters innovation and technological advancement, making it an ideal location for knowledge exchange and collaboration in AI."
+          },
+          {
+            "title": "Natural Beauty",
+            "description": "Situated at the foothills of the Western Ghats, Coimbatore offers breathtaking natural beauty. The pleasant climate, nearby hill stations, and natural attractions provide a refreshing backdrop for conference attendees looking to explore the region before or after the event."
+          }
+        ]
+      },
+      
+      "travelInfo": {
+        "title": "Travel Information",
+        "subtitle": "How to reach Coimbatore",
+        "options": [
+          {
+            "mode": "By Air",
+            "details": "Coimbatore International Airport (CJB) is well-connected to major cities in India including Chennai, Bangalore, Mumbai, Delhi, and Hyderabad. International travelers can connect through major Indian hubs or nearby international airports.",
+            "additionalInfo": "The airport is approximately 10 km from the city center, with taxis and app-based ride services readily available."
+          },
+          {
+            "mode": "By Train",
+            "details": "Coimbatore Junction (CBE) is a major railway station on the Southern Railway network, with excellent connectivity to cities across India. Express and superfast trains operate from Chennai, Bangalore, Mumbai, and other major cities.",
+            "additionalInfo": "The railway station is centrally located, with easy access to hotels and the conference venue."
+          },
+          {
+            "mode": "By Road",
+            "details": "Coimbatore has excellent road connectivity with neighboring cities and states. State and national highways connect Coimbatore to Bangalore, Chennai, Madurai, and other major cities in South India.",
+            "additionalInfo": "Regular bus services, both government and private, operate from major cities in Tamil Nadu, Kerala, and Karnataka."
+          }
+        ]
+      },
+      
+      "accommodation": {
+        "title": "Accommodation",
+        "subtitle": "Where to stay during the conference",
+        "description": "Coimbatore offers a wide range of accommodation options to suit various preferences and budgets. From luxury hotels to budget-friendly options, attendees can find comfortable stays close to the conference venue.",
+        "note": "We are in the process of partnering with select hotels to offer special rates for conference attendees. Details will be announced closer to the event date.",
+        "options": [
+          {
+            "type": "Luxury Hotels",
+            "description": "5-star properties offering premium amenities, fine dining, and exceptional service for attendees seeking a luxurious stay experience.",
+            "priceRange": "₹8,000 - ₹15,000 per night"
+          },
+          {
+            "type": "Mid-Range Hotels",
+            "description": "Comfortable 3-4 star hotels with good amenities, convenient locations, and reliable service at reasonable prices.",
+            "priceRange": "₹3,000 - ₹7,000 per night"
+          },
+          {
+            "type": "Budget Options",
+            "description": "Economical stays including budget hotels, guesthouses, and serviced apartments for cost-conscious attendees.",
+            "priceRange": "₹1,500 - ₹3,000 per night"
+          }
+        ],
+        "footerNote": "Our recommended accommodations will be listed here once partnerships are finalized. Conference attendees will receive a special booking code for discounted rates."
+      },
+      
+      "localAttractions": {
+        "title": "Local Attractions",
+        "subtitle": "Explore Coimbatore and surrounding areas",
+        "attractions": [
+          {
+            "name": "Marudamalai Temple",
+            "description": "A beautiful hill temple dedicated to Lord Murugan, offering panoramic views of the city.",
+            "distance": "15 km from city center"
+          },
+          {
+            "name": "Ooty",
+            "description": "A popular hill station known for its scenic beauty, tea gardens, and pleasant climate.",
+            "distance": "85 km from Coimbatore"
+          },
+          {
+            "name": "Siruvani Waterfalls",
+            "description": "Known for its exceptionally pure water and natural beauty, a perfect spot for nature lovers.",
+            "distance": "37 km from city center"
+          },
+          {
+            "name": "VOC Park and Zoo",
+            "description": "A popular recreational spot in the heart of the city, featuring a zoo, amusement park, and aquarium.",
+            "distance": "Within city limits"
+          }
+        ],
+        "footerNote": "Consider extending your stay to explore these attractions and more. We'll provide a detailed guide for attendees closer to the conference date."
+      }
+    }
+  }

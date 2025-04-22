@@ -1,0 +1,142 @@
+{
+    "speakers": {
+      "header": {
+        "title": "Meet Our Speakers",
+        "subtitle": "Industry leaders and AI experts sharing their knowledge",
+        "description": "KovAI Conference 2025 will feature over 50 distinguished speakers from industry, academia, and government, sharing insights on AI applications in manufacturing, healthcare, and textile industries. Our speakers are carefully selected for their expertise, experience, and ability to inspire and educate."
+      },
+  
+      "keynoteSpeakers": {
+        "title": "Keynote Speakers",
+        "subtitle": "Visionaries shaping the future of AI",
+        "speakers": [
+          {
+            "name": "Coming Soon",
+            "title": "Industry Leader",
+            "affiliation": "To Be Announced",
+            "image": "/images/speakers/placeholder.jpg",
+            "category": "keynote"
+          },
+          {
+            "name": "Coming Soon",
+            "title": "Government Official",
+            "affiliation": "To Be Announced",
+            "image": "/images/speakers/placeholder.jpg",
+            "category": "keynote"
+          },
+          {
+            "name": "Coming Soon",
+            "title": "AI Researcher",
+            "affiliation": "To Be Announced",
+            "image": "/images/speakers/placeholder.jpg",
+            "category": "keynote"
+          },
+          {
+            "name": "Coming Soon",
+            "title": "Technology Expert",
+            "affiliation": "To Be Announced",
+            "image": "/images/speakers/placeholder.jpg",
+            "category": "keynote"
+          }
+        ]
+      },
+  
+      "industrySpeakers": {
+        "title": "Industry Speakers",
+        "subtitle": "Experts from manufacturing, healthcare, and textile sectors",
+        "tracks": [
+          {
+            "name": "Manufacturing Track",
+            "speakers": [
+              {
+                "name": "Coming Soon",
+                "title": "Manufacturing Expert",
+                "affiliation": "To Be Announced",
+                "image": "/images/speakers/placeholder.jpg",
+                "category": "manufacturing"
+              },
+              {
+                "name": "Coming Soon",
+                "title": "Industry 4.0 Specialist",
+                "affiliation": "To Be Announced",
+                "image": "/images/speakers/placeholder.jpg",
+                "category": "manufacturing"
+              }
+            ]
+          },
+          {
+            "name": "Healthcare Track",
+            "speakers": [
+              {
+                "name": "Coming Soon",
+                "title": "Healthcare Innovator",
+                "affiliation": "To Be Announced",
+                "image": "/images/speakers/placeholder.jpg",
+                "category": "healthcare"
+              },
+              {
+                "name": "Coming Soon",
+                "title": "Medical AI Researcher",
+                "affiliation": "To Be Announced",
+                "image": "/images/speakers/placeholder.jpg",
+                "category": "healthcare"
+              }
+            ]
+          },
+          {
+            "name": "Textile Track",
+            "speakers": [
+              {
+                "name": "Coming Soon",
+                "title": "Textile Industry Leader",
+                "affiliation": "To Be Announced",
+                "image": "/images/speakers/placeholder.jpg",
+                "category": "textile"
+              },
+              {
+                "name": "Coming Soon",
+                "title": "Smart Textile Specialist",
+                "affiliation": "To Be Announced",
+                "image": "/images/speakers/placeholder.jpg",
+                "category": "textile"
+              }
+            ]
+          }
+        ]
+      },
+  
+      "becomeSpeaker": {
+        "title": "Become a Speaker",
+        "subtitle": "Share your expertise with the AI community",
+        "description": "We are looking for industry experts, researchers, and practitioners to share their knowledge, case studies, and insights at KovAI Conference 2025. If you have experience implementing AI solutions in manufacturing, healthcare, or textile industries, we want to hear from you.",
+        "benefits": [
+          "Complimentary conference pass",
+          "Recognition as an industry expert",
+          "Networking opportunities with peers and potential collaborators",
+          "Promotion through our marketing channels"
+        ],
+        "timeline": [
+          {
+            "date": "May 1, 2025",
+            "event": "Call for Speakers Opens",
+            "description": "Application form available online"
+          },
+          {
+            "date": "July 15, 2025",
+            "event": "Application Deadline",
+            "description": "Last day to submit speaker proposals"
+          },
+          {
+            "date": "August 1, 2025",
+            "event": "Speaker Selection",
+            "description": "Notification of accepted speakers"
+          },
+          {
+            "date": "September 15, 2025",
+            "event": "Final Materials Due",
+            "description": "Submission of presentation materials"
+          }
+        ]
+      }
+    }
+  }

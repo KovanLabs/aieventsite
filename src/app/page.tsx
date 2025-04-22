@@ -3,29 +3,12 @@ import { useState, useEffect, useRef } from "react";
 import BlurText from "@/components/Blurtext";
 import Orb from "../components/Orb";
 import GradientText from "@/components/GradientText";
-import ScrollFloat from "@/components/ScrollFloat";
-import InfiniteScroll from "@/components/InfiniteScroll";
-import SpotlightCard from "@/components/Card";
-import sponsors from "../../src/Data/Sponsers.json";
-import participants from "../../src/Data/Participant.json";
+import sponsorsData from '../Data/Sponsors_m.json';
 import { motion } from "framer-motion";
+import SponsorshipPackages from "./Sponsors/components/Sponser-packages";
+import BecomeSpeaker from "./Speakers/Components/Become-speaker";
+import speakersData from "../Data/Speaker.json"
 
-const items = [
-    { content: "Join us for the largest AI conference in South India" },
-    { content: <p>Featuring 20+ world-class speakers from leading tech companies and research institutions</p> },
-    { content: "Discover cutting-edge AI innovations transforming industries" },
-    { content: <p>Interactive workshops on machine learning, computer vision, and natural language processing</p> },
-    { content: "Network with 1000+ AI professionals and researchers" },
-    { content: <p>Special startup showcase featuring the most promising AI ventures in India</p> },
-    { content: "Learn about ethical AI implementation strategies" },
-    { content: <p>Panel discussions on the future of AI in healthcare, finance, and manufacturing</p> },
-    { content: "Get early access to new AI tools and frameworks" },
-    { content: <p>Hands-on sessions with TensorFlow, PyTorch, and other popular AI libraries</p> },
-    { content: "Meet potential investors for your AI startup" },
-    { content: <p>Keynote address by Dr. Rajesh Kumar on &apos;The Next Decade of AI Innovation&apos;</p> },
-    { content: "Explore career opportunities in artificial intelligence" },
-    { content: <p>Closing ceremony with awards for best AI research and applications</p> },
-];
 
 function Page() {
   // State for each countdown value
@@ -34,10 +17,57 @@ function Page() {
     hours: 0,
     minutes: 0
   });
+  const [speechEnabled, setSpeechEnabled] = useState(false);
   const sponsorsScrollRef = useRef<HTMLDivElement>(null);
   const participantsScrollRef = useRef<HTMLDivElement>(null);
 
-  // Removed auto scroll useEffect
+  // Add this near the top of your component after other state declarations
+  const testSpeechDirectly = () => {
+    if ("speechSynthesis" in window) {
+      // Cancel any ongoing speech
+      window.speechSynthesis.cancel();
+      
+      setTimeout(() => {
+        const msg = new SpeechSynthesisUtterance("Testing orb speech");
+        msg.volume = 1.0;
+        msg.rate = 1.0;
+        msg.pitch = 1.0;
+        msg.onstart = () => console.log("Direct test speech started");
+        msg.onend = () => console.log("Direct test speech ended");
+        window.speechSynthesis.speak(msg);
+      }, 100);
+    }
+  };
+
+  // Update the enableSpeech function
+  const enableSpeech = () => {
+    // Only run if speech isn't already enabled
+    if (!speechEnabled) {
+      setSpeechEnabled(true);
+      
+      // Test speech synthesis with audible feedback
+      if ("speechSynthesis" in window) {
+        // Cancel any ongoing speech first
+        window.speechSynthesis.cancel();
+        
+        // Wait a moment before speaking to ensure clean state
+        setTimeout(() => {
+          const test = new SpeechSynthesisUtterance("Speech enabled");
+          test.volume = 1.0;
+          test.rate = 1.0;
+          
+          // Add event listeners to track speech progress
+          test.onstart = () => console.log("Test speech started");
+          test.onend = () => console.log("Test speech ended");
+          test.onerror = (e) => console.error("Test speech error:", e);
+          
+          window.speechSynthesis.speak(test);
+        }, 100);
+      } else {
+        console.warn("Speech synthesis not available in this browser");
+      }
+    }
+  };
 
   useEffect(() => {
     const targetDate = new Date("2025-10-02T00:00:00");
@@ -69,6 +99,8 @@ function Page() {
           rotateOnHover={true}
           hue={0}
           forceHoverState={false}
+          welcomeMessage="Hello! Welcome to the AI Conference 2025" 
+          speechEnabled={speechEnabled}
         />
 
           <GradientText
@@ -89,6 +121,17 @@ function Page() {
             text="The Future is Calling. Are You Ready?"
             className="text-3xl sm:text-4xl md:text-5xl lg:text-[64px] p-1 font-normal"
           />
+
+          {!speechEnabled ? (
+            <div className="text-center text-white/70 mt-2 animate-pulse">
+              <p className="text-sm md:text-base flex items-center justify-center gap-1">
+                <span className="inline-block w-2 h-2 bg-[#40ffaa] rounded-full"></span>
+                Hover over the orb to interact
+              </p>
+            </div>
+          ) : (
+            <div className="h-6"></div> // Empty spacer when speech is enabled
+          )}
 
           {/* Countdown Box UI */}
           <div className="flex flex-col md:flex-row gap-6 md:gap-8 mt-8 md:mt-12 max-w-4xl mx-auto w-full">
@@ -226,29 +269,11 @@ function Page() {
             </motion.span>
           </motion.button>
 
-          <ScrollFloat
-            animationDuration={100}
-            ease="back.inOut(2)"
-            scrollStart="center bottom+=35%"
-            scrollEnd="bottom bottom-=25%"
-            stagger={0.03}
-            textClassName="mt-6 md:mt-10 text-xl sm:text-2xl md:text-3xl lg:text-4xl font-normal max-w-[1250px] px-4 sm:px-6 md:px-10 text-center"
-          >
-            Imagine a space where the very air crackles with possibility. Where every interaction sparks new insights, and the future of AI unfolds before your eyes. 
-          </ScrollFloat>
+
         </div>
 
-        <ScrollFloat
-          animationDuration={100}
-          ease="back.inOut(2)"
-          scrollStart="center bottom+=35%"
-          scrollEnd="bottom bottom-=25%"
-          stagger={0.03}
-          textClassName="mt-6 md:mt-10 text-xl sm:text-2xl md:text-3xl lg:text-4xl font-normal max-w-[1250px] px-4 sm:px-6 md:px-10 text-center"
-        >
-          The TiE Coimbatore&apos;s KOVAI Conference isn&apos;t just another event – it&apos;s an immersive experience designed to ignite your passion, fuel your ambition, and connect you with the pioneers shaping tomorrow.
-        </ScrollFloat>
-        <div className="w-full my-12 md:my-16">
+
+        {/* <div className="w-full my-12 md:my-16">
           <div className="flex items-center justify-center h-[300px] sm:h-[350px] md:h-[400px] lg:h-[450px] max-w-full overflow-hidden">  
             <div className="w-full flex justify-center">
               <div className="mx-auto">
@@ -264,113 +289,30 @@ function Page() {
               </div>
             </div>
           </div>
-        </div>
+        </div> */}
+                   <SponsorshipPackages
+                        title={sponsorsData.sponsors.packages.title}
+                        subtitle={sponsorsData.sponsors.packages.subtitle}
+                        description={sponsorsData.sponsors.packages.description}
+                        tiers={sponsorsData.sponsors.packages.tiers}
+                    />
 
-        <div className="mt-16 mb-16 w-full max-w-[1250px] mx-auto px-4 sm:px-6 md:px-10">
-          <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-center mb-8">
-            For Partners & Sponsors 
-          </h1>
-          <div className="w-full scrollbar-hide overflow-hidden">
-            <div 
-              ref={sponsorsScrollRef}
-              className="flex gap-6 overflow-x-auto pb-2 snap-x snap-mandatory scrollbar-hide"
-              style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
-            >
-              {sponsors.map((sponsor: any, index: number) => (
-                <SpotlightCard 
-                  key={index} 
-                  className="min-w-[300px] max-w-[350px] h-[250px] flex flex-col justify-between snap-center shrink-0"
-                  spotlightColor="rgba(64, 255, 170, 0.2)"
-                >
-                  <h3 className="text-xl md:text-2xl font-bold mb-4 text-[#40ffaa]">
-                    {sponsor.title}
-                  </h3>
-                  <p className="text-sm md:text-base text-neutral-300">
-                    {sponsor.content}
-                  </p>
-                </SpotlightCard>
-              ))}
-              {/* Duplicate first few items to create seamless loop */}
-              {sponsors.slice(0, 3).map((sponsor: any, index: number) => (
-                <SpotlightCard 
-                  key={`dup-${index}`} 
-                  className="min-w-[300px] max-w-[350px] h-[250px] flex flex-col justify-between snap-center shrink-0"
-                  spotlightColor="rgba(64, 255, 170, 0.2)"
-                >
-                  <h3 className="text-xl md:text-2xl font-bold mb-4 text-[#40ffaa]">
-                    {sponsor.title}
-                  </h3>
-                  <p className="text-sm md:text-base text-neutral-300">
-                    {sponsor.content}
-                  </p>
-                </SpotlightCard>
-              ))}
-            </div>
-          </div>
+<BecomeSpeaker data={speakersData.speakers.becomeSpeaker} />
 
-          <div className="w-full mt-16 scrollbar-hide overflow-hidden">
-            <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-center mb-8">
-              For Participants 
-            </h1>
-            <div 
-              ref={participantsScrollRef}
-              className="flex gap-6 overflow-x-auto pb-2 snap-x snap-mandatory scrollbar-hide"
-              style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
-            >
-              {participants.map((participant: any, index: number) => (
-                <SpotlightCard 
-                  key={index} 
-                  className="min-w-[300px] max-w-[350px] h-[250px] flex flex-col justify-between snap-center shrink-0"
-                  spotlightColor="rgba(64, 255, 170, 0.2)"
-                >
-                  <h3 className="text-xl md:text-2xl font-bold mb-4 text-[#40ffaa]">
-                    {participant.title}
-                  </h3>
-                  <p className="text-sm md:text-base text-neutral-300">
-                    {participant.content}
-                  </p>
-                </SpotlightCard>
-              ))}
-              {/* Duplicate first few items to create seamless loop */}
-              {participants.slice(0, 3).map((participant: any, index: number) => (
-                <SpotlightCard 
-                  key={`dup-${index}`} 
-                  className="min-w-[300px] max-w-[350px] h-[250px] flex flex-col justify-between snap-center shrink-0"
-                  spotlightColor="rgba(64, 255, 170, 0.2)"
-                >
-                  <h3 className="text-xl md:text-2xl font-bold mb-4 text-[#40ffaa]">
-                    {participant.title}
-                  </h3>
-                  <p className="text-sm md:text-base text-neutral-300">
-                    {participant.content}
-                  </p>
-                </SpotlightCard>
-              ))}
-            </div>
-          </div>
-        </div>
 
-        <div className="flex flex-col mt-16 mb-16 w-full max-w-[1250px] mx-auto px-4 sm:px-6 md:px-10 gap-y-7">
-          <h1 className="font-bold text-5xl">Stay informed. Be Inspired. Be There.</h1>
-          <p className="text-lg text-neutral-300">
-            Register your interest now to receive exclusive updates, speaker announcements, and early bird opportunities.
-          </p>
-          
-          <div className="flex items-center w-full max-w-[400px] rounded-full overflow-hidden border border-neutral-700 focus-within:ring-2 focus-within:ring-[#40ffaa] bg-neutral-800">
-            <input 
-              type="email" 
-              placeholder="Enter your email" 
-              className="flex-1 px-4 py-2 bg-transparent text-white placeholder-neutral-400 focus:outline-none" 
-            />
-            <button className="px-4 py-2 bg-[#40ffaa] text-black font-bold hover:bg-[#38e699] transition-colors rounded-full">
-              Notify
-            </button>
-          </div>
-        </div>
 
-        <footer className="text-center py-4 text-neutral-400">
-          TiE Coimbatore&apos;s KOVAI Conference | October 2 &amp; 3, 2025
-        </footer>
+     
+
+
+        {/* Speech test button - remove in production
+        {process.env.NODE_ENV !== "production" && (
+          <button 
+            onClick={testSpeechDirectly}
+            className="fixed bottom-4 right-4 bg-red-500 text-white px-3 py-1 rounded-lg z-50"
+          >
+            Test Speech
+          </button>
+        )} */}
 
       </div>
     </div>

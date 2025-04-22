@@ -1,0 +1,133 @@
+{
+    "aboutConference": {
+      "header": {
+        "title": "About The Conference",
+        "subtitle": "Driving AI innovation in South India",
+        "description": "The KovAI Conference is the premier AI event in South India, focusing on the practical applications of artificial intelligence in manufacturing, textile, and healthcare industries. Scheduled for October 2-3, 2025, in Coimbatore, Tamil Nadu, the conference aims to bring together 500 attendees including industry professionals, researchers, students, and policymakers.",
+        "additionalDescription": "This inaugural conference will establish KovAI as an essential annual gathering for the AI community in South India. The event is designed to showcase cutting-edge research, facilitate meaningful networking, and promote ethical AI development while highlighting the unique industrial ecosystem of Coimbatore and the surrounding region."
+      },
+  
+      "visionMission": {
+        "vision": {
+          "title": "Our Vision",
+          "content": "To drive AI innovation and collaboration in South India, empowering a generation of thinkers and doers through our annual conference.",
+          "additionalContent": "We envision KovAI Conference as a catalyst for technological advancement in the region, connecting traditional industries with cutting-edge AI solutions and fostering a vibrant ecosystem of innovation."
+        },
+        "mission": {
+          "title": "Our Mission",
+          "content": "To connect, inspire, and educate the AI community in South India through our annual conference, fostering a culture of collaboration, knowledge sharing, and ethical AI development.",
+          "additionalContent": "We are committed to creating a platform that bridges the gap between academic research and industrial applications, with a special focus on manufacturing, healthcare, and textile sectors that form the backbone of South India's economy."
+        }
+      },
+  
+      "goals": {
+        "title": "Conference Goals",
+        "subtitle": "What we aim to achieve",
+        "items": [
+          {
+            "title": "Enhance Visibility",
+            "description": "Establish KovAI as the premier AI event in South India, creating a platform for regional innovation and global recognition."
+          },
+          {
+            "title": "Diverse Audience",
+            "description": "Bring together researchers, students, industry professionals, and policymakers to create a multifaceted community of AI practitioners."
+          },
+          {
+            "title": "Showcase Innovation",
+            "description": "Feature presentations, demos, and workshops on the latest AI advancements relevant to South India's industrial landscape."
+          },
+          {
+            "title": "Ethical AI",
+            "description": "Address the societal implications of AI and encourage responsible innovation that benefits communities and industries."
+          }
+        ]
+      },
+  
+      "benefits": {
+        "title": "Why Attend KovAI Conference",
+        "subtitle": "Benefits for participants",
+        "items": [
+          {
+            "id": "01",
+            "title": "Industry-Specific Insights",
+            "description": "Gain valuable insights into AI applications specifically tailored for manufacturing, healthcare, and textile industries in the South Indian context."
+          },
+          {
+            "id": "02",
+            "title": "Networking Opportunities",
+            "description": "Connect with industry leaders, researchers, potential collaborators, and investors through structured networking sessions and social events."
+          },
+          {
+            "id": "03",
+            "title": "Hands-on Workshops",
+            "description": "Participate in practical workshops led by experts to develop skills in implementing AI solutions for real-world industrial challenges."
+          },
+          {
+            "id": "04",
+            "title": "Knowledge Exchange",
+            "description": "Learn from 50+ speakers sharing their expertise, case studies, and lessons learned in implementing AI across various sectors."
+          },
+          {
+            "id": "05",
+            "title": "Exhibition Showcase",
+            "description": "Explore the latest AI technologies, products, and services from leading companies and innovative startups in the exhibition area."
+          },
+          {
+            "id": "06",
+            "title": "Regional Focus",
+            "description": "Experience content specifically designed for the South Indian context, addressing regional challenges and opportunities in AI adoption."
+          }
+        ]
+      },
+  
+      "committee": {
+        "title": "Organizing Committee",
+        "subtitle": "The team behind KovAI Conference",
+        "members": [
+          {
+            "name": "Coming Soon",
+            "role": "Conference Chair"
+          },
+          {
+            "name": "Coming Soon",
+            "role": "Program Director"
+          },
+          {
+            "name": "Coming Soon",
+            "role": "Technical Chair"
+          },
+          {
+            "name": "Coming Soon",
+            "role": "Sponsorship Coordinator"
+          }
+        ]
+      },
+  
+      "faqs": {
+        "title": "Frequently Asked Questions",
+        "subtitle": "Common questions about KovAI Conference",
+        "items": [
+          {
+            "question": "What is the KovAI Conference?",
+            "answer": "KovAI Conference is the premier AI event in South India, focusing on the practical applications of artificial intelligence in manufacturing, textile, and healthcare industries. The inaugural conference will be held on October 2-3, 2025, in Coimbatore, Tamil Nadu."
+          },
+          {
+            "question": "Who should attend the conference?",
+            "answer": "The conference is designed for industry professionals from manufacturing, textile, and healthcare sectors, academic researchers, students in AI and related fields, technology professionals, policymakers, investors, and entrepreneurs interested in AI applications and innovations."
+          },
+          {
+            "question": "What types of sessions will be offered?",
+            "answer": "The conference will feature keynote presentations, panel discussions, technical sessions, hands-on workshops, and networking events. Sessions will be organized into parallel tracks focusing on manufacturing, healthcare, and textile industries, with additional cross-cutting themes like ethical AI and responsible innovation."
+          },
+          {
+            "question": "How can I register for the conference?",
+            "answer": "Registration is available through our website's registration page. We offer different ticket types including General Admission, Workshop Pass, and Student Pass. Early bird registration with discounted rates is available until July 31, 2025. Group discounts are available for organizations sending 5 or more attendees."
+          },
+          {
+            "question": "How can I become a speaker or presenter?",
+            "answer": "We welcome speaker applications from industry experts, researchers, and practitioners. Our call for presentations will open approximately 5 months before the conference. You can submit your proposal through the speakers page on our website. Selected speakers will be notified 2 months before the conference."
+          }
+        ]
+      }
+    }
+  }

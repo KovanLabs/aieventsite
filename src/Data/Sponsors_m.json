@@ -1,0 +1,225 @@
+ {
+    "sponsors": {
+      "header": {
+        "title": "Our Sponsors",
+        "subtitle": "Supporting AI innovation in South India",
+        "description": "KovAI Conference 2025 is proud to be supported by leading organizations committed to advancing AI innovation in manufacturing, healthcare, and textile industries. Our sponsors play a crucial role in making this event possible and helping us create a platform for knowledge sharing and collaboration."
+      },
+      
+      "tiers": {
+        "platinum": {
+          "title": "Platinum Sponsors",
+          "sponsors": [
+            {
+              "name": "Sponsorship Available",
+              "cta": "Become a Platinum Sponsor",
+              "placeholder": true
+            },
+            {
+              "name": "Sponsorship Available",
+              "cta": "Become a Platinum Sponsor",
+              "placeholder": true
+            }
+          ]
+        },
+        "gold": {
+          "title": "Gold Sponsors",
+          "sponsors": [
+            {
+              "name": "Sponsorship Available",
+              "cta": "Become a Gold Sponsor",
+              "placeholder": true
+            },
+            {
+              "name": "Sponsorship Available",
+              "cta": "Become a Gold Sponsor",
+              "placeholder": true
+            },
+            {
+              "name": "Sponsorship Available",
+              "cta": "Become a Gold Sponsor",
+              "placeholder": true
+            }
+          ]
+        },
+        "silver": {
+          "title": "Silver Sponsors",
+          "sponsors": [
+            {
+              "name": "Sponsorship Available",
+              "placeholder": true
+            },
+            {
+              "name": "Sponsorship Available",
+              "placeholder": true
+            },
+            {
+              "name": "Sponsorship Available",
+              "placeholder": true
+            },
+            {
+              "name": "Sponsorship Available",
+              "placeholder": true
+            }
+          ]
+        },
+        "bronze": {
+          "title": "Bronze Sponsors",
+          "sponsors": [
+            {
+              "name": "Sponsorship Available",
+              "placeholder": true
+            },
+            {
+              "name": "Sponsorship Available",
+              "placeholder": true
+            },
+            {
+              "name": "Sponsorship Available",
+              "placeholder": true
+            },
+            {
+              "name": "Sponsorship Available",
+              "placeholder": true
+            },
+            {
+              "name": "Sponsorship Available",
+              "placeholder": true
+            },
+            {
+              "name": "Sponsorship Available",
+              "placeholder": true
+            }
+          ]
+        }
+      },
+      
+      "packages": {
+        "title": "Sponsorship Packages",
+        "subtitle": "Partner with us to showcase your brand",
+        "description": "KovAI Conference 2025 offers various sponsorship packages designed to provide maximum visibility and engagement opportunities with our audience of industry professionals, researchers, and decision-makers in the AI ecosystem.",
+        "tiers": [
+          {
+            "name": "Platinum",
+            "price": "₹10,00,000",
+            "benefits": [
+              "Prime exhibition space (6x3m)",
+              "8 complimentary registrations",
+              "30-minute keynote speaking slot",
+              "Logo on main stage backdrop",
+              "Logo on conference website (home page)",
+              "Logo on all promotional materials",
+              "Full-page ad in conference program",
+              "Promotional material in attendee bags",
+              "Access to attendee list (with consent)",
+              "Social media promotion (5 dedicated posts)",
+              "Branding on conference lanyards",
+              "Exclusive networking dinner sponsorship"
+            ]
+          },
+          {
+            "name": "Gold",
+            "price": "₹5,00,000",
+            "benefits": [
+              "Exhibition space (3x3m)",
+              "5 complimentary registrations",
+              "Panel discussion participation",
+              "Logo on conference website",
+              "Logo on promotional materials",
+              "Half-page ad in conference program",
+              "Promotional material in attendee bags",
+              "Social media promotion (3 dedicated posts)",
+              "Sponsorship of coffee breaks (1 day)",
+              "Access to attendee list",
+              "Branding on conference lanyards"
+            ]
+          },
+          {
+            "name": "Silver",
+            "price": "₹2,50,000",
+            "benefits": [
+              "Exhibition space (2x2m)",
+              "3 complimentary registrations",
+              "Speaking opportunity",
+              "Logo on conference website",
+              "Logo on promotional materials",
+              "Quarter-page ad in conference program",
+              "Promotional material in attendee bags",
+              "Social media promotion (1 dedicated post)",
+              "Sponsorship of coffee breaks",
+              "Access to attendee list",
+              "Branding on conference lanyards"
+            ]
+          },
+          {
+            "name": "Bronze",
+            "price": "₹1,00,000",
+            "benefits": [
+              "Exhibition space",
+              "2 complimentary registrations",
+              "Speaking opportunity",
+              "Logo on conference website",
+              "Logo on promotional materials",
+              "Ad in conference program",
+              "Promotional material in attendee bags",
+              "Social media mention (group post)",
+              "Sponsorship of coffee breaks",
+              "Access to attendee list",
+              "Branding on conference lanyards"
+            ]
+          }
+        ]
+      },
+      
+      "custom": {
+        "title": "Custom Sponsorship Opportunities",
+        "subtitle": "Tailored solutions for your brand",
+        "description": "In addition to our standard packages, we offer custom sponsorship opportunities that can be tailored to meet your specific marketing objectives and budget.",
+        "options": [
+          {
+            "name": "Lunch Sponsor",
+            "description": "Exclusive branding during lunch sessions on either day of the conference.",
+            "price": "₹2,00,000 per day"
+          },
+          {
+            "name": "Coffee Break Sponsor",
+            "description": "Branding during coffee breaks with signage and napkins featuring your logo.",
+            "price": "₹1,00,000 per break"
+          },
+          {
+            "name": "Lanyard Sponsor",
+            "description": "Your logo on all attendee lanyards throughout the conference.",
+            "price": "₹1,50,000"
+          },
+          {
+            "name": "WiFi Sponsor",
+            "description": "Your brand as the WiFi network name with customized password.",
+            "price": "₹1,25,000"
+          }
+        ],
+        "cta": "Contact our sponsorship team to discuss custom packages that align with your marketing goals."
+      },
+      
+      "benefits": {
+        "title": "Why Sponsor KovAI Conference?",
+        "items": [
+          {
+            "title": "Access to Target Audience",
+            "description": "Connect with 500+ professionals from manufacturing, healthcare, and textile industries interested in AI solutions."
+          },
+          {
+            "title": "Brand Visibility",
+            "description": "Showcase your brand to decision-makers and influencers in the South Indian AI ecosystem."
+          },
+          {
+            "title": "Networking Opportunities",
+            "description": "Build relationships with potential clients, partners, and industry leaders."
+          },
+          {
+            "title": "Thought Leadership",
+            "description": "Position your organization as a leader in AI innovation through speaking opportunities."
+          }
+        ]
+      }
+    }
+  }
