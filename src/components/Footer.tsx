@@ -33,7 +33,7 @@ export default function Footer() {
             <div className="space-y-6">
               <div className="flex items-baseline">
                 <span className="text-3xl font-bold">Kov</span>
-                <span className="text-3xl font-bold text-[#4527A0]">AI</span>
+                <span className="text-3xl font-bold text-green-400">AI</span>
                 <span className="text-lg ml-1">Conference</span>
               </div>
               <p className="text-gray-300 max-w-xs">
@@ -68,6 +68,7 @@ export default function Footer() {
             </div>
 
             {/* Quick Links */}
+            <div className="flex justify-between px-10 md:flex-none md:px-0 ">
             <div>
               <h3 className="text-lg font-semibold mb-6 border-b border-[#4527A0] pb-2 inline-block">Quick Links</h3>
               <ul className="space-y-3">
@@ -130,9 +131,10 @@ export default function Footer() {
                 </li>
               </ul>
             </div>
+            </div>
 
             {/* Contact Us */}
-            <div>
+            <div className="flex items-center flex-col ">
               <h3 className="text-lg font-semibold mb-6 border-b border-[#4527A0] pb-2 inline-block">Contact Us</h3>
               <ul className="space-y-4">
                 <li className="flex items-center gap-3">

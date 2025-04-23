@@ -70,7 +70,7 @@ function ContactPage() {
     const [hoverState, setHoverState] = useState(false);
 
     return (
-        <div className="min-h-screen relative py-20 px-4">      
+        <div className="min-h-screen relative py-20 px-4 bg-black">      
             <div className="max-w-4xl mt-10 mx-auto z-10 relative">
 
                 <h1  

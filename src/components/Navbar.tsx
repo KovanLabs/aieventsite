@@ -21,11 +21,11 @@ const Navbar = () => {
     return (
         <nav className="glass fixed top-0 z-50 w-full py-4 px-4 md:px-8 lg:px-12 xl:px-16 flex items-center justify-between">
             {/* Logo/Brand Name can be added here */}
-            <div className="text-[#40ffaa] font-bold text-xl md:hidden">AI Conf</div>
+            <div className="text-white font-bold text-xl md:hidden">Kov<span className="text-[#40ffaa]">AI</span> Con</div>
             
             {/* Mobile Menu Button */}
             <button 
-                className="md:hidden text-gray-300 hover:text-[#40ffaa] transition-colors z-50"
+                className="md:hidden  text-gray-300 hover:text-[#40ffaa] transition-colors z-50"
                 onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             >
                 {mobileMenuOpen ? <HiX size={24} /> : <HiMenuAlt3 size={24} />}
@@ -55,23 +55,24 @@ const Navbar = () => {
             </div>
             
             {/* Mobile Menu - Fullscreen Overlay */}
-            <div className={`md:hidden fixed inset-0 glass-menu backdrop-blur-md flex flex-col items-center justify-center transition-all duration-300 ${
+            <div className={`md:hidden fixed inset-0 bg-gray-900 flex flex-col items-center justify-center transition-all duration-300 ${
                 mobileMenuOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
-            }`}>
-                <div className="flex flex-col items-center gap-y-6 py-8">
+            }`} style={{ zIndex: 40, marginTop: '60px' }}>
+                <div className="flex flex-col items-center gap-y-6 bg-black py-8 w-full max-w-sm">
+                    <div className="text-[#40ffaa] font-bold text-2xl mb-6">AI Conf</div>
                     {nav.map((item, index) => (
                         <Link
                             key={index}
                             href={item.path}
                             onClick={() => setMobileMenuOpen(false)}
-                            className={`relative px-4 py-3 text-lg font-medium transition-all duration-300 ${
+                            className={`relative px-4 py-3 text-lg font-medium transition-all duration-300 w-full text-center ${
                                 pathname === item.path 
                                     ? 'text-[#40ffaa]' 
                                     : 'text-gray-200 hover:text-[#40ffaa]/80'
                             }`}
                         >
                             {pathname === item.path && (
-                                <span className="absolute inset-0 bg-[#40ffaa]/10 rounded-lg -z-10" />
+                                <span className="absolute inset-0 bg-[#40ffaa]/20 rounded-lg -z-10" />
                             )}
                             {item.name}
                             {pathname === item.path && (
