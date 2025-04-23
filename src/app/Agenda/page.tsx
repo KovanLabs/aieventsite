@@ -12,15 +12,15 @@ export default function AgendaPage() {
   const { header, days } = conferenceOverview;
 
   return (
-    <div className="relative min-h-screen mt-10 w-full overflow-hidden">
+    <div className="relative min-h-screen mt-10 w-full overflow-hidden bg-black">
       {/* Background elements */}
       <div className="absolute inset-0 z-0">
         <RetroGrid
           className="absolute inset-0 z-0"
           cellSize={80}
           opacity={0.4}
-          lightLineColor="purple"
-          darkLineColor="gray"
+          lightLineColor="#40ffaa"
+          darkLineColor="#003329"
         />
       </div>
 
@@ -29,7 +29,7 @@ export default function AgendaPage() {
         <div className="text-center mb-12">
           <GradientText 
             className="text-4xl md:text-6xl font-bold mb-4"
-            colors={["#9F7AEA", "#4ADE80", "#9F7AEA"]}
+            colors={["#40ffaa", "#4079ff", "#40ffaa"]}
             animationSpeed={6}
           >
             {header.title}
@@ -46,7 +46,7 @@ export default function AgendaPage() {
               onClick={() => setActiveDay(index)}
               className={`px-6 py-3 rounded-lg transition-all duration-300 
                 ${activeDay === index 
-                  ? 'bg-gradient-to-r from-purple-500 to-green-400 text-white shadow-lg' 
+                  ? 'bg-green-400 text-black shadow-lg' 
                   : 'bg-gray-800 text-gray-300 hover:bg-gray-700'}`}
             >
               {day.title}
@@ -63,7 +63,7 @@ export default function AgendaPage() {
             {days[activeDay].tracks.map((track, index) => (
               <span 
                 key={index} 
-                className="px-4 py-1 bg-opacity-20 bg-purple-500 rounded-full text-sm font-medium text-purple-300 border border-purple-500/30"
+                className="px-4 py-1 bg-opacity-20 bg-[#40ffaa] rounded-full text-sm font-medium text-[#40ffaa] border border-[#40ffaa]/30"
               >
                 {track}
               </span>
@@ -78,7 +78,7 @@ export default function AgendaPage() {
               {/* Time marker */}
               <div className="flex items-start gap-6">
                 <div className="min-w-[120px] pt-2 md:text-right">
-                  <div className="text-green-400 font-medium">{session.time}</div>
+                  <div className="text-[#40ffaa] font-medium">{session.time}</div>
                 </div>
 
                 {/* Session content */}
@@ -86,17 +86,17 @@ export default function AgendaPage() {
                   {!session.sessions ? (
                     <SpotlightCard 
                       className="p-6"
-                      spotlightColor={session.type === 'Keynote' || session.type === 'Plenary' ? 'rgba(74, 222, 128, 0.2)' : 'rgba(128, 90, 213, 0.2)'}
+                      spotlightColor={session.type === 'Keynote' || session.type === 'Plenary' ? 'rgba(64, 255, 170, 0.2)' : 'rgba(64, 121, 255, 0.2)'}
                     >
                       <div className="space-y-2">
                         <div className="flex flex-wrap justify-between items-start gap-2">
                           <h4 className="text-xl font-medium text-white">{session.title}</h4>
                           {session.type && (
                             <span className={`px-2 py-1 rounded-md text-xs font-medium 
-                              ${session.type === 'Keynote' ? 'bg-green-500/20 text-green-300' :
+                              ${session.type === 'Keynote' ? 'bg-[#40ffaa]/20 text-[#40ffaa]' :
                                 session.type === 'General' ? 'bg-gray-600/40 text-gray-300' :
-                                  session.type === 'Networking' ? 'bg-blue-500/20 text-blue-300' :
-                                    session.type === 'Plenary' ? 'bg-purple-500/20 text-purple-300' :
+                                  session.type === 'Networking' ? 'bg-[#4079ff]/20 text-[#4079ff]' :
+                                    session.type === 'Plenary' ? 'bg-[#40ffaa]/20 text-[#40ffaa]' :
                                       session.type === 'Panel' ? 'bg-teal-500/20 text-teal-300' :
                                         session.type === 'Closing' ? 'bg-amber-500/20 text-amber-300' :
                                           'bg-gray-500/20 text-gray-300'
@@ -128,7 +128,7 @@ export default function AgendaPage() {
                           {session.format && (
                             <div className="flex items-center gap-1">
                               <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 012-2h2a2 2 0 012-2" />
                               </svg>
                               <span className="text-gray-300">{session.format}</span>
                             </div>
@@ -144,26 +144,26 @@ export default function AgendaPage() {
                             key={trackIndex} 
                             className="p-6 h-full"
                             spotlightColor={
-                              trackSession.track === 'Manufacturing' ? 'rgba(128, 90, 213, 0.2)' : 
-                              trackSession.track === 'Healthcare' ? 'rgba(74, 222, 128, 0.2)' : 
-                              'rgba(167, 139, 250, 0.2)'
+                              trackSession.track === 'Manufacturing' ? 'rgba(64, 255, 170, 0.2)' : 
+                              trackSession.track === 'Healthcare' ? 'rgba(64, 121, 255, 0.2)' : 
+                              'rgba(64, 255, 170, 0.2)'
                             }
                           >
                             <div className="space-y-2 h-full flex flex-col">
                               <div className="flex justify-between items-start gap-2">
-                                <span className="px-2 py-1 rounded-md text-xs font-medium 
-                                  ${trackSession.track === 'Manufacturing' ? 'bg-purple-500/20 text-purple-300' :
-                                  trackSession.track === 'Healthcare' ? 'bg-green-500/20 text-green-300' :
-                                  'bg-indigo-500/20 text-indigo-300'}"
+                                <span className={`px-2 py-1 rounded-md text-xs font-medium 
+                                  ${trackSession.track === 'Manufacturing' ? 'bg-[#40ffaa]/20 text-[#40ffaa]' :
+                                  trackSession.track === 'Healthcare' ? 'bg-[#4079ff]/20 text-[#4079ff]' :
+                                  'bg-[#40ffaa]/20 text-[#40ffaa]'}`}
                                 >
                                   {trackSession.track}
                                 </span>
                                 {trackSession.format && (
-                                  <span className="px-2 py-1 rounded-md text-xs font-medium 
+                                  <span className={`px-2 py-1 rounded-md text-xs font-medium 
                                     ${trackSession.format === 'Workshop' ? 'bg-teal-500/20 text-teal-300' :
                                       trackSession.format === 'Panel Discussion' ? 'bg-amber-500/20 text-amber-300' :
                                       trackSession.format === 'Technical' ? 'bg-blue-500/20 text-blue-300' :
-                                      'bg-gray-500/20 text-gray-300'}"
+                                      'bg-gray-500/20 text-gray-300'}`}
                                   >
                                     {trackSession.format}
                                   </span>
@@ -201,7 +201,7 @@ export default function AgendaPage() {
 
               {/* Connecting line for timeline */}
               {sessionIndex < days[activeDay].sessions.length - 1 && (
-                <div className="absolute left-[60px] ml-0.5 top-10 h-full w-0.5 bg-gradient-to-b from-purple-500/50 to-green-400/50" />
+                <div className="absolute left-[60px] ml-0.5 top-10 h-full w-0.5 bg-gradient-to-b from-[#40ffaa]/50 to-[#4079ff]/50" />
               )}
             </div>
           ))}
@@ -217,7 +217,7 @@ export default function AgendaPage() {
               <p className="text-gray-400 mb-8 max-w-2xl mx-auto">Experience cutting-edge AI innovations and network with industry leaders in manufacturing, healthcare, and textile sectors.</p>
               <a 
                 href="#" 
-                className="inline-block px-8 py-4 rounded-lg bg-gradient-to-r from-purple-500 to-green-400 text-white font-medium transition-transform hover:scale-105"
+                className="inline-block px-8 py-4 rounded-lg bg-gradient-to-r from-[#40ffaa] to-[#4079ff] text-black font-medium transition-transform hover:scale-105"
               >
                 Register Now
               </a>

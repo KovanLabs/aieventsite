@@ -61,7 +61,7 @@ function Page() {
               onClick={() => setActiveTab(tab.id)}
               className={`px-4 py-2 rounded-full text-sm md:text-base ${
                 activeTab === tab.id
-                  ? "bg-gradient-to-r from-[#40ffaa] to-[#4079ff] text-black font-medium"
+                  ? "bg-green-400 text-black font-medium"
                   : "bg-black/40 backdrop-blur-sm text-white/70 hover:text-white/90 border border-white/10"
               }`}
               whileHover={{ scale: 1.05 }}

@@ -91,7 +91,7 @@ function Page() {
   }, []);
 
   return (
-    <div className="w-full relative min-h-screen">
+    <div className="w-full relative min-h-screen bg-black">
       <div className="flex flex-col items-center justify-center min-h-screen overflow-y-auto px-4 bg-black">
     
         <Orb
@@ -102,6 +102,17 @@ function Page() {
           welcomeMessage="Hello! Welcome to the AI Conference 2025" 
           speechEnabled={speechEnabled}
         />
+
+{!speechEnabled ? (
+            <div className="text-center text-white/70 mt-2 animate-pulse">
+              <p className="text-sm md:text-base flex items-center justify-center gap-1">
+                <span className="inline-block w-2 h-2 bg-[#40ffaa] rounded-full"></span>
+                Hover over the orb to interact
+              </p>
+            </div>
+          ) : (
+            <div className="h-6"></div> // Empty spacer when speech is enabled
+          )}
 
           <GradientText
             colors={["#40ffaa", "#4079ff", "#40ffaa", "#4079ff", "#40ffaa"]}
@@ -121,17 +132,6 @@ function Page() {
             text="The Future is Calling. Are You Ready?"
             className="text-3xl sm:text-4xl md:text-5xl lg:text-[64px] p-1 font-normal"
           />
-
-          {!speechEnabled ? (
-            <div className="text-center text-white/70 mt-2 animate-pulse">
-              <p className="text-sm md:text-base flex items-center justify-center gap-1">
-                <span className="inline-block w-2 h-2 bg-[#40ffaa] rounded-full"></span>
-                Hover over the orb to interact
-              </p>
-            </div>
-          ) : (
-            <div className="h-6"></div> // Empty spacer when speech is enabled
-          )}
 
           {/* Countdown Box UI */}
           <div className="flex flex-col md:flex-row gap-6 md:gap-8 mt-8 md:mt-12 max-w-4xl mx-auto w-full">

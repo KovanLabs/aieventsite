@@ -21,7 +21,7 @@ interface BecomeSpeakerProps {
 
 export default function BecomeSpeaker({ data }: BecomeSpeakerProps) {
     return (
-        <section className="py-16 px-4 max-w-7xl mx-auto mt-16">
+        <section className="py-16 px-4 max-w-7xl  mx-auto mt-16">
             <div className="grid md:grid-cols-2 gap-12">
                 {/* Left Column */}
                 <motion.div 

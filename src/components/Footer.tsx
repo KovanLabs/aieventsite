@@ -5,9 +5,9 @@ import { Mail, Phone, MapPin, Twitter, Linkedin, Facebook, Instagram } from "luc
 
 export default function Footer() {
   return (
-    <footer className="w-full">
+    <footer className="w-full bg-black">
       {/* Newsletter Section */}
-      <div className="flex flex-col mt-16 mb-16 w-full max-w-[1250px] mx-auto px-4 sm:px-6 md:px-10 gap-y-7">
+      <div className="flex flex-col pt-16 mb-16 w-full max-w-[1250px] mx-auto px-4 sm:px-6 md:px-10 gap-y-7 bg-black">
           <h1 className="font-bold text-5xl">Stay informed. Be Inspired. Be There.</h1>
           <p className="text-lg text-neutral-300">
             Register your interest now to receive exclusive updates, speaker announcements, and early bird opportunities.
@@ -26,7 +26,7 @@ export default function Footer() {
         </div>
 
       {/* Main Footer */}
-      <div className="w-full max-w-[1250px] mx-auto bg-[#1A1A1A] text-white py-16">
+      <div className="w-full max-w-[1250px] mx-auto bg-black text-white py-16">
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 md:grid-cols-4 gap-10">
             {/* Logo and Description */}

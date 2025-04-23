@@ -45,13 +45,13 @@ export default function SponsorshipPackages({ title, subtitle, description, tier
                         </div>
                         <div className="p-5 border-t border-[#40ffaa]/20">
                             <Button 
-                                className="w-full bg-gradient-to-r from-[#40ffaa] to-[#00ffff] text-black font-medium relative overflow-hidden hover:shadow-[0_0_25px_rgba(64,255,170,0.5)] transition-all duration-300 group"
+                                className="w-full bg-gradient-to-r from-[#8b5cf6] to-[#a78bfa] text-white font-bold relative overflow-hidden hover:shadow-[0_0_25px_rgba(139,92,246,0.5)] transition-all duration-300 group"
                             >
                                 <span className="relative z-10 group-hover:scale-110 transition-transform duration-300">
                                     {`Become a ${tier.name} Sponsor`}
                                 </span>
-                                <span className="absolute inset-0 bg-white opacity-0 group-hover:opacity-20 group-hover:scale-90 rounded-full transition-all duration-500 ease-out transform origin-center"></span>
-                                <span className="absolute -inset-px bg-gradient-to-r from-[#40ffaa]/60 to-[#00ffff]/60 opacity-0 group-hover:opacity-100 blur-sm transition-opacity duration-300"></span>
+                                <span className="absolute inset-0 bg-black opacity-0 group-hover:opacity-20 group-hover:scale-90 rounded-full transition-all duration-500 ease-out transform origin-center"></span>
+                                <span className="absolute -inset-px bg-gradient-to-r from-[#8b5cf6]/60 to-[#a78bfa]/60 opacity-0 group-hover:opacity-100 blur-sm transition-opacity duration-300"></span>
                             </Button>
                         </div>
                     </div>

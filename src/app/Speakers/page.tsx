@@ -43,7 +43,7 @@ import speakersData from "../../Data/Speaker.json"
 
 export default function Home() {
   return (
-    <main>
+    <main className="bg-black">
       <BecomeSpeaker data={speakersData.speakers.becomeSpeaker} />
     </main>
   )
