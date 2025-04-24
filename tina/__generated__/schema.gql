@@ -58,6 +58,8 @@ type Query {
   homeConnection(before: String, after: String, first: Float, last: Float, sort: String, filter: HomeFilter): HomeConnection!
   about(relativePath: String): About!
   aboutConnection(before: String, after: String, first: Float, last: Float, sort: String, filter: AboutFilter): AboutConnection!
+  contact(relativePath: String): Contact!
+  contactConnection(before: String, after: String, first: Float, last: Float, sort: String, filter: ContactFilter): ContactConnection!
   agenda(relativePath: String): Agenda!
   agendaConnection(before: String, after: String, first: Float, last: Float, sort: String, filter: AgendaFilter): AgendaConnection!
   venue(relativePath: String): Venue!
@@ -71,6 +73,7 @@ type Query {
 input DocumentFilter {
   home: HomeFilter
   about: AboutFilter
+  contact: ContactFilter
   agenda: AgendaFilter
   venue: VenueFilter
   speakers: SpeakersFilter
@@ -100,7 +103,14 @@ type Collection {
   documents(before: String, after: String, first: Float, last: Float, sort: String, filter: DocumentFilter, folder: String): DocumentConnection!
 }
 
-union DocumentNode = Home | About | Agenda | Venue | Speakers | Sponsors | Folder
+union DocumentNode = Home | About | Contact | Agenda | Venue | Speakers | Sponsors | Folder
+
+type HomeConferenceHeroCountdown {
+  days: Float
+  hours: Float
+  minutes: Float
+  seconds: Float
+}
 
 type HomeConferenceHero {
   title: String
@@ -108,10 +118,134 @@ type HomeConferenceHero {
   date: String
   location: String
   description: String
+  countdown: HomeConferenceHeroCountdown
+}
+
+type HomeConferenceAboutVision {
+  title: String
+  content: String
+}
+
+type HomeConferenceAboutMission {
+  title: String
+  content: String
+}
+
+type HomeConferenceAboutStats {
+  value: String
+  label: String
+}
+
+type HomeConferenceAbout {
+  title: String
+  description: String
+  vision: HomeConferenceAboutVision
+  mission: HomeConferenceAboutMission
+  stats: [HomeConferenceAboutStats]
+}
+
+type HomeConferenceFocusAreasAreas {
+  title: String
+  description: String
+}
+
+type HomeConferenceFocusAreas {
+  title: String
+  subtitle: String
+  areas: [HomeConferenceFocusAreasAreas]
+}
+
+type HomeConferenceFeaturedSpeakersSpeakers {
+  name: String
+  title: String
+  image: String
+}
+
+type HomeConferenceFeaturedSpeakers {
+  title: String
+  subtitle: String
+  speakers: [HomeConferenceFeaturedSpeakersSpeakers]
+}
+
+type HomeConferenceAgendaDaysSessions {
+  time: String
+  title: String
+  description: String
+}
+
+type HomeConferenceAgendaDays {
+  title: String
+  sessions: [HomeConferenceAgendaDaysSessions]
+}
+
+type HomeConferenceAgenda {
+  title: String
+  subtitle: String
+  days: [HomeConferenceAgendaDays]
+}
+
+type HomeConferenceRegistrationTickets {
+  type: String
+  description: String
+}
+
+type HomeConferenceRegistrationEarlyBirdCountdown {
+  days: Float
+  hours: Float
+  minutes: Float
+}
+
+type HomeConferenceRegistrationEarlyBird {
+  text: String
+  date: String
+  countdown: HomeConferenceRegistrationEarlyBirdCountdown
+}
+
+type HomeConferenceRegistration {
+  title: String
+  description: String
+  tickets: [HomeConferenceRegistrationTickets]
+  earlyBird: HomeConferenceRegistrationEarlyBird
+  note: String
+}
+
+type HomeConferenceVenue {
+  title: String
+  subtitle: String
+  name: String
+  location: String
+  description: String
+  details: String
+  features: [String]
+}
+
+type HomeConferenceSponsorsTiers {
+  name: String
+  count: Float
+  placeholder: Boolean
+}
+
+type HomeConferenceSponsorsCta {
+  text: String
+  description: String
+}
+
+type HomeConferenceSponsors {
+  title: String
+  subtitle: String
+  tiers: [HomeConferenceSponsorsTiers]
+  cta: HomeConferenceSponsorsCta
 }
 
 type HomeConference {
   hero: HomeConferenceHero
+  about: HomeConferenceAbout
+  focusAreas: HomeConferenceFocusAreas
+  featuredSpeakers: HomeConferenceFeaturedSpeakers
+  agenda: HomeConferenceAgenda
+  registration: HomeConferenceRegistration
+  venue: HomeConferenceVenue
+  sponsors: HomeConferenceSponsors
 }
 
 type Home implements Node & Document {
@@ -128,16 +262,169 @@ input StringFilter {
   in: [String]
 }
 
+input NumberFilter {
+  lt: Float
+  lte: Float
+  gte: Float
+  gt: Float
+  eq: Float
+  exists: Boolean
+  in: [Float]
+}
+
+input HomeConferenceHeroCountdownFilter {
+  days: NumberFilter
+  hours: NumberFilter
+  minutes: NumberFilter
+  seconds: NumberFilter
+}
+
 input HomeConferenceHeroFilter {
   title: StringFilter
   tagline: StringFilter
   date: StringFilter
   location: StringFilter
   description: StringFilter
+  countdown: HomeConferenceHeroCountdownFilter
+}
+
+input HomeConferenceAboutVisionFilter {
+  title: StringFilter
+  content: StringFilter
+}
+
+input HomeConferenceAboutMissionFilter {
+  title: StringFilter
+  content: StringFilter
+}
+
+input HomeConferenceAboutStatsFilter {
+  value: StringFilter
+  label: StringFilter
+}
+
+input HomeConferenceAboutFilter {
+  title: StringFilter
+  description: StringFilter
+  vision: HomeConferenceAboutVisionFilter
+  mission: HomeConferenceAboutMissionFilter
+  stats: HomeConferenceAboutStatsFilter
+}
+
+input HomeConferenceFocusAreasAreasFilter {
+  title: StringFilter
+  description: StringFilter
+}
+
+input HomeConferenceFocusAreasFilter {
+  title: StringFilter
+  subtitle: StringFilter
+  areas: HomeConferenceFocusAreasAreasFilter
+}
+
+input ImageFilter {
+  startsWith: String
+  eq: String
+  exists: Boolean
+  in: [String]
+}
+
+input HomeConferenceFeaturedSpeakersSpeakersFilter {
+  name: StringFilter
+  title: StringFilter
+  image: ImageFilter
+}
+
+input HomeConferenceFeaturedSpeakersFilter {
+  title: StringFilter
+  subtitle: StringFilter
+  speakers: HomeConferenceFeaturedSpeakersSpeakersFilter
+}
+
+input HomeConferenceAgendaDaysSessionsFilter {
+  time: StringFilter
+  title: StringFilter
+  description: StringFilter
+}
+
+input HomeConferenceAgendaDaysFilter {
+  title: StringFilter
+  sessions: HomeConferenceAgendaDaysSessionsFilter
+}
+
+input HomeConferenceAgendaFilter {
+  title: StringFilter
+  subtitle: StringFilter
+  days: HomeConferenceAgendaDaysFilter
+}
+
+input HomeConferenceRegistrationTicketsFilter {
+  type: StringFilter
+  description: StringFilter
+}
+
+input HomeConferenceRegistrationEarlyBirdCountdownFilter {
+  days: NumberFilter
+  hours: NumberFilter
+  minutes: NumberFilter
+}
+
+input HomeConferenceRegistrationEarlyBirdFilter {
+  text: StringFilter
+  date: StringFilter
+  countdown: HomeConferenceRegistrationEarlyBirdCountdownFilter
+}
+
+input HomeConferenceRegistrationFilter {
+  title: StringFilter
+  description: StringFilter
+  tickets: HomeConferenceRegistrationTicketsFilter
+  earlyBird: HomeConferenceRegistrationEarlyBirdFilter
+  note: StringFilter
+}
+
+input HomeConferenceVenueFilter {
+  title: StringFilter
+  subtitle: StringFilter
+  name: StringFilter
+  location: StringFilter
+  description: StringFilter
+  details: StringFilter
+  features: StringFilter
+}
+
+input BooleanFilter {
+  eq: Boolean
+  exists: Boolean
+}
+
+input HomeConferenceSponsorsTiersFilter {
+  name: StringFilter
+  count: NumberFilter
+  placeholder: BooleanFilter
+}
+
+input HomeConferenceSponsorsCtaFilter {
+  text: StringFilter
+  description: StringFilter
+}
+
+input HomeConferenceSponsorsFilter {
+  title: StringFilter
+  subtitle: StringFilter
+  tiers: HomeConferenceSponsorsTiersFilter
+  cta: HomeConferenceSponsorsCtaFilter
 }
 
 input HomeConferenceFilter {
   hero: HomeConferenceHeroFilter
+  about: HomeConferenceAboutFilter
+  focusAreas: HomeConferenceFocusAreasFilter
+  featuredSpeakers: HomeConferenceFeaturedSpeakersFilter
+  agenda: HomeConferenceAgendaFilter
+  registration: HomeConferenceRegistrationFilter
+  venue: HomeConferenceVenueFilter
+  sponsors: HomeConferenceSponsorsFilter
 }
 
 input HomeFilter {
@@ -162,8 +449,75 @@ type AboutAboutConferenceHeader {
   additionalDescription: String
 }
 
+type AboutAboutConferenceVisionMissionVision {
+  title: String
+  content: String
+  additionalContent: String
+}
+
+type AboutAboutConferenceVisionMissionMission {
+  title: String
+  content: String
+  additionalContent: String
+}
+
+type AboutAboutConferenceVisionMission {
+  vision: AboutAboutConferenceVisionMissionVision
+  mission: AboutAboutConferenceVisionMissionMission
+}
+
+type AboutAboutConferenceGoalsItems {
+  title: String
+  description: String
+}
+
+type AboutAboutConferenceGoals {
+  title: String
+  subtitle: String
+  items: [AboutAboutConferenceGoalsItems]
+}
+
+type AboutAboutConferenceBenefitsItems {
+  id: String
+  title: String
+  description: String
+}
+
+type AboutAboutConferenceBenefits {
+  title: String
+  subtitle: String
+  items: [AboutAboutConferenceBenefitsItems]
+}
+
+type AboutAboutConferenceCommitteeMembers {
+  name: String
+  role: String
+}
+
+type AboutAboutConferenceCommittee {
+  title: String
+  subtitle: String
+  members: [AboutAboutConferenceCommitteeMembers]
+}
+
+type AboutAboutConferenceFaqsItems {
+  question: String
+  answer: String
+}
+
+type AboutAboutConferenceFaqs {
+  title: String
+  subtitle: String
+  items: [AboutAboutConferenceFaqsItems]
+}
+
 type AboutAboutConference {
   header: AboutAboutConferenceHeader
+  visionMission: AboutAboutConferenceVisionMission
+  goals: AboutAboutConferenceGoals
+  benefits: AboutAboutConferenceBenefits
+  committee: AboutAboutConferenceCommittee
+  faqs: AboutAboutConferenceFaqs
 }
 
 type About implements Node & Document {
@@ -180,8 +534,75 @@ input AboutAboutConferenceHeaderFilter {
   additionalDescription: StringFilter
 }
 
+input AboutAboutConferenceVisionMissionVisionFilter {
+  title: StringFilter
+  content: StringFilter
+  additionalContent: StringFilter
+}
+
+input AboutAboutConferenceVisionMissionMissionFilter {
+  title: StringFilter
+  content: StringFilter
+  additionalContent: StringFilter
+}
+
+input AboutAboutConferenceVisionMissionFilter {
+  vision: AboutAboutConferenceVisionMissionVisionFilter
+  mission: AboutAboutConferenceVisionMissionMissionFilter
+}
+
+input AboutAboutConferenceGoalsItemsFilter {
+  title: StringFilter
+  description: StringFilter
+}
+
+input AboutAboutConferenceGoalsFilter {
+  title: StringFilter
+  subtitle: StringFilter
+  items: AboutAboutConferenceGoalsItemsFilter
+}
+
+input AboutAboutConferenceBenefitsItemsFilter {
+  id: StringFilter
+  title: StringFilter
+  description: StringFilter
+}
+
+input AboutAboutConferenceBenefitsFilter {
+  title: StringFilter
+  subtitle: StringFilter
+  items: AboutAboutConferenceBenefitsItemsFilter
+}
+
+input AboutAboutConferenceCommitteeMembersFilter {
+  name: StringFilter
+  role: StringFilter
+}
+
+input AboutAboutConferenceCommitteeFilter {
+  title: StringFilter
+  subtitle: StringFilter
+  members: AboutAboutConferenceCommitteeMembersFilter
+}
+
+input AboutAboutConferenceFaqsItemsFilter {
+  question: StringFilter
+  answer: StringFilter
+}
+
+input AboutAboutConferenceFaqsFilter {
+  title: StringFilter
+  subtitle: StringFilter
+  items: AboutAboutConferenceFaqsItemsFilter
+}
+
 input AboutAboutConferenceFilter {
   header: AboutAboutConferenceHeaderFilter
+  visionMission: AboutAboutConferenceVisionMissionFilter
+  goals: AboutAboutConferenceGoalsFilter
+  benefits: AboutAboutConferenceBenefitsFilter
+  committee: AboutAboutConferenceCommitteeFilter
+  faqs: AboutAboutConferenceFaqsFilter
 }
 
 input AboutFilter {
@@ -199,14 +620,87 @@ type AboutConnection implements Connection {
   edges: [AboutConnectionEdges]
 }
 
+type ContactSectionsItems {
+  label: String
+  value: String
+  type: String
+}
+
+type ContactSections {
+  title: String
+  items: [ContactSectionsItems]
+}
+
+type Contact implements Node & Document {
+  sections: [ContactSections]
+  id: ID!
+  _sys: SystemInfo!
+  _values: JSON!
+}
+
+input ContactSectionsItemsFilter {
+  label: StringFilter
+  value: StringFilter
+  type: StringFilter
+}
+
+input ContactSectionsFilter {
+  title: StringFilter
+  items: ContactSectionsItemsFilter
+}
+
+input ContactFilter {
+  sections: ContactSectionsFilter
+}
+
+type ContactConnectionEdges {
+  cursor: String!
+  node: Contact
+}
+
+type ContactConnection implements Connection {
+  pageInfo: PageInfo!
+  totalCount: Float!
+  edges: [ContactConnectionEdges]
+}
+
 type AgendaConferenceOverviewHeader {
   title: String
   subtitle: String
   description: String
 }
 
+type AgendaConferenceOverviewDaysSessionsSessions {
+  title: String
+  description: String
+  track: String
+  speaker: String
+  location: String
+  format: String
+}
+
+type AgendaConferenceOverviewDaysSessions {
+  time: String
+  title: String
+  description: String
+  type: String
+  speaker: String
+  participants: String
+  location: String
+  format: String
+  sessions: [AgendaConferenceOverviewDaysSessionsSessions]
+}
+
+type AgendaConferenceOverviewDays {
+  title: String
+  date: String
+  tracks: [String]
+  sessions: [AgendaConferenceOverviewDaysSessions]
+}
+
 type AgendaConferenceOverview {
   header: AgendaConferenceOverviewHeader
+  days: [AgendaConferenceOverviewDays]
 }
 
 type Agenda implements Node & Document {
@@ -222,8 +716,37 @@ input AgendaConferenceOverviewHeaderFilter {
   description: StringFilter
 }
 
+input AgendaConferenceOverviewDaysSessionsSessionsFilter {
+  title: StringFilter
+  description: StringFilter
+  track: StringFilter
+  speaker: StringFilter
+  location: StringFilter
+  format: StringFilter
+}
+
+input AgendaConferenceOverviewDaysSessionsFilter {
+  time: StringFilter
+  title: StringFilter
+  description: StringFilter
+  type: StringFilter
+  speaker: StringFilter
+  participants: StringFilter
+  location: StringFilter
+  format: StringFilter
+  sessions: AgendaConferenceOverviewDaysSessionsSessionsFilter
+}
+
+input AgendaConferenceOverviewDaysFilter {
+  title: StringFilter
+  date: StringFilter
+  tracks: StringFilter
+  sessions: AgendaConferenceOverviewDaysSessionsFilter
+}
+
 input AgendaConferenceOverviewFilter {
   header: AgendaConferenceOverviewHeaderFilter
+  days: AgendaConferenceOverviewDaysFilter
 }
 
 input AgendaFilter {
@@ -249,8 +772,63 @@ type VenueConferenceVenue {
   facilities: [String]
 }
 
+type VenueConferenceAboutCoimbatoreHighlights {
+  title: String
+  description: String
+}
+
+type VenueConferenceAboutCoimbatore {
+  title: String
+  subtitle: String
+  highlights: [VenueConferenceAboutCoimbatoreHighlights]
+}
+
+type VenueConferenceTravelInfoOptions {
+  mode: String
+  details: String
+  additionalInfo: String
+}
+
+type VenueConferenceTravelInfo {
+  title: String
+  subtitle: String
+  options: [VenueConferenceTravelInfoOptions]
+}
+
+type VenueConferenceAccommodationOptions {
+  type: String
+  description: String
+  priceRange: String
+}
+
+type VenueConferenceAccommodation {
+  title: String
+  subtitle: String
+  description: String
+  note: String
+  options: [VenueConferenceAccommodationOptions]
+  footerNote: String
+}
+
+type VenueConferenceLocalAttractionsAttractions {
+  name: String
+  description: String
+  distance: String
+}
+
+type VenueConferenceLocalAttractions {
+  title: String
+  subtitle: String
+  attractions: [VenueConferenceLocalAttractionsAttractions]
+  footerNote: String
+}
+
 type VenueConference {
   venue: VenueConferenceVenue
+  aboutCoimbatore: VenueConferenceAboutCoimbatore
+  travelInfo: VenueConferenceTravelInfo
+  accommodation: VenueConferenceAccommodation
+  localAttractions: VenueConferenceLocalAttractions
 }
 
 type Venue implements Node & Document {
@@ -268,8 +846,63 @@ input VenueConferenceVenueFilter {
   facilities: StringFilter
 }
 
+input VenueConferenceAboutCoimbatoreHighlightsFilter {
+  title: StringFilter
+  description: StringFilter
+}
+
+input VenueConferenceAboutCoimbatoreFilter {
+  title: StringFilter
+  subtitle: StringFilter
+  highlights: VenueConferenceAboutCoimbatoreHighlightsFilter
+}
+
+input VenueConferenceTravelInfoOptionsFilter {
+  mode: StringFilter
+  details: StringFilter
+  additionalInfo: StringFilter
+}
+
+input VenueConferenceTravelInfoFilter {
+  title: StringFilter
+  subtitle: StringFilter
+  options: VenueConferenceTravelInfoOptionsFilter
+}
+
+input VenueConferenceAccommodationOptionsFilter {
+  type: StringFilter
+  description: StringFilter
+  priceRange: StringFilter
+}
+
+input VenueConferenceAccommodationFilter {
+  title: StringFilter
+  subtitle: StringFilter
+  description: StringFilter
+  note: StringFilter
+  options: VenueConferenceAccommodationOptionsFilter
+  footerNote: StringFilter
+}
+
+input VenueConferenceLocalAttractionsAttractionsFilter {
+  name: StringFilter
+  description: StringFilter
+  distance: StringFilter
+}
+
+input VenueConferenceLocalAttractionsFilter {
+  title: StringFilter
+  subtitle: StringFilter
+  attractions: VenueConferenceLocalAttractionsAttractionsFilter
+  footerNote: StringFilter
+}
+
 input VenueConferenceFilter {
   venue: VenueConferenceVenueFilter
+  aboutCoimbatore: VenueConferenceAboutCoimbatoreFilter
+  travelInfo: VenueConferenceTravelInfoFilter
+  accommodation: VenueConferenceAccommodationFilter
+  localAttractions: VenueConferenceLocalAttractionsFilter
 }
 
 input VenueFilter {
@@ -287,19 +920,135 @@ type VenueConnection implements Connection {
   edges: [VenueConnectionEdges]
 }
 
-type Speakers implements Node & Document {
+type SpeakersSpeakersHeader {
   title: String
   subtitle: String
   description: String
+}
+
+type SpeakersSpeakersKeynoteSpeakersSpeakers {
+  name: String
+  title: String
+  affiliation: String
+  image: String
+  category: String
+}
+
+type SpeakersSpeakersKeynoteSpeakers {
+  title: String
+  subtitle: String
+  speakers: [SpeakersSpeakersKeynoteSpeakersSpeakers]
+}
+
+type SpeakersSpeakersIndustrySpeakersTracksSpeakers {
+  name: String
+  title: String
+  affiliation: String
+  image: String
+  category: String
+}
+
+type SpeakersSpeakersIndustrySpeakersTracks {
+  name: String
+  speakers: [SpeakersSpeakersIndustrySpeakersTracksSpeakers]
+}
+
+type SpeakersSpeakersIndustrySpeakers {
+  title: String
+  subtitle: String
+  tracks: [SpeakersSpeakersIndustrySpeakersTracks]
+}
+
+type SpeakersSpeakersBecomeSpeakerTimeline {
+  date: String
+  event: String
+  description: String
+}
+
+type SpeakersSpeakersBecomeSpeaker {
+  title: String
+  subtitle: String
+  description: String
+  benefits: [String]
+  timeline: [SpeakersSpeakersBecomeSpeakerTimeline]
+}
+
+type SpeakersSpeakers {
+  header: SpeakersSpeakersHeader
+  keynoteSpeakers: SpeakersSpeakersKeynoteSpeakers
+  industrySpeakers: SpeakersSpeakersIndustrySpeakers
+  becomeSpeaker: SpeakersSpeakersBecomeSpeaker
+}
+
+type Speakers implements Node & Document {
+  speakers: SpeakersSpeakers
   id: ID!
   _sys: SystemInfo!
   _values: JSON!
 }
 
-input SpeakersFilter {
+input SpeakersSpeakersHeaderFilter {
   title: StringFilter
   subtitle: StringFilter
   description: StringFilter
+}
+
+input SpeakersSpeakersKeynoteSpeakersSpeakersFilter {
+  name: StringFilter
+  title: StringFilter
+  affiliation: StringFilter
+  image: ImageFilter
+  category: StringFilter
+}
+
+input SpeakersSpeakersKeynoteSpeakersFilter {
+  title: StringFilter
+  subtitle: StringFilter
+  speakers: SpeakersSpeakersKeynoteSpeakersSpeakersFilter
+}
+
+input SpeakersSpeakersIndustrySpeakersTracksSpeakersFilter {
+  name: StringFilter
+  title: StringFilter
+  affiliation: StringFilter
+  image: ImageFilter
+  category: StringFilter
+}
+
+input SpeakersSpeakersIndustrySpeakersTracksFilter {
+  name: StringFilter
+  speakers: SpeakersSpeakersIndustrySpeakersTracksSpeakersFilter
+}
+
+input SpeakersSpeakersIndustrySpeakersFilter {
+  title: StringFilter
+  subtitle: StringFilter
+  tracks: SpeakersSpeakersIndustrySpeakersTracksFilter
+}
+
+input SpeakersSpeakersBecomeSpeakerTimelineFilter {
+  date: StringFilter
+  event: StringFilter
+  description: StringFilter
+}
+
+input SpeakersSpeakersBecomeSpeakerFilter {
+  title: StringFilter
+  subtitle: StringFilter
+  description: StringFilter
+  benefits: StringFilter
+  timeline: SpeakersSpeakersBecomeSpeakerTimelineFilter
+}
+
+input SpeakersSpeakersFilter {
+  header: SpeakersSpeakersHeaderFilter
+  keynoteSpeakers: SpeakersSpeakersKeynoteSpeakersFilter
+  industrySpeakers: SpeakersSpeakersIndustrySpeakersFilter
+  becomeSpeaker: SpeakersSpeakersBecomeSpeakerFilter
+}
+
+input SpeakersFilter {
+  speakers: SpeakersSpeakersFilter
 }
 
 type SpeakersConnectionEdges {
@@ -313,19 +1062,215 @@ type SpeakersConnection implements Connection {
   edges: [SpeakersConnectionEdges]
 }
 
-type Sponsors implements Node & Document {
+type SponsorsSponsorsHeader {
   title: String
   subtitle: String
   description: String
+}
+
+type SponsorsSponsorsTiersPlatinumSponsors {
+  name: String
+  cta: String
+  placeholder: Boolean
+}
+
+type SponsorsSponsorsTiersPlatinum {
+  title: String
+  sponsors: [SponsorsSponsorsTiersPlatinumSponsors]
+}
+
+type SponsorsSponsorsTiersGoldSponsors {
+  name: String
+  cta: String
+  placeholder: Boolean
+}
+
+type SponsorsSponsorsTiersGold {
+  title: String
+  sponsors: [SponsorsSponsorsTiersGoldSponsors]
+}
+
+type SponsorsSponsorsTiersSilverSponsors {
+  name: String
+  placeholder: Boolean
+}
+
+type SponsorsSponsorsTiersSilver {
+  title: String
+  sponsors: [SponsorsSponsorsTiersSilverSponsors]
+}
+
+type SponsorsSponsorsTiersBronzeSponsors {
+  name: String
+  placeholder: Boolean
+}
+
+type SponsorsSponsorsTiersBronze {
+  title: String
+  sponsors: [SponsorsSponsorsTiersBronzeSponsors]
+}
+
+type SponsorsSponsorsTiers {
+  platinum: SponsorsSponsorsTiersPlatinum
+  gold: SponsorsSponsorsTiersGold
+  silver: SponsorsSponsorsTiersSilver
+  bronze: SponsorsSponsorsTiersBronze
+}
+
+type SponsorsSponsorsPackagesTiers {
+  name: String
+  price: String
+  benefits: [String]
+}
+
+type SponsorsSponsorsPackages {
+  title: String
+  subtitle: String
+  description: String
+  tiers: [SponsorsSponsorsPackagesTiers]
+}
+
+type SponsorsSponsorsCustomOptions {
+  name: String
+  description: String
+  price: String
+}
+
+type SponsorsSponsorsCustom {
+  title: String
+  subtitle: String
+  description: String
+  options: [SponsorsSponsorsCustomOptions]
+  cta: String
+}
+
+type SponsorsSponsorsBenefitsItems {
+  title: String
+  description: String
+}
+
+type SponsorsSponsorsBenefits {
+  title: String
+  items: [SponsorsSponsorsBenefitsItems]
+}
+
+type SponsorsSponsors {
+  header: SponsorsSponsorsHeader
+  tiers: SponsorsSponsorsTiers
+  packages: SponsorsSponsorsPackages
+  custom: SponsorsSponsorsCustom
+  benefits: SponsorsSponsorsBenefits
+}
+
+type Sponsors implements Node & Document {
+  sponsors: SponsorsSponsors
   id: ID!
   _sys: SystemInfo!
   _values: JSON!
 }
 
-input SponsorsFilter {
+input SponsorsSponsorsHeaderFilter {
   title: StringFilter
   subtitle: StringFilter
   description: StringFilter
+}
+
+input SponsorsSponsorsTiersPlatinumSponsorsFilter {
+  name: StringFilter
+  cta: StringFilter
+  placeholder: BooleanFilter
+}
+
+input SponsorsSponsorsTiersPlatinumFilter {
+  title: StringFilter
+  sponsors: SponsorsSponsorsTiersPlatinumSponsorsFilter
+}
+
+input SponsorsSponsorsTiersGoldSponsorsFilter {
+  name: StringFilter
+  cta: StringFilter
+  placeholder: BooleanFilter
+}
+
+input SponsorsSponsorsTiersGoldFilter {
+  title: StringFilter
+  sponsors: SponsorsSponsorsTiersGoldSponsorsFilter
+}
+
+input SponsorsSponsorsTiersSilverSponsorsFilter {
+  name: StringFilter
+  placeholder: BooleanFilter
+}
+
+input SponsorsSponsorsTiersSilverFilter {
+  title: StringFilter
+  sponsors: SponsorsSponsorsTiersSilverSponsorsFilter
+}
+
+input SponsorsSponsorsTiersBronzeSponsorsFilter {
+  name: StringFilter
+  placeholder: BooleanFilter
+}
+
+input SponsorsSponsorsTiersBronzeFilter {
+  title: StringFilter
+  sponsors: SponsorsSponsorsTiersBronzeSponsorsFilter
+}
+
+input SponsorsSponsorsTiersFilter {
+  platinum: SponsorsSponsorsTiersPlatinumFilter
+  gold: SponsorsSponsorsTiersGoldFilter
+  silver: SponsorsSponsorsTiersSilverFilter
+  bronze: SponsorsSponsorsTiersBronzeFilter
+}
+
+input SponsorsSponsorsPackagesTiersFilter {
+  name: StringFilter
+  price: StringFilter
+  benefits: StringFilter
+}
+
+input SponsorsSponsorsPackagesFilter {
+  title: StringFilter
+  subtitle: StringFilter
+  description: StringFilter
+  tiers: SponsorsSponsorsPackagesTiersFilter
+}
+
+input SponsorsSponsorsCustomOptionsFilter {
+  name: StringFilter
+  description: StringFilter
+  price: StringFilter
+}
+
+input SponsorsSponsorsCustomFilter {
+  title: StringFilter
+  subtitle: StringFilter
+  description: StringFilter
+  options: SponsorsSponsorsCustomOptionsFilter
+  cta: StringFilter
+}
+
+input SponsorsSponsorsBenefitsItemsFilter {
+  title: StringFilter
+  description: StringFilter
+}
+
+input SponsorsSponsorsBenefitsFilter {
+  title: StringFilter
+  items: SponsorsSponsorsBenefitsItemsFilter
+}
+
+input SponsorsSponsorsFilter {
+  header: SponsorsSponsorsHeaderFilter
+  tiers: SponsorsSponsorsTiersFilter
+  packages: SponsorsSponsorsPackagesFilter
+  custom: SponsorsSponsorsCustomFilter
+  benefits: SponsorsSponsorsBenefitsFilter
+}
+
+input SponsorsFilter {
+  sponsors: SponsorsSponsorsFilter
 }
 
 type SponsorsConnectionEdges {
@@ -349,6 +1294,8 @@ type Mutation {
   createHome(relativePath: String!, params: HomeMutation!): Home!
   updateAbout(relativePath: String!, params: AboutMutation!): About!
   createAbout(relativePath: String!, params: AboutMutation!): About!
+  updateContact(relativePath: String!, params: ContactMutation!): Contact!
+  createContact(relativePath: String!, params: ContactMutation!): Contact!
   updateAgenda(relativePath: String!, params: AgendaMutation!): Agenda!
   createAgenda(relativePath: String!, params: AgendaMutation!): Agenda!
   updateVenue(relativePath: String!, params: VenueMutation!): Venue!
@@ -362,6 +1309,7 @@ type Mutation {
 input DocumentUpdateMutation {
   home: HomeMutation
   about: AboutMutation
+  contact: ContactMutation
   agenda: AgendaMutation
   venue: VenueMutation
   speakers: SpeakersMutation
@@ -372,10 +1320,18 @@ input DocumentUpdateMutation {
 input DocumentMutation {
   home: HomeMutation
   about: AboutMutation
+  contact: ContactMutation
   agenda: AgendaMutation
   venue: VenueMutation
   speakers: SpeakersMutation
   sponsors: SponsorsMutation
+}
+
+input HomeConferenceHeroCountdownMutation {
+  days: Float
+  hours: Float
+  minutes: Float
+  seconds: Float
 }
 
 input HomeConferenceHeroMutation {
@@ -384,10 +1340,134 @@ input HomeConferenceHeroMutation {
   date: String
   location: String
   description: String
+  countdown: HomeConferenceHeroCountdownMutation
+}
+
+input HomeConferenceAboutVisionMutation {
+  title: String
+  content: String
+}
+
+input HomeConferenceAboutMissionMutation {
+  title: String
+  content: String
+}
+
+input HomeConferenceAboutStatsMutation {
+  value: String
+  label: String
+}
+
+input HomeConferenceAboutMutation {
+  title: String
+  description: String
+  vision: HomeConferenceAboutVisionMutation
+  mission: HomeConferenceAboutMissionMutation
+  stats: [HomeConferenceAboutStatsMutation]
+}
+
+input HomeConferenceFocusAreasAreasMutation {
+  title: String
+  description: String
+}
+
+input HomeConferenceFocusAreasMutation {
+  title: String
+  subtitle: String
+  areas: [HomeConferenceFocusAreasAreasMutation]
+}
+
+input HomeConferenceFeaturedSpeakersSpeakersMutation {
+  name: String
+  title: String
+  image: String
+}
+
+input HomeConferenceFeaturedSpeakersMutation {
+  title: String
+  subtitle: String
+  speakers: [HomeConferenceFeaturedSpeakersSpeakersMutation]
+}
+
+input HomeConferenceAgendaDaysSessionsMutation {
+  time: String
+  title: String
+  description: String
+}
+
+input HomeConferenceAgendaDaysMutation {
+  title: String
+  sessions: [HomeConferenceAgendaDaysSessionsMutation]
+}
+
+input HomeConferenceAgendaMutation {
+  title: String
+  subtitle: String
+  days: [HomeConferenceAgendaDaysMutation]
+}
+
+input HomeConferenceRegistrationTicketsMutation {
+  type: String
+  description: String
+}
+
+input HomeConferenceRegistrationEarlyBirdCountdownMutation {
+  days: Float
+  hours: Float
+  minutes: Float
+}
+
+input HomeConferenceRegistrationEarlyBirdMutation {
+  text: String
+  date: String
+  countdown: HomeConferenceRegistrationEarlyBirdCountdownMutation
+}
+
+input HomeConferenceRegistrationMutation {
+  title: String
+  description: String
+  tickets: [HomeConferenceRegistrationTicketsMutation]
+  earlyBird: HomeConferenceRegistrationEarlyBirdMutation
+  note: String
+}
+
+input HomeConferenceVenueMutation {
+  title: String
+  subtitle: String
+  name: String
+  location: String
+  description: String
+  details: String
+  features: [String]
+}
+
+input HomeConferenceSponsorsTiersMutation {
+  name: String
+  count: Float
+  placeholder: Boolean
+}
+
+input HomeConferenceSponsorsCtaMutation {
+  text: String
+  description: String
+}
+
+input HomeConferenceSponsorsMutation {
+  title: String
+  subtitle: String
+  tiers: [HomeConferenceSponsorsTiersMutation]
+  cta: HomeConferenceSponsorsCtaMutation
 }
 
 input HomeConferenceMutation {
   hero: HomeConferenceHeroMutation
+  about: HomeConferenceAboutMutation
+  focusAreas: HomeConferenceFocusAreasMutation
+  featuredSpeakers: HomeConferenceFeaturedSpeakersMutation
+  agenda: HomeConferenceAgendaMutation
+  registration: HomeConferenceRegistrationMutation
+  venue: HomeConferenceVenueMutation
+  sponsors: HomeConferenceSponsorsMutation
 }
 
 input HomeMutation {
@@ -401,12 +1481,94 @@ input AboutAboutConferenceHeaderMutation {
   additionalDescription: String
 }
 
+input AboutAboutConferenceVisionMissionVisionMutation {
+  title: String
+  content: String
+  additionalContent: String
+}
+
+input AboutAboutConferenceVisionMissionMissionMutation {
+  title: String
+  content: String
+  additionalContent: String
+}
+
+input AboutAboutConferenceVisionMissionMutation {
+  vision: AboutAboutConferenceVisionMissionVisionMutation
+  mission: AboutAboutConferenceVisionMissionMissionMutation
+}
+
+input AboutAboutConferenceGoalsItemsMutation {
+  title: String
+  description: String
+}
+
+input AboutAboutConferenceGoalsMutation {
+  title: String
+  subtitle: String
+  items: [AboutAboutConferenceGoalsItemsMutation]
+}
+
+input AboutAboutConferenceBenefitsItemsMutation {
+  id: String
+  title: String
+  description: String
+}
+
+input AboutAboutConferenceBenefitsMutation {
+  title: String
+  subtitle: String
+  items: [AboutAboutConferenceBenefitsItemsMutation]
+}
+
+input AboutAboutConferenceCommitteeMembersMutation {
+  name: String
+  role: String
+}
+
+input AboutAboutConferenceCommitteeMutation {
+  title: String
+  subtitle: String
+  members: [AboutAboutConferenceCommitteeMembersMutation]
+}
+
+input AboutAboutConferenceFaqsItemsMutation {
+  question: String
+  answer: String
+}
+
+input AboutAboutConferenceFaqsMutation {
+  title: String
+  subtitle: String
+  items: [AboutAboutConferenceFaqsItemsMutation]
+}
+
 input AboutAboutConferenceMutation {
   header: AboutAboutConferenceHeaderMutation
+  visionMission: AboutAboutConferenceVisionMissionMutation
+  goals: AboutAboutConferenceGoalsMutation
+  benefits: AboutAboutConferenceBenefitsMutation
+  committee: AboutAboutConferenceCommitteeMutation
+  faqs: AboutAboutConferenceFaqsMutation
 }
 
 input AboutMutation {
   aboutConference: AboutAboutConferenceMutation
+}
+
+input ContactSectionsItemsMutation {
+  label: String
+  value: String
+  type: String
+}
+
+input ContactSectionsMutation {
+  title: String
+  items: [ContactSectionsItemsMutation]
+}
+
+input ContactMutation {
+  sections: [ContactSectionsMutation]
 }
 
 input AgendaConferenceOverviewHeaderMutation {
@@ -415,8 +1577,37 @@ input AgendaConferenceOverviewHeaderMutation {
   description: String
 }
 
+input AgendaConferenceOverviewDaysSessionsSessionsMutation {
+  title: String
+  description: String
+  track: String
+  speaker: String
+  location: String
+  format: String
+}
+
+input AgendaConferenceOverviewDaysSessionsMutation {
+  time: String
+  title: String
+  description: String
+  type: String
+  speaker: String
+  participants: String
+  location: String
+  format: String
+  sessions: [AgendaConferenceOverviewDaysSessionsSessionsMutation]
+}
+
+input AgendaConferenceOverviewDaysMutation {
+  title: String
+  date: String
+  tracks: [String]
+  sessions: [AgendaConferenceOverviewDaysSessionsMutation]
+}
+
 input AgendaConferenceOverviewMutation {
   header: AgendaConferenceOverviewHeaderMutation
+  days: [AgendaConferenceOverviewDaysMutation]
 }
 
 input AgendaMutation {
@@ -431,24 +1622,235 @@ input VenueConferenceVenueMutation {
   facilities: [String]
 }
 
+input VenueConferenceAboutCoimbatoreHighlightsMutation {
+  title: String
+  description: String
+}
+
+input VenueConferenceAboutCoimbatoreMutation {
+  title: String
+  subtitle: String
+  highlights: [VenueConferenceAboutCoimbatoreHighlightsMutation]
+}
+
+input VenueConferenceTravelInfoOptionsMutation {
+  mode: String
+  details: String
+  additionalInfo: String
+}
+
+input VenueConferenceTravelInfoMutation {
+  title: String
+  subtitle: String
+  options: [VenueConferenceTravelInfoOptionsMutation]
+}
+
+input VenueConferenceAccommodationOptionsMutation {
+  type: String
+  description: String
+  priceRange: String
+}
+
+input VenueConferenceAccommodationMutation {
+  title: String
+  subtitle: String
+  description: String
+  note: String
+  options: [VenueConferenceAccommodationOptionsMutation]
+  footerNote: String
+}
+
+input VenueConferenceLocalAttractionsAttractionsMutation {
+  name: String
+  description: String
+  distance: String
+}
+
+input VenueConferenceLocalAttractionsMutation {
+  title: String
+  subtitle: String
+  attractions: [VenueConferenceLocalAttractionsAttractionsMutation]
+  footerNote: String
+}
+
 input VenueConferenceMutation {
   venue: VenueConferenceVenueMutation
+  aboutCoimbatore: VenueConferenceAboutCoimbatoreMutation
+  travelInfo: VenueConferenceTravelInfoMutation
+  accommodation: VenueConferenceAccommodationMutation
+  localAttractions: VenueConferenceLocalAttractionsMutation
 }
 
 input VenueMutation {
   conference: VenueConferenceMutation
 }
 
-input SpeakersMutation {
+input SpeakersSpeakersHeaderMutation {
   title: String
   subtitle: String
   description: String
 }
 
-input SponsorsMutation {
+input SpeakersSpeakersKeynoteSpeakersSpeakersMutation {
+  name: String
+  title: String
+  affiliation: String
+  image: String
+  category: String
+}
+
+input SpeakersSpeakersKeynoteSpeakersMutation {
+  title: String
+  subtitle: String
+  speakers: [SpeakersSpeakersKeynoteSpeakersSpeakersMutation]
+}
+
+input SpeakersSpeakersIndustrySpeakersTracksSpeakersMutation {
+  name: String
+  title: String
+  affiliation: String
+  image: String
+  category: String
+}
+
+input SpeakersSpeakersIndustrySpeakersTracksMutation {
+  name: String
+  speakers: [SpeakersSpeakersIndustrySpeakersTracksSpeakersMutation]
+}
+
+input SpeakersSpeakersIndustrySpeakersMutation {
+  title: String
+  subtitle: String
+  tracks: [SpeakersSpeakersIndustrySpeakersTracksMutation]
+}
+
+input SpeakersSpeakersBecomeSpeakerTimelineMutation {
+  date: String
+  event: String
+  description: String
+}
+
+input SpeakersSpeakersBecomeSpeakerMutation {
   title: String
   subtitle: String
   description: String
+  benefits: [String]
+  timeline: [SpeakersSpeakersBecomeSpeakerTimelineMutation]
+}
+
+input SpeakersSpeakersMutation {
+  header: SpeakersSpeakersHeaderMutation
+  keynoteSpeakers: SpeakersSpeakersKeynoteSpeakersMutation
+  industrySpeakers: SpeakersSpeakersIndustrySpeakersMutation
+  becomeSpeaker: SpeakersSpeakersBecomeSpeakerMutation
+}
+
+input SpeakersMutation {
+  speakers: SpeakersSpeakersMutation
+}
+
+input SponsorsSponsorsHeaderMutation {
+  title: String
+  subtitle: String
+  description: String
+}
+
+input SponsorsSponsorsTiersPlatinumSponsorsMutation {
+  name: String
+  cta: String
+  placeholder: Boolean
+}
+
+input SponsorsSponsorsTiersPlatinumMutation {
+  title: String
+  sponsors: [SponsorsSponsorsTiersPlatinumSponsorsMutation]
+}
+
+input SponsorsSponsorsTiersGoldSponsorsMutation {
+  name: String
+  cta: String
+  placeholder: Boolean
+}
+
+input SponsorsSponsorsTiersGoldMutation {
+  title: String
+  sponsors: [SponsorsSponsorsTiersGoldSponsorsMutation]
+}
+
+input SponsorsSponsorsTiersSilverSponsorsMutation {
+  name: String
+  placeholder: Boolean
+}
+
+input SponsorsSponsorsTiersSilverMutation {
+  title: String
+  sponsors: [SponsorsSponsorsTiersSilverSponsorsMutation]
+}
+
+input SponsorsSponsorsTiersBronzeSponsorsMutation {
+  name: String
+  placeholder: Boolean
+}
+
+input SponsorsSponsorsTiersBronzeMutation {
+  title: String
+  sponsors: [SponsorsSponsorsTiersBronzeSponsorsMutation]
+}
+
+input SponsorsSponsorsTiersMutation {
+  platinum: SponsorsSponsorsTiersPlatinumMutation
+  gold: SponsorsSponsorsTiersGoldMutation
+  silver: SponsorsSponsorsTiersSilverMutation
+  bronze: SponsorsSponsorsTiersBronzeMutation
+}
+
+input SponsorsSponsorsPackagesTiersMutation {
+  name: String
+  price: String
+  benefits: [String]
+}
+
+input SponsorsSponsorsPackagesMutation {
+  title: String
+  subtitle: String
+  description: String
+  tiers: [SponsorsSponsorsPackagesTiersMutation]
+}
+
+input SponsorsSponsorsCustomOptionsMutation {
+  name: String
+  description: String
+  price: String
+}
+
+input SponsorsSponsorsCustomMutation {
+  title: String
+  subtitle: String
+  description: String
+  options: [SponsorsSponsorsCustomOptionsMutation]
+  cta: String
+}
+
+input SponsorsSponsorsBenefitsItemsMutation {
+  title: String
+  description: String
+}
+
+input SponsorsSponsorsBenefitsMutation {
+  title: String
+  items: [SponsorsSponsorsBenefitsItemsMutation]
+}
+
+input SponsorsSponsorsMutation {
+  header: SponsorsSponsorsHeaderMutation
+  tiers: SponsorsSponsorsTiersMutation
+  packages: SponsorsSponsorsPackagesMutation
+  custom: SponsorsSponsorsCustomMutation
+  benefits: SponsorsSponsorsBenefitsMutation
+}
+
+input SponsorsMutation {
+  sponsors: SponsorsSponsorsMutation
 }
 
 schema {

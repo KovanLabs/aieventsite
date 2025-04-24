@@ -1,0 +1,59 @@
+{
+    "sections": [
+        {
+            "title": "Email Us",
+            "items": [
+                {
+                    "label": "For general inquiries:",
+                    "value": "info@kovaiconference.com",
+                    "type": "email"
+                },
+                {
+                    "label": "For sponsorship inquiries:",
+                    "value": "sponsors@kovaiconference.com",
+                    "type": "email"
+                },
+                {
+                    "label": "For speaker inquiries:",
+                    "value": "speakers@kovaiconference.com",
+                    "type": "email"
+                }
+            ]
+        },
+        {
+            "title": "Call Us",
+            "items": [
+                {
+                    "label": "Conference Helpline:",
+                    "value": "+91 98765 43210",
+                    "type": "phone"
+                },
+                {
+                    "label": "Registration Support:",
+                    "value": "+91 98765 43211",
+                    "type": "phone"
+                },
+                {
+                    "label": "Office Hours:",
+                    "value": "Monday to Friday: 9:00 AM - 6:00 PM IST\nSaturday: 9:00 AM - 1:00 PM IST",
+                    "type": "text"
+                }
+            ]
+        },
+        {
+            "title": "Visit Us",
+            "items": [
+                {
+                    "label": "KovAI Conference Organizing Office:",
+                    "value": "123 Tech Park, Avinashi Road\nCoimbatore, Tamil Nadu 641014\nIndia",
+                    "type": "address"
+                },
+                {
+                    "label": "Conference Venue:",
+                    "value": "To be announced",
+                    "type": "address"
+                }
+            ]
+        }
+    ]
+}

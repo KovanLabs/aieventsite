@@ -86,6 +86,8 @@ export type Query = {
   homeConnection: HomeConnection;
   about: About;
   aboutConnection: AboutConnection;
+  contact: Contact;
+  contactConnection: ContactConnection;
   agenda: Agenda;
   agendaConnection: AgendaConnection;
   venue: Venue;
@@ -145,6 +147,21 @@ export type QueryAboutConnectionArgs = {
   last?: InputMaybe<Scalars['Float']['input']>;
   sort?: InputMaybe<Scalars['String']['input']>;
   filter?: InputMaybe<AboutFilter>;
+};
+
+
+export type QueryContactArgs = {
+  relativePath?: InputMaybe<Scalars['String']['input']>;
+};
+
+
+export type QueryContactConnectionArgs = {
+  before?: InputMaybe<Scalars['String']['input']>;
+  after?: InputMaybe<Scalars['String']['input']>;
+  first?: InputMaybe<Scalars['Float']['input']>;
+  last?: InputMaybe<Scalars['Float']['input']>;
+  sort?: InputMaybe<Scalars['String']['input']>;
+  filter?: InputMaybe<ContactFilter>;
 };
 
 
@@ -210,6 +227,7 @@ export type QuerySponsorsConnectionArgs = {
 export type DocumentFilter = {
   home?: InputMaybe<HomeFilter>;
   about?: InputMaybe<AboutFilter>;
+  contact?: InputMaybe<ContactFilter>;
   agenda?: InputMaybe<AgendaFilter>;
   venue?: InputMaybe<VenueFilter>;
   speakers?: InputMaybe<SpeakersFilter>;
@@ -253,7 +271,15 @@ export type CollectionDocumentsArgs = {
   folder?: InputMaybe<Scalars['String']['input']>;
 };
 
-export type DocumentNode = Home | About | Agenda | Venue | Speakers | Sponsors | Folder;
+export type DocumentNode = Home | About | Contact | Agenda | Venue | Speakers | Sponsors | Folder;
+
+export type HomeConferenceHeroCountdown = {
+  __typename?: 'HomeConferenceHeroCountdown';
+  days?: Maybe<Scalars['Float']['output']>;
+  hours?: Maybe<Scalars['Float']['output']>;
+  minutes?: Maybe<Scalars['Float']['output']>;
+  seconds?: Maybe<Scalars['Float']['output']>;
+};
 
 export type HomeConferenceHero = {
   __typename?: 'HomeConferenceHero';
@@ -262,11 +288,154 @@ export type HomeConferenceHero = {
   date?: Maybe<Scalars['String']['output']>;
   location?: Maybe<Scalars['String']['output']>;
   description?: Maybe<Scalars['String']['output']>;
+  countdown?: Maybe<HomeConferenceHeroCountdown>;
+};
+
+export type HomeConferenceAboutVision = {
+  __typename?: 'HomeConferenceAboutVision';
+  title?: Maybe<Scalars['String']['output']>;
+  content?: Maybe<Scalars['String']['output']>;
+};
+
+export type HomeConferenceAboutMission = {
+  __typename?: 'HomeConferenceAboutMission';
+  title?: Maybe<Scalars['String']['output']>;
+  content?: Maybe<Scalars['String']['output']>;
+};
+
+export type HomeConferenceAboutStats = {
+  __typename?: 'HomeConferenceAboutStats';
+  value?: Maybe<Scalars['String']['output']>;
+  label?: Maybe<Scalars['String']['output']>;
+};
+
+export type HomeConferenceAbout = {
+  __typename?: 'HomeConferenceAbout';
+  title?: Maybe<Scalars['String']['output']>;
+  description?: Maybe<Scalars['String']['output']>;
+  vision?: Maybe<HomeConferenceAboutVision>;
+  mission?: Maybe<HomeConferenceAboutMission>;
+  stats?: Maybe<Array<Maybe<HomeConferenceAboutStats>>>;
+};
+
+export type HomeConferenceFocusAreasAreas = {
+  __typename?: 'HomeConferenceFocusAreasAreas';
+  title?: Maybe<Scalars['String']['output']>;
+  description?: Maybe<Scalars['String']['output']>;
+};
+
+export type HomeConferenceFocusAreas = {
+  __typename?: 'HomeConferenceFocusAreas';
+  title?: Maybe<Scalars['String']['output']>;
+  subtitle?: Maybe<Scalars['String']['output']>;
+  areas?: Maybe<Array<Maybe<HomeConferenceFocusAreasAreas>>>;
+};
+
+export type HomeConferenceFeaturedSpeakersSpeakers = {
+  __typename?: 'HomeConferenceFeaturedSpeakersSpeakers';
+  name?: Maybe<Scalars['String']['output']>;
+  title?: Maybe<Scalars['String']['output']>;
+  image?: Maybe<Scalars['String']['output']>;
+};
+
+export type HomeConferenceFeaturedSpeakers = {
+  __typename?: 'HomeConferenceFeaturedSpeakers';
+  title?: Maybe<Scalars['String']['output']>;
+  subtitle?: Maybe<Scalars['String']['output']>;
+  speakers?: Maybe<Array<Maybe<HomeConferenceFeaturedSpeakersSpeakers>>>;
+};
+
+export type HomeConferenceAgendaDaysSessions = {
+  __typename?: 'HomeConferenceAgendaDaysSessions';
+  time?: Maybe<Scalars['String']['output']>;
+  title?: Maybe<Scalars['String']['output']>;
+  description?: Maybe<Scalars['String']['output']>;
+};
+
+export type HomeConferenceAgendaDays = {
+  __typename?: 'HomeConferenceAgendaDays';
+  title?: Maybe<Scalars['String']['output']>;
+  sessions?: Maybe<Array<Maybe<HomeConferenceAgendaDaysSessions>>>;
+};
+
+export type HomeConferenceAgenda = {
+  __typename?: 'HomeConferenceAgenda';
+  title?: Maybe<Scalars['String']['output']>;
+  subtitle?: Maybe<Scalars['String']['output']>;
+  days?: Maybe<Array<Maybe<HomeConferenceAgendaDays>>>;
+};
+
+export type HomeConferenceRegistrationTickets = {
+  __typename?: 'HomeConferenceRegistrationTickets';
+  type?: Maybe<Scalars['String']['output']>;
+  description?: Maybe<Scalars['String']['output']>;
+};
+
+export type HomeConferenceRegistrationEarlyBirdCountdown = {
+  __typename?: 'HomeConferenceRegistrationEarlyBirdCountdown';
+  days?: Maybe<Scalars['Float']['output']>;
+  hours?: Maybe<Scalars['Float']['output']>;
+  minutes?: Maybe<Scalars['Float']['output']>;
+};
+
+export type HomeConferenceRegistrationEarlyBird = {
+  __typename?: 'HomeConferenceRegistrationEarlyBird';
+  text?: Maybe<Scalars['String']['output']>;
+  date?: Maybe<Scalars['String']['output']>;
+  countdown?: Maybe<HomeConferenceRegistrationEarlyBirdCountdown>;
+};
+
+export type HomeConferenceRegistration = {
+  __typename?: 'HomeConferenceRegistration';
+  title?: Maybe<Scalars['String']['output']>;
+  description?: Maybe<Scalars['String']['output']>;
+  tickets?: Maybe<Array<Maybe<HomeConferenceRegistrationTickets>>>;
+  earlyBird?: Maybe<HomeConferenceRegistrationEarlyBird>;
+  note?: Maybe<Scalars['String']['output']>;
+};
+
+export type HomeConferenceVenue = {
+  __typename?: 'HomeConferenceVenue';
+  title?: Maybe<Scalars['String']['output']>;
+  subtitle?: Maybe<Scalars['String']['output']>;
+  name?: Maybe<Scalars['String']['output']>;
+  location?: Maybe<Scalars['String']['output']>;
+  description?: Maybe<Scalars['String']['output']>;
+  details?: Maybe<Scalars['String']['output']>;
+  features?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
+};
+
+export type HomeConferenceSponsorsTiers = {
+  __typename?: 'HomeConferenceSponsorsTiers';
+  name?: Maybe<Scalars['String']['output']>;
+  count?: Maybe<Scalars['Float']['output']>;
+  placeholder?: Maybe<Scalars['Boolean']['output']>;
+};
+
+export type HomeConferenceSponsorsCta = {
+  __typename?: 'HomeConferenceSponsorsCta';
+  text?: Maybe<Scalars['String']['output']>;
+  description?: Maybe<Scalars['String']['output']>;
+};
+
+export type HomeConferenceSponsors = {
+  __typename?: 'HomeConferenceSponsors';
+  title?: Maybe<Scalars['String']['output']>;
+  subtitle?: Maybe<Scalars['String']['output']>;
+  tiers?: Maybe<Array<Maybe<HomeConferenceSponsorsTiers>>>;
+  cta?: Maybe<HomeConferenceSponsorsCta>;
 };
 
 export type HomeConference = {
   __typename?: 'HomeConference';
   hero?: Maybe<HomeConferenceHero>;
+  about?: Maybe<HomeConferenceAbout>;
+  focusAreas?: Maybe<HomeConferenceFocusAreas>;
+  featuredSpeakers?: Maybe<HomeConferenceFeaturedSpeakers>;
+  agenda?: Maybe<HomeConferenceAgenda>;
+  registration?: Maybe<HomeConferenceRegistration>;
+  venue?: Maybe<HomeConferenceVenue>;
+  sponsors?: Maybe<HomeConferenceSponsors>;
 };
 
 export type Home = Node & Document & {
@@ -284,16 +453,169 @@ export type StringFilter = {
   in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
 };
 
+export type NumberFilter = {
+  lt?: InputMaybe<Scalars['Float']['input']>;
+  lte?: InputMaybe<Scalars['Float']['input']>;
+  gte?: InputMaybe<Scalars['Float']['input']>;
+  gt?: InputMaybe<Scalars['Float']['input']>;
+  eq?: InputMaybe<Scalars['Float']['input']>;
+  exists?: InputMaybe<Scalars['Boolean']['input']>;
+  in?: InputMaybe<Array<InputMaybe<Scalars['Float']['input']>>>;
+};
+
+export type HomeConferenceHeroCountdownFilter = {
+  days?: InputMaybe<NumberFilter>;
+  hours?: InputMaybe<NumberFilter>;
+  minutes?: InputMaybe<NumberFilter>;
+  seconds?: InputMaybe<NumberFilter>;
+};
+
 export type HomeConferenceHeroFilter = {
   title?: InputMaybe<StringFilter>;
   tagline?: InputMaybe<StringFilter>;
   date?: InputMaybe<StringFilter>;
   location?: InputMaybe<StringFilter>;
   description?: InputMaybe<StringFilter>;
+  countdown?: InputMaybe<HomeConferenceHeroCountdownFilter>;
+};
+
+export type HomeConferenceAboutVisionFilter = {
+  title?: InputMaybe<StringFilter>;
+  content?: InputMaybe<StringFilter>;
+};
+
+export type HomeConferenceAboutMissionFilter = {
+  title?: InputMaybe<StringFilter>;
+  content?: InputMaybe<StringFilter>;
+};
+
+export type HomeConferenceAboutStatsFilter = {
+  value?: InputMaybe<StringFilter>;
+  label?: InputMaybe<StringFilter>;
+};
+
+export type HomeConferenceAboutFilter = {
+  title?: InputMaybe<StringFilter>;
+  description?: InputMaybe<StringFilter>;
+  vision?: InputMaybe<HomeConferenceAboutVisionFilter>;
+  mission?: InputMaybe<HomeConferenceAboutMissionFilter>;
+  stats?: InputMaybe<HomeConferenceAboutStatsFilter>;
+};
+
+export type HomeConferenceFocusAreasAreasFilter = {
+  title?: InputMaybe<StringFilter>;
+  description?: InputMaybe<StringFilter>;
+};
+
+export type HomeConferenceFocusAreasFilter = {
+  title?: InputMaybe<StringFilter>;
+  subtitle?: InputMaybe<StringFilter>;
+  areas?: InputMaybe<HomeConferenceFocusAreasAreasFilter>;
+};
+
+export type ImageFilter = {
+  startsWith?: InputMaybe<Scalars['String']['input']>;
+  eq?: InputMaybe<Scalars['String']['input']>;
+  exists?: InputMaybe<Scalars['Boolean']['input']>;
+  in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+export type HomeConferenceFeaturedSpeakersSpeakersFilter = {
+  name?: InputMaybe<StringFilter>;
+  title?: InputMaybe<StringFilter>;
+  image?: InputMaybe<ImageFilter>;
+};
+
+export type HomeConferenceFeaturedSpeakersFilter = {
+  title?: InputMaybe<StringFilter>;
+  subtitle?: InputMaybe<StringFilter>;
+  speakers?: InputMaybe<HomeConferenceFeaturedSpeakersSpeakersFilter>;
+};
+
+export type HomeConferenceAgendaDaysSessionsFilter = {
+  time?: InputMaybe<StringFilter>;
+  title?: InputMaybe<StringFilter>;
+  description?: InputMaybe<StringFilter>;
+};
+
+export type HomeConferenceAgendaDaysFilter = {
+  title?: InputMaybe<StringFilter>;
+  sessions?: InputMaybe<HomeConferenceAgendaDaysSessionsFilter>;
+};
+
+export type HomeConferenceAgendaFilter = {
+  title?: InputMaybe<StringFilter>;
+  subtitle?: InputMaybe<StringFilter>;
+  days?: InputMaybe<HomeConferenceAgendaDaysFilter>;
+};
+
+export type HomeConferenceRegistrationTicketsFilter = {
+  type?: InputMaybe<StringFilter>;
+  description?: InputMaybe<StringFilter>;
+};
+
+export type HomeConferenceRegistrationEarlyBirdCountdownFilter = {
+  days?: InputMaybe<NumberFilter>;
+  hours?: InputMaybe<NumberFilter>;
+  minutes?: InputMaybe<NumberFilter>;
+};
+
+export type HomeConferenceRegistrationEarlyBirdFilter = {
+  text?: InputMaybe<StringFilter>;
+  date?: InputMaybe<StringFilter>;
+  countdown?: InputMaybe<HomeConferenceRegistrationEarlyBirdCountdownFilter>;
+};
+
+export type HomeConferenceRegistrationFilter = {
+  title?: InputMaybe<StringFilter>;
+  description?: InputMaybe<StringFilter>;
+  tickets?: InputMaybe<HomeConferenceRegistrationTicketsFilter>;
+  earlyBird?: InputMaybe<HomeConferenceRegistrationEarlyBirdFilter>;
+  note?: InputMaybe<StringFilter>;
+};
+
+export type HomeConferenceVenueFilter = {
+  title?: InputMaybe<StringFilter>;
+  subtitle?: InputMaybe<StringFilter>;
+  name?: InputMaybe<StringFilter>;
+  location?: InputMaybe<StringFilter>;
+  description?: InputMaybe<StringFilter>;
+  details?: InputMaybe<StringFilter>;
+  features?: InputMaybe<StringFilter>;
+};
+
+export type BooleanFilter = {
+  eq?: InputMaybe<Scalars['Boolean']['input']>;
+  exists?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+export type HomeConferenceSponsorsTiersFilter = {
+  name?: InputMaybe<StringFilter>;
+  count?: InputMaybe<NumberFilter>;
+  placeholder?: InputMaybe<BooleanFilter>;
+};
+
+export type HomeConferenceSponsorsCtaFilter = {
+  text?: InputMaybe<StringFilter>;
+  description?: InputMaybe<StringFilter>;
+};
+
+export type HomeConferenceSponsorsFilter = {
+  title?: InputMaybe<StringFilter>;
+  subtitle?: InputMaybe<StringFilter>;
+  tiers?: InputMaybe<HomeConferenceSponsorsTiersFilter>;
+  cta?: InputMaybe<HomeConferenceSponsorsCtaFilter>;
 };
 
 export type HomeConferenceFilter = {
   hero?: InputMaybe<HomeConferenceHeroFilter>;
+  about?: InputMaybe<HomeConferenceAboutFilter>;
+  focusAreas?: InputMaybe<HomeConferenceFocusAreasFilter>;
+  featuredSpeakers?: InputMaybe<HomeConferenceFeaturedSpeakersFilter>;
+  agenda?: InputMaybe<HomeConferenceAgendaFilter>;
+  registration?: InputMaybe<HomeConferenceRegistrationFilter>;
+  venue?: InputMaybe<HomeConferenceVenueFilter>;
+  sponsors?: InputMaybe<HomeConferenceSponsorsFilter>;
 };
 
 export type HomeFilter = {
@@ -321,9 +643,87 @@ export type AboutAboutConferenceHeader = {
   additionalDescription?: Maybe<Scalars['String']['output']>;
 };
 
+export type AboutAboutConferenceVisionMissionVision = {
+  __typename?: 'AboutAboutConferenceVisionMissionVision';
+  title?: Maybe<Scalars['String']['output']>;
+  content?: Maybe<Scalars['String']['output']>;
+  additionalContent?: Maybe<Scalars['String']['output']>;
+};
+
+export type AboutAboutConferenceVisionMissionMission = {
+  __typename?: 'AboutAboutConferenceVisionMissionMission';
+  title?: Maybe<Scalars['String']['output']>;
+  content?: Maybe<Scalars['String']['output']>;
+  additionalContent?: Maybe<Scalars['String']['output']>;
+};
+
+export type AboutAboutConferenceVisionMission = {
+  __typename?: 'AboutAboutConferenceVisionMission';
+  vision?: Maybe<AboutAboutConferenceVisionMissionVision>;
+  mission?: Maybe<AboutAboutConferenceVisionMissionMission>;
+};
+
+export type AboutAboutConferenceGoalsItems = {
+  __typename?: 'AboutAboutConferenceGoalsItems';
+  title?: Maybe<Scalars['String']['output']>;
+  description?: Maybe<Scalars['String']['output']>;
+};
+
+export type AboutAboutConferenceGoals = {
+  __typename?: 'AboutAboutConferenceGoals';
+  title?: Maybe<Scalars['String']['output']>;
+  subtitle?: Maybe<Scalars['String']['output']>;
+  items?: Maybe<Array<Maybe<AboutAboutConferenceGoalsItems>>>;
+};
+
+export type AboutAboutConferenceBenefitsItems = {
+  __typename?: 'AboutAboutConferenceBenefitsItems';
+  id?: Maybe<Scalars['String']['output']>;
+  title?: Maybe<Scalars['String']['output']>;
+  description?: Maybe<Scalars['String']['output']>;
+};
+
+export type AboutAboutConferenceBenefits = {
+  __typename?: 'AboutAboutConferenceBenefits';
+  title?: Maybe<Scalars['String']['output']>;
+  subtitle?: Maybe<Scalars['String']['output']>;
+  items?: Maybe<Array<Maybe<AboutAboutConferenceBenefitsItems>>>;
+};
+
+export type AboutAboutConferenceCommitteeMembers = {
+  __typename?: 'AboutAboutConferenceCommitteeMembers';
+  name?: Maybe<Scalars['String']['output']>;
+  role?: Maybe<Scalars['String']['output']>;
+};
+
+export type AboutAboutConferenceCommittee = {
+  __typename?: 'AboutAboutConferenceCommittee';
+  title?: Maybe<Scalars['String']['output']>;
+  subtitle?: Maybe<Scalars['String']['output']>;
+  members?: Maybe<Array<Maybe<AboutAboutConferenceCommitteeMembers>>>;
+};
+
+export type AboutAboutConferenceFaqsItems = {
+  __typename?: 'AboutAboutConferenceFaqsItems';
+  question?: Maybe<Scalars['String']['output']>;
+  answer?: Maybe<Scalars['String']['output']>;
+};
+
+export type AboutAboutConferenceFaqs = {
+  __typename?: 'AboutAboutConferenceFaqs';
+  title?: Maybe<Scalars['String']['output']>;
+  subtitle?: Maybe<Scalars['String']['output']>;
+  items?: Maybe<Array<Maybe<AboutAboutConferenceFaqsItems>>>;
+};
+
 export type AboutAboutConference = {
   __typename?: 'AboutAboutConference';
   header?: Maybe<AboutAboutConferenceHeader>;
+  visionMission?: Maybe<AboutAboutConferenceVisionMission>;
+  goals?: Maybe<AboutAboutConferenceGoals>;
+  benefits?: Maybe<AboutAboutConferenceBenefits>;
+  committee?: Maybe<AboutAboutConferenceCommittee>;
+  faqs?: Maybe<AboutAboutConferenceFaqs>;
 };
 
 export type About = Node & Document & {
@@ -341,8 +741,75 @@ export type AboutAboutConferenceHeaderFilter = {
   additionalDescription?: InputMaybe<StringFilter>;
 };
 
+export type AboutAboutConferenceVisionMissionVisionFilter = {
+  title?: InputMaybe<StringFilter>;
+  content?: InputMaybe<StringFilter>;
+  additionalContent?: InputMaybe<StringFilter>;
+};
+
+export type AboutAboutConferenceVisionMissionMissionFilter = {
+  title?: InputMaybe<StringFilter>;
+  content?: InputMaybe<StringFilter>;
+  additionalContent?: InputMaybe<StringFilter>;
+};
+
+export type AboutAboutConferenceVisionMissionFilter = {
+  vision?: InputMaybe<AboutAboutConferenceVisionMissionVisionFilter>;
+  mission?: InputMaybe<AboutAboutConferenceVisionMissionMissionFilter>;
+};
+
+export type AboutAboutConferenceGoalsItemsFilter = {
+  title?: InputMaybe<StringFilter>;
+  description?: InputMaybe<StringFilter>;
+};
+
+export type AboutAboutConferenceGoalsFilter = {
+  title?: InputMaybe<StringFilter>;
+  subtitle?: InputMaybe<StringFilter>;
+  items?: InputMaybe<AboutAboutConferenceGoalsItemsFilter>;
+};
+
+export type AboutAboutConferenceBenefitsItemsFilter = {
+  id?: InputMaybe<StringFilter>;
+  title?: InputMaybe<StringFilter>;
+  description?: InputMaybe<StringFilter>;
+};
+
+export type AboutAboutConferenceBenefitsFilter = {
+  title?: InputMaybe<StringFilter>;
+  subtitle?: InputMaybe<StringFilter>;
+  items?: InputMaybe<AboutAboutConferenceBenefitsItemsFilter>;
+};
+
+export type AboutAboutConferenceCommitteeMembersFilter = {
+  name?: InputMaybe<StringFilter>;
+  role?: InputMaybe<StringFilter>;
+};
+
+export type AboutAboutConferenceCommitteeFilter = {
+  title?: InputMaybe<StringFilter>;
+  subtitle?: InputMaybe<StringFilter>;
+  members?: InputMaybe<AboutAboutConferenceCommitteeMembersFilter>;
+};
+
+export type AboutAboutConferenceFaqsItemsFilter = {
+  question?: InputMaybe<StringFilter>;
+  answer?: InputMaybe<StringFilter>;
+};
+
+export type AboutAboutConferenceFaqsFilter = {
+  title?: InputMaybe<StringFilter>;
+  subtitle?: InputMaybe<StringFilter>;
+  items?: InputMaybe<AboutAboutConferenceFaqsItemsFilter>;
+};
+
 export type AboutAboutConferenceFilter = {
   header?: InputMaybe<AboutAboutConferenceHeaderFilter>;
+  visionMission?: InputMaybe<AboutAboutConferenceVisionMissionFilter>;
+  goals?: InputMaybe<AboutAboutConferenceGoalsFilter>;
+  benefits?: InputMaybe<AboutAboutConferenceBenefitsFilter>;
+  committee?: InputMaybe<AboutAboutConferenceCommitteeFilter>;
+  faqs?: InputMaybe<AboutAboutConferenceFaqsFilter>;
 };
 
 export type AboutFilter = {
@@ -362,6 +829,55 @@ export type AboutConnection = Connection & {
   edges?: Maybe<Array<Maybe<AboutConnectionEdges>>>;
 };
 
+export type ContactSectionsItems = {
+  __typename?: 'ContactSectionsItems';
+  label?: Maybe<Scalars['String']['output']>;
+  value?: Maybe<Scalars['String']['output']>;
+  type?: Maybe<Scalars['String']['output']>;
+};
+
+export type ContactSections = {
+  __typename?: 'ContactSections';
+  title?: Maybe<Scalars['String']['output']>;
+  items?: Maybe<Array<Maybe<ContactSectionsItems>>>;
+};
+
+export type Contact = Node & Document & {
+  __typename?: 'Contact';
+  sections?: Maybe<Array<Maybe<ContactSections>>>;
+  id: Scalars['ID']['output'];
+  _sys: SystemInfo;
+  _values: Scalars['JSON']['output'];
+};
+
+export type ContactSectionsItemsFilter = {
+  label?: InputMaybe<StringFilter>;
+  value?: InputMaybe<StringFilter>;
+  type?: InputMaybe<StringFilter>;
+};
+
+export type ContactSectionsFilter = {
+  title?: InputMaybe<StringFilter>;
+  items?: InputMaybe<ContactSectionsItemsFilter>;
+};
+
+export type ContactFilter = {
+  sections?: InputMaybe<ContactSectionsFilter>;
+};
+
+export type ContactConnectionEdges = {
+  __typename?: 'ContactConnectionEdges';
+  cursor: Scalars['String']['output'];
+  node?: Maybe<Contact>;
+};
+
+export type ContactConnection = Connection & {
+  __typename?: 'ContactConnection';
+  pageInfo: PageInfo;
+  totalCount: Scalars['Float']['output'];
+  edges?: Maybe<Array<Maybe<ContactConnectionEdges>>>;
+};
+
 export type AgendaConferenceOverviewHeader = {
   __typename?: 'AgendaConferenceOverviewHeader';
   title?: Maybe<Scalars['String']['output']>;
@@ -369,9 +885,41 @@ export type AgendaConferenceOverviewHeader = {
   description?: Maybe<Scalars['String']['output']>;
 };
 
+export type AgendaConferenceOverviewDaysSessionsSessions = {
+  __typename?: 'AgendaConferenceOverviewDaysSessionsSessions';
+  title?: Maybe<Scalars['String']['output']>;
+  description?: Maybe<Scalars['String']['output']>;
+  track?: Maybe<Scalars['String']['output']>;
+  speaker?: Maybe<Scalars['String']['output']>;
+  location?: Maybe<Scalars['String']['output']>;
+  format?: Maybe<Scalars['String']['output']>;
+};
+
+export type AgendaConferenceOverviewDaysSessions = {
+  __typename?: 'AgendaConferenceOverviewDaysSessions';
+  time?: Maybe<Scalars['String']['output']>;
+  title?: Maybe<Scalars['String']['output']>;
+  description?: Maybe<Scalars['String']['output']>;
+  type?: Maybe<Scalars['String']['output']>;
+  speaker?: Maybe<Scalars['String']['output']>;
+  participants?: Maybe<Scalars['String']['output']>;
+  location?: Maybe<Scalars['String']['output']>;
+  format?: Maybe<Scalars['String']['output']>;
+  sessions?: Maybe<Array<Maybe<AgendaConferenceOverviewDaysSessionsSessions>>>;
+};
+
+export type AgendaConferenceOverviewDays = {
+  __typename?: 'AgendaConferenceOverviewDays';
+  title?: Maybe<Scalars['String']['output']>;
+  date?: Maybe<Scalars['String']['output']>;
+  tracks?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
+  sessions?: Maybe<Array<Maybe<AgendaConferenceOverviewDaysSessions>>>;
+};
+
 export type AgendaConferenceOverview = {
   __typename?: 'AgendaConferenceOverview';
   header?: Maybe<AgendaConferenceOverviewHeader>;
+  days?: Maybe<Array<Maybe<AgendaConferenceOverviewDays>>>;
 };
 
 export type Agenda = Node & Document & {
@@ -388,8 +936,37 @@ export type AgendaConferenceOverviewHeaderFilter = {
   description?: InputMaybe<StringFilter>;
 };
 
+export type AgendaConferenceOverviewDaysSessionsSessionsFilter = {
+  title?: InputMaybe<StringFilter>;
+  description?: InputMaybe<StringFilter>;
+  track?: InputMaybe<StringFilter>;
+  speaker?: InputMaybe<StringFilter>;
+  location?: InputMaybe<StringFilter>;
+  format?: InputMaybe<StringFilter>;
+};
+
+export type AgendaConferenceOverviewDaysSessionsFilter = {
+  time?: InputMaybe<StringFilter>;
+  title?: InputMaybe<StringFilter>;
+  description?: InputMaybe<StringFilter>;
+  type?: InputMaybe<StringFilter>;
+  speaker?: InputMaybe<StringFilter>;
+  participants?: InputMaybe<StringFilter>;
+  location?: InputMaybe<StringFilter>;
+  format?: InputMaybe<StringFilter>;
+  sessions?: InputMaybe<AgendaConferenceOverviewDaysSessionsSessionsFilter>;
+};
+
+export type AgendaConferenceOverviewDaysFilter = {
+  title?: InputMaybe<StringFilter>;
+  date?: InputMaybe<StringFilter>;
+  tracks?: InputMaybe<StringFilter>;
+  sessions?: InputMaybe<AgendaConferenceOverviewDaysSessionsFilter>;
+};
+
 export type AgendaConferenceOverviewFilter = {
   header?: InputMaybe<AgendaConferenceOverviewHeaderFilter>;
+  days?: InputMaybe<AgendaConferenceOverviewDaysFilter>;
 };
 
 export type AgendaFilter = {
@@ -418,9 +995,72 @@ export type VenueConferenceVenue = {
   facilities?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
 };
 
+export type VenueConferenceAboutCoimbatoreHighlights = {
+  __typename?: 'VenueConferenceAboutCoimbatoreHighlights';
+  title?: Maybe<Scalars['String']['output']>;
+  description?: Maybe<Scalars['String']['output']>;
+};
+
+export type VenueConferenceAboutCoimbatore = {
+  __typename?: 'VenueConferenceAboutCoimbatore';
+  title?: Maybe<Scalars['String']['output']>;
+  subtitle?: Maybe<Scalars['String']['output']>;
+  highlights?: Maybe<Array<Maybe<VenueConferenceAboutCoimbatoreHighlights>>>;
+};
+
+export type VenueConferenceTravelInfoOptions = {
+  __typename?: 'VenueConferenceTravelInfoOptions';
+  mode?: Maybe<Scalars['String']['output']>;
+  details?: Maybe<Scalars['String']['output']>;
+  additionalInfo?: Maybe<Scalars['String']['output']>;
+};
+
+export type VenueConferenceTravelInfo = {
+  __typename?: 'VenueConferenceTravelInfo';
+  title?: Maybe<Scalars['String']['output']>;
+  subtitle?: Maybe<Scalars['String']['output']>;
+  options?: Maybe<Array<Maybe<VenueConferenceTravelInfoOptions>>>;
+};
+
+export type VenueConferenceAccommodationOptions = {
+  __typename?: 'VenueConferenceAccommodationOptions';
+  type?: Maybe<Scalars['String']['output']>;
+  description?: Maybe<Scalars['String']['output']>;
+  priceRange?: Maybe<Scalars['String']['output']>;
+};
+
+export type VenueConferenceAccommodation = {
+  __typename?: 'VenueConferenceAccommodation';
+  title?: Maybe<Scalars['String']['output']>;
+  subtitle?: Maybe<Scalars['String']['output']>;
+  description?: Maybe<Scalars['String']['output']>;
+  note?: Maybe<Scalars['String']['output']>;
+  options?: Maybe<Array<Maybe<VenueConferenceAccommodationOptions>>>;
+  footerNote?: Maybe<Scalars['String']['output']>;
+};
+
+export type VenueConferenceLocalAttractionsAttractions = {
+  __typename?: 'VenueConferenceLocalAttractionsAttractions';
+  name?: Maybe<Scalars['String']['output']>;
+  description?: Maybe<Scalars['String']['output']>;
+  distance?: Maybe<Scalars['String']['output']>;
+};
+
+export type VenueConferenceLocalAttractions = {
+  __typename?: 'VenueConferenceLocalAttractions';
+  title?: Maybe<Scalars['String']['output']>;
+  subtitle?: Maybe<Scalars['String']['output']>;
+  attractions?: Maybe<Array<Maybe<VenueConferenceLocalAttractionsAttractions>>>;
+  footerNote?: Maybe<Scalars['String']['output']>;
+};
+
 export type VenueConference = {
   __typename?: 'VenueConference';
   venue?: Maybe<VenueConferenceVenue>;
+  aboutCoimbatore?: Maybe<VenueConferenceAboutCoimbatore>;
+  travelInfo?: Maybe<VenueConferenceTravelInfo>;
+  accommodation?: Maybe<VenueConferenceAccommodation>;
+  localAttractions?: Maybe<VenueConferenceLocalAttractions>;
 };
 
 export type Venue = Node & Document & {
@@ -439,8 +1079,63 @@ export type VenueConferenceVenueFilter = {
   facilities?: InputMaybe<StringFilter>;
 };
 
+export type VenueConferenceAboutCoimbatoreHighlightsFilter = {
+  title?: InputMaybe<StringFilter>;
+  description?: InputMaybe<StringFilter>;
+};
+
+export type VenueConferenceAboutCoimbatoreFilter = {
+  title?: InputMaybe<StringFilter>;
+  subtitle?: InputMaybe<StringFilter>;
+  highlights?: InputMaybe<VenueConferenceAboutCoimbatoreHighlightsFilter>;
+};
+
+export type VenueConferenceTravelInfoOptionsFilter = {
+  mode?: InputMaybe<StringFilter>;
+  details?: InputMaybe<StringFilter>;
+  additionalInfo?: InputMaybe<StringFilter>;
+};
+
+export type VenueConferenceTravelInfoFilter = {
+  title?: InputMaybe<StringFilter>;
+  subtitle?: InputMaybe<StringFilter>;
+  options?: InputMaybe<VenueConferenceTravelInfoOptionsFilter>;
+};
+
+export type VenueConferenceAccommodationOptionsFilter = {
+  type?: InputMaybe<StringFilter>;
+  description?: InputMaybe<StringFilter>;
+  priceRange?: InputMaybe<StringFilter>;
+};
+
+export type VenueConferenceAccommodationFilter = {
+  title?: InputMaybe<StringFilter>;
+  subtitle?: InputMaybe<StringFilter>;
+  description?: InputMaybe<StringFilter>;
+  note?: InputMaybe<StringFilter>;
+  options?: InputMaybe<VenueConferenceAccommodationOptionsFilter>;
+  footerNote?: InputMaybe<StringFilter>;
+};
+
+export type VenueConferenceLocalAttractionsAttractionsFilter = {
+  name?: InputMaybe<StringFilter>;
+  description?: InputMaybe<StringFilter>;
+  distance?: InputMaybe<StringFilter>;
+};
+
+export type VenueConferenceLocalAttractionsFilter = {
+  title?: InputMaybe<StringFilter>;
+  subtitle?: InputMaybe<StringFilter>;
+  attractions?: InputMaybe<VenueConferenceLocalAttractionsAttractionsFilter>;
+  footerNote?: InputMaybe<StringFilter>;
+};
+
 export type VenueConferenceFilter = {
   venue?: InputMaybe<VenueConferenceVenueFilter>;
+  aboutCoimbatore?: InputMaybe<VenueConferenceAboutCoimbatoreFilter>;
+  travelInfo?: InputMaybe<VenueConferenceTravelInfoFilter>;
+  accommodation?: InputMaybe<VenueConferenceAccommodationFilter>;
+  localAttractions?: InputMaybe<VenueConferenceLocalAttractionsFilter>;
 };
 
 export type VenueFilter = {
@@ -460,20 +1155,145 @@ export type VenueConnection = Connection & {
   edges?: Maybe<Array<Maybe<VenueConnectionEdges>>>;
 };
 
-export type Speakers = Node & Document & {
-  __typename?: 'Speakers';
+export type SpeakersSpeakersHeader = {
+  __typename?: 'SpeakersSpeakersHeader';
   title?: Maybe<Scalars['String']['output']>;
   subtitle?: Maybe<Scalars['String']['output']>;
   description?: Maybe<Scalars['String']['output']>;
+};
+
+export type SpeakersSpeakersKeynoteSpeakersSpeakers = {
+  __typename?: 'SpeakersSpeakersKeynoteSpeakersSpeakers';
+  name?: Maybe<Scalars['String']['output']>;
+  title?: Maybe<Scalars['String']['output']>;
+  affiliation?: Maybe<Scalars['String']['output']>;
+  image?: Maybe<Scalars['String']['output']>;
+  category?: Maybe<Scalars['String']['output']>;
+};
+
+export type SpeakersSpeakersKeynoteSpeakers = {
+  __typename?: 'SpeakersSpeakersKeynoteSpeakers';
+  title?: Maybe<Scalars['String']['output']>;
+  subtitle?: Maybe<Scalars['String']['output']>;
+  speakers?: Maybe<Array<Maybe<SpeakersSpeakersKeynoteSpeakersSpeakers>>>;
+};
+
+export type SpeakersSpeakersIndustrySpeakersTracksSpeakers = {
+  __typename?: 'SpeakersSpeakersIndustrySpeakersTracksSpeakers';
+  name?: Maybe<Scalars['String']['output']>;
+  title?: Maybe<Scalars['String']['output']>;
+  affiliation?: Maybe<Scalars['String']['output']>;
+  image?: Maybe<Scalars['String']['output']>;
+  category?: Maybe<Scalars['String']['output']>;
+};
+
+export type SpeakersSpeakersIndustrySpeakersTracks = {
+  __typename?: 'SpeakersSpeakersIndustrySpeakersTracks';
+  name?: Maybe<Scalars['String']['output']>;
+  speakers?: Maybe<Array<Maybe<SpeakersSpeakersIndustrySpeakersTracksSpeakers>>>;
+};
+
+export type SpeakersSpeakersIndustrySpeakers = {
+  __typename?: 'SpeakersSpeakersIndustrySpeakers';
+  title?: Maybe<Scalars['String']['output']>;
+  subtitle?: Maybe<Scalars['String']['output']>;
+  tracks?: Maybe<Array<Maybe<SpeakersSpeakersIndustrySpeakersTracks>>>;
+};
+
+export type SpeakersSpeakersBecomeSpeakerTimeline = {
+  __typename?: 'SpeakersSpeakersBecomeSpeakerTimeline';
+  date?: Maybe<Scalars['String']['output']>;
+  event?: Maybe<Scalars['String']['output']>;
+  description?: Maybe<Scalars['String']['output']>;
+};
+
+export type SpeakersSpeakersBecomeSpeaker = {
+  __typename?: 'SpeakersSpeakersBecomeSpeaker';
+  title?: Maybe<Scalars['String']['output']>;
+  subtitle?: Maybe<Scalars['String']['output']>;
+  description?: Maybe<Scalars['String']['output']>;
+  benefits?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
+  timeline?: Maybe<Array<Maybe<SpeakersSpeakersBecomeSpeakerTimeline>>>;
+};
+
+export type SpeakersSpeakers = {
+  __typename?: 'SpeakersSpeakers';
+  header?: Maybe<SpeakersSpeakersHeader>;
+  keynoteSpeakers?: Maybe<SpeakersSpeakersKeynoteSpeakers>;
+  industrySpeakers?: Maybe<SpeakersSpeakersIndustrySpeakers>;
+  becomeSpeaker?: Maybe<SpeakersSpeakersBecomeSpeaker>;
+};
+
+export type Speakers = Node & Document & {
+  __typename?: 'Speakers';
+  speakers?: Maybe<SpeakersSpeakers>;
   id: Scalars['ID']['output'];
   _sys: SystemInfo;
   _values: Scalars['JSON']['output'];
 };
 
-export type SpeakersFilter = {
+export type SpeakersSpeakersHeaderFilter = {
   title?: InputMaybe<StringFilter>;
   subtitle?: InputMaybe<StringFilter>;
   description?: InputMaybe<StringFilter>;
+};
+
+export type SpeakersSpeakersKeynoteSpeakersSpeakersFilter = {
+  name?: InputMaybe<StringFilter>;
+  title?: InputMaybe<StringFilter>;
+  affiliation?: InputMaybe<StringFilter>;
+  image?: InputMaybe<ImageFilter>;
+  category?: InputMaybe<StringFilter>;
+};
+
+export type SpeakersSpeakersKeynoteSpeakersFilter = {
+  title?: InputMaybe<StringFilter>;
+  subtitle?: InputMaybe<StringFilter>;
+  speakers?: InputMaybe<SpeakersSpeakersKeynoteSpeakersSpeakersFilter>;
+};
+
+export type SpeakersSpeakersIndustrySpeakersTracksSpeakersFilter = {
+  name?: InputMaybe<StringFilter>;
+  title?: InputMaybe<StringFilter>;
+  affiliation?: InputMaybe<StringFilter>;
+  image?: InputMaybe<ImageFilter>;
+  category?: InputMaybe<StringFilter>;
+};
+
+export type SpeakersSpeakersIndustrySpeakersTracksFilter = {
+  name?: InputMaybe<StringFilter>;
+  speakers?: InputMaybe<SpeakersSpeakersIndustrySpeakersTracksSpeakersFilter>;
+};
+
+export type SpeakersSpeakersIndustrySpeakersFilter = {
+  title?: InputMaybe<StringFilter>;
+  subtitle?: InputMaybe<StringFilter>;
+  tracks?: InputMaybe<SpeakersSpeakersIndustrySpeakersTracksFilter>;
+};
+
+export type SpeakersSpeakersBecomeSpeakerTimelineFilter = {
+  date?: InputMaybe<StringFilter>;
+  event?: InputMaybe<StringFilter>;
+  description?: InputMaybe<StringFilter>;
+};
+
+export type SpeakersSpeakersBecomeSpeakerFilter = {
+  title?: InputMaybe<StringFilter>;
+  subtitle?: InputMaybe<StringFilter>;
+  description?: InputMaybe<StringFilter>;
+  benefits?: InputMaybe<StringFilter>;
+  timeline?: InputMaybe<SpeakersSpeakersBecomeSpeakerTimelineFilter>;
+};
+
+export type SpeakersSpeakersFilter = {
+  header?: InputMaybe<SpeakersSpeakersHeaderFilter>;
+  keynoteSpeakers?: InputMaybe<SpeakersSpeakersKeynoteSpeakersFilter>;
+  industrySpeakers?: InputMaybe<SpeakersSpeakersIndustrySpeakersFilter>;
+  becomeSpeaker?: InputMaybe<SpeakersSpeakersBecomeSpeakerFilter>;
+};
+
+export type SpeakersFilter = {
+  speakers?: InputMaybe<SpeakersSpeakersFilter>;
 };
 
 export type SpeakersConnectionEdges = {
@@ -489,20 +1309,233 @@ export type SpeakersConnection = Connection & {
   edges?: Maybe<Array<Maybe<SpeakersConnectionEdges>>>;
 };
 
-export type Sponsors = Node & Document & {
-  __typename?: 'Sponsors';
+export type SponsorsSponsorsHeader = {
+  __typename?: 'SponsorsSponsorsHeader';
   title?: Maybe<Scalars['String']['output']>;
   subtitle?: Maybe<Scalars['String']['output']>;
   description?: Maybe<Scalars['String']['output']>;
+};
+
+export type SponsorsSponsorsTiersPlatinumSponsors = {
+  __typename?: 'SponsorsSponsorsTiersPlatinumSponsors';
+  name?: Maybe<Scalars['String']['output']>;
+  cta?: Maybe<Scalars['String']['output']>;
+  placeholder?: Maybe<Scalars['Boolean']['output']>;
+};
+
+export type SponsorsSponsorsTiersPlatinum = {
+  __typename?: 'SponsorsSponsorsTiersPlatinum';
+  title?: Maybe<Scalars['String']['output']>;
+  sponsors?: Maybe<Array<Maybe<SponsorsSponsorsTiersPlatinumSponsors>>>;
+};
+
+export type SponsorsSponsorsTiersGoldSponsors = {
+  __typename?: 'SponsorsSponsorsTiersGoldSponsors';
+  name?: Maybe<Scalars['String']['output']>;
+  cta?: Maybe<Scalars['String']['output']>;
+  placeholder?: Maybe<Scalars['Boolean']['output']>;
+};
+
+export type SponsorsSponsorsTiersGold = {
+  __typename?: 'SponsorsSponsorsTiersGold';
+  title?: Maybe<Scalars['String']['output']>;
+  sponsors?: Maybe<Array<Maybe<SponsorsSponsorsTiersGoldSponsors>>>;
+};
+
+export type SponsorsSponsorsTiersSilverSponsors = {
+  __typename?: 'SponsorsSponsorsTiersSilverSponsors';
+  name?: Maybe<Scalars['String']['output']>;
+  placeholder?: Maybe<Scalars['Boolean']['output']>;
+};
+
+export type SponsorsSponsorsTiersSilver = {
+  __typename?: 'SponsorsSponsorsTiersSilver';
+  title?: Maybe<Scalars['String']['output']>;
+  sponsors?: Maybe<Array<Maybe<SponsorsSponsorsTiersSilverSponsors>>>;
+};
+
+export type SponsorsSponsorsTiersBronzeSponsors = {
+  __typename?: 'SponsorsSponsorsTiersBronzeSponsors';
+  name?: Maybe<Scalars['String']['output']>;
+  placeholder?: Maybe<Scalars['Boolean']['output']>;
+};
+
+export type SponsorsSponsorsTiersBronze = {
+  __typename?: 'SponsorsSponsorsTiersBronze';
+  title?: Maybe<Scalars['String']['output']>;
+  sponsors?: Maybe<Array<Maybe<SponsorsSponsorsTiersBronzeSponsors>>>;
+};
+
+export type SponsorsSponsorsTiers = {
+  __typename?: 'SponsorsSponsorsTiers';
+  platinum?: Maybe<SponsorsSponsorsTiersPlatinum>;
+  gold?: Maybe<SponsorsSponsorsTiersGold>;
+  silver?: Maybe<SponsorsSponsorsTiersSilver>;
+  bronze?: Maybe<SponsorsSponsorsTiersBronze>;
+};
+
+export type SponsorsSponsorsPackagesTiers = {
+  __typename?: 'SponsorsSponsorsPackagesTiers';
+  name?: Maybe<Scalars['String']['output']>;
+  price?: Maybe<Scalars['String']['output']>;
+  benefits?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
+};
+
+export type SponsorsSponsorsPackages = {
+  __typename?: 'SponsorsSponsorsPackages';
+  title?: Maybe<Scalars['String']['output']>;
+  subtitle?: Maybe<Scalars['String']['output']>;
+  description?: Maybe<Scalars['String']['output']>;
+  tiers?: Maybe<Array<Maybe<SponsorsSponsorsPackagesTiers>>>;
+};
+
+export type SponsorsSponsorsCustomOptions = {
+  __typename?: 'SponsorsSponsorsCustomOptions';
+  name?: Maybe<Scalars['String']['output']>;
+  description?: Maybe<Scalars['String']['output']>;
+  price?: Maybe<Scalars['String']['output']>;
+};
+
+export type SponsorsSponsorsCustom = {
+  __typename?: 'SponsorsSponsorsCustom';
+  title?: Maybe<Scalars['String']['output']>;
+  subtitle?: Maybe<Scalars['String']['output']>;
+  description?: Maybe<Scalars['String']['output']>;
+  options?: Maybe<Array<Maybe<SponsorsSponsorsCustomOptions>>>;
+  cta?: Maybe<Scalars['String']['output']>;
+};
+
+export type SponsorsSponsorsBenefitsItems = {
+  __typename?: 'SponsorsSponsorsBenefitsItems';
+  title?: Maybe<Scalars['String']['output']>;
+  description?: Maybe<Scalars['String']['output']>;
+};
+
+export type SponsorsSponsorsBenefits = {
+  __typename?: 'SponsorsSponsorsBenefits';
+  title?: Maybe<Scalars['String']['output']>;
+  items?: Maybe<Array<Maybe<SponsorsSponsorsBenefitsItems>>>;
+};
+
+export type SponsorsSponsors = {
+  __typename?: 'SponsorsSponsors';
+  header?: Maybe<SponsorsSponsorsHeader>;
+  tiers?: Maybe<SponsorsSponsorsTiers>;
+  packages?: Maybe<SponsorsSponsorsPackages>;
+  custom?: Maybe<SponsorsSponsorsCustom>;
+  benefits?: Maybe<SponsorsSponsorsBenefits>;
+};
+
+export type Sponsors = Node & Document & {
+  __typename?: 'Sponsors';
+  sponsors?: Maybe<SponsorsSponsors>;
   id: Scalars['ID']['output'];
   _sys: SystemInfo;
   _values: Scalars['JSON']['output'];
 };
 
-export type SponsorsFilter = {
+export type SponsorsSponsorsHeaderFilter = {
   title?: InputMaybe<StringFilter>;
   subtitle?: InputMaybe<StringFilter>;
   description?: InputMaybe<StringFilter>;
+};
+
+export type SponsorsSponsorsTiersPlatinumSponsorsFilter = {
+  name?: InputMaybe<StringFilter>;
+  cta?: InputMaybe<StringFilter>;
+  placeholder?: InputMaybe<BooleanFilter>;
+};
+
+export type SponsorsSponsorsTiersPlatinumFilter = {
+  title?: InputMaybe<StringFilter>;
+  sponsors?: InputMaybe<SponsorsSponsorsTiersPlatinumSponsorsFilter>;
+};
+
+export type SponsorsSponsorsTiersGoldSponsorsFilter = {
+  name?: InputMaybe<StringFilter>;
+  cta?: InputMaybe<StringFilter>;
+  placeholder?: InputMaybe<BooleanFilter>;
+};
+
+export type SponsorsSponsorsTiersGoldFilter = {
+  title?: InputMaybe<StringFilter>;
+  sponsors?: InputMaybe<SponsorsSponsorsTiersGoldSponsorsFilter>;
+};
+
+export type SponsorsSponsorsTiersSilverSponsorsFilter = {
+  name?: InputMaybe<StringFilter>;
+  placeholder?: InputMaybe<BooleanFilter>;
+};
+
+export type SponsorsSponsorsTiersSilverFilter = {
+  title?: InputMaybe<StringFilter>;
+  sponsors?: InputMaybe<SponsorsSponsorsTiersSilverSponsorsFilter>;
+};
+
+export type SponsorsSponsorsTiersBronzeSponsorsFilter = {
+  name?: InputMaybe<StringFilter>;
+  placeholder?: InputMaybe<BooleanFilter>;
+};
+
+export type SponsorsSponsorsTiersBronzeFilter = {
+  title?: InputMaybe<StringFilter>;
+  sponsors?: InputMaybe<SponsorsSponsorsTiersBronzeSponsorsFilter>;
+};
+
+export type SponsorsSponsorsTiersFilter = {
+  platinum?: InputMaybe<SponsorsSponsorsTiersPlatinumFilter>;
+  gold?: InputMaybe<SponsorsSponsorsTiersGoldFilter>;
+  silver?: InputMaybe<SponsorsSponsorsTiersSilverFilter>;
+  bronze?: InputMaybe<SponsorsSponsorsTiersBronzeFilter>;
+};
+
+export type SponsorsSponsorsPackagesTiersFilter = {
+  name?: InputMaybe<StringFilter>;
+  price?: InputMaybe<StringFilter>;
+  benefits?: InputMaybe<StringFilter>;
+};
+
+export type SponsorsSponsorsPackagesFilter = {
+  title?: InputMaybe<StringFilter>;
+  subtitle?: InputMaybe<StringFilter>;
+  description?: InputMaybe<StringFilter>;
+  tiers?: InputMaybe<SponsorsSponsorsPackagesTiersFilter>;
+};
+
+export type SponsorsSponsorsCustomOptionsFilter = {
+  name?: InputMaybe<StringFilter>;
+  description?: InputMaybe<StringFilter>;
+  price?: InputMaybe<StringFilter>;
+};
+
+export type SponsorsSponsorsCustomFilter = {
+  title?: InputMaybe<StringFilter>;
+  subtitle?: InputMaybe<StringFilter>;
+  description?: InputMaybe<StringFilter>;
+  options?: InputMaybe<SponsorsSponsorsCustomOptionsFilter>;
+  cta?: InputMaybe<StringFilter>;
+};
+
+export type SponsorsSponsorsBenefitsItemsFilter = {
+  title?: InputMaybe<StringFilter>;
+  description?: InputMaybe<StringFilter>;
+};
+
+export type SponsorsSponsorsBenefitsFilter = {
+  title?: InputMaybe<StringFilter>;
+  items?: InputMaybe<SponsorsSponsorsBenefitsItemsFilter>;
+};
+
+export type SponsorsSponsorsFilter = {
+  header?: InputMaybe<SponsorsSponsorsHeaderFilter>;
+  tiers?: InputMaybe<SponsorsSponsorsTiersFilter>;
+  packages?: InputMaybe<SponsorsSponsorsPackagesFilter>;
+  custom?: InputMaybe<SponsorsSponsorsCustomFilter>;
+  benefits?: InputMaybe<SponsorsSponsorsBenefitsFilter>;
+};
+
+export type SponsorsFilter = {
+  sponsors?: InputMaybe<SponsorsSponsorsFilter>;
 };
 
 export type SponsorsConnectionEdges = {
@@ -529,6 +1562,8 @@ export type Mutation = {
   createHome: Home;
   updateAbout: About;
   createAbout: About;
+  updateContact: Contact;
+  createContact: Contact;
   updateAgenda: Agenda;
   createAgenda: Agenda;
   updateVenue: Venue;
@@ -597,6 +1632,18 @@ export type MutationCreateAboutArgs = {
 };
 
 
+export type MutationUpdateContactArgs = {
+  relativePath: Scalars['String']['input'];
+  params: ContactMutation;
+};
+
+
+export type MutationCreateContactArgs = {
+  relativePath: Scalars['String']['input'];
+  params: ContactMutation;
+};
+
+
 export type MutationUpdateAgendaArgs = {
   relativePath: Scalars['String']['input'];
   params: AgendaMutation;
@@ -647,6 +1694,7 @@ export type MutationCreateSponsorsArgs = {
 export type DocumentUpdateMutation = {
   home?: InputMaybe<HomeMutation>;
   about?: InputMaybe<AboutMutation>;
+  contact?: InputMaybe<ContactMutation>;
   agenda?: InputMaybe<AgendaMutation>;
   venue?: InputMaybe<VenueMutation>;
   speakers?: InputMaybe<SpeakersMutation>;
@@ -657,10 +1705,18 @@ export type DocumentUpdateMutation = {
 export type DocumentMutation = {
   home?: InputMaybe<HomeMutation>;
   about?: InputMaybe<AboutMutation>;
+  contact?: InputMaybe<ContactMutation>;
   agenda?: InputMaybe<AgendaMutation>;
   venue?: InputMaybe<VenueMutation>;
   speakers?: InputMaybe<SpeakersMutation>;
   sponsors?: InputMaybe<SponsorsMutation>;
+};
+
+export type HomeConferenceHeroCountdownMutation = {
+  days?: InputMaybe<Scalars['Float']['input']>;
+  hours?: InputMaybe<Scalars['Float']['input']>;
+  minutes?: InputMaybe<Scalars['Float']['input']>;
+  seconds?: InputMaybe<Scalars['Float']['input']>;
 };
 
 export type HomeConferenceHeroMutation = {
@@ -669,10 +1725,134 @@ export type HomeConferenceHeroMutation = {
   date?: InputMaybe<Scalars['String']['input']>;
   location?: InputMaybe<Scalars['String']['input']>;
   description?: InputMaybe<Scalars['String']['input']>;
+  countdown?: InputMaybe<HomeConferenceHeroCountdownMutation>;
+};
+
+export type HomeConferenceAboutVisionMutation = {
+  title?: InputMaybe<Scalars['String']['input']>;
+  content?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type HomeConferenceAboutMissionMutation = {
+  title?: InputMaybe<Scalars['String']['input']>;
+  content?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type HomeConferenceAboutStatsMutation = {
+  value?: InputMaybe<Scalars['String']['input']>;
+  label?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type HomeConferenceAboutMutation = {
+  title?: InputMaybe<Scalars['String']['input']>;
+  description?: InputMaybe<Scalars['String']['input']>;
+  vision?: InputMaybe<HomeConferenceAboutVisionMutation>;
+  mission?: InputMaybe<HomeConferenceAboutMissionMutation>;
+  stats?: InputMaybe<Array<InputMaybe<HomeConferenceAboutStatsMutation>>>;
+};
+
+export type HomeConferenceFocusAreasAreasMutation = {
+  title?: InputMaybe<Scalars['String']['input']>;
+  description?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type HomeConferenceFocusAreasMutation = {
+  title?: InputMaybe<Scalars['String']['input']>;
+  subtitle?: InputMaybe<Scalars['String']['input']>;
+  areas?: InputMaybe<Array<InputMaybe<HomeConferenceFocusAreasAreasMutation>>>;
+};
+
+export type HomeConferenceFeaturedSpeakersSpeakersMutation = {
+  name?: InputMaybe<Scalars['String']['input']>;
+  title?: InputMaybe<Scalars['String']['input']>;
+  image?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type HomeConferenceFeaturedSpeakersMutation = {
+  title?: InputMaybe<Scalars['String']['input']>;
+  subtitle?: InputMaybe<Scalars['String']['input']>;
+  speakers?: InputMaybe<Array<InputMaybe<HomeConferenceFeaturedSpeakersSpeakersMutation>>>;
+};
+
+export type HomeConferenceAgendaDaysSessionsMutation = {
+  time?: InputMaybe<Scalars['String']['input']>;
+  title?: InputMaybe<Scalars['String']['input']>;
+  description?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type HomeConferenceAgendaDaysMutation = {
+  title?: InputMaybe<Scalars['String']['input']>;
+  sessions?: InputMaybe<Array<InputMaybe<HomeConferenceAgendaDaysSessionsMutation>>>;
+};
+
+export type HomeConferenceAgendaMutation = {
+  title?: InputMaybe<Scalars['String']['input']>;
+  subtitle?: InputMaybe<Scalars['String']['input']>;
+  days?: InputMaybe<Array<InputMaybe<HomeConferenceAgendaDaysMutation>>>;
+};
+
+export type HomeConferenceRegistrationTicketsMutation = {
+  type?: InputMaybe<Scalars['String']['input']>;
+  description?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type HomeConferenceRegistrationEarlyBirdCountdownMutation = {
+  days?: InputMaybe<Scalars['Float']['input']>;
+  hours?: InputMaybe<Scalars['Float']['input']>;
+  minutes?: InputMaybe<Scalars['Float']['input']>;
+};
+
+export type HomeConferenceRegistrationEarlyBirdMutation = {
+  text?: InputMaybe<Scalars['String']['input']>;
+  date?: InputMaybe<Scalars['String']['input']>;
+  countdown?: InputMaybe<HomeConferenceRegistrationEarlyBirdCountdownMutation>;
+};
+
+export type HomeConferenceRegistrationMutation = {
+  title?: InputMaybe<Scalars['String']['input']>;
+  description?: InputMaybe<Scalars['String']['input']>;
+  tickets?: InputMaybe<Array<InputMaybe<HomeConferenceRegistrationTicketsMutation>>>;
+  earlyBird?: InputMaybe<HomeConferenceRegistrationEarlyBirdMutation>;
+  note?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type HomeConferenceVenueMutation = {
+  title?: InputMaybe<Scalars['String']['input']>;
+  subtitle?: InputMaybe<Scalars['String']['input']>;
+  name?: InputMaybe<Scalars['String']['input']>;
+  location?: InputMaybe<Scalars['String']['input']>;
+  description?: InputMaybe<Scalars['String']['input']>;
+  details?: InputMaybe<Scalars['String']['input']>;
+  features?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+export type HomeConferenceSponsorsTiersMutation = {
+  name?: InputMaybe<Scalars['String']['input']>;
+  count?: InputMaybe<Scalars['Float']['input']>;
+  placeholder?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+export type HomeConferenceSponsorsCtaMutation = {
+  text?: InputMaybe<Scalars['String']['input']>;
+  description?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type HomeConferenceSponsorsMutation = {
+  title?: InputMaybe<Scalars['String']['input']>;
+  subtitle?: InputMaybe<Scalars['String']['input']>;
+  tiers?: InputMaybe<Array<InputMaybe<HomeConferenceSponsorsTiersMutation>>>;
+  cta?: InputMaybe<HomeConferenceSponsorsCtaMutation>;
 };
 
 export type HomeConferenceMutation = {
   hero?: InputMaybe<HomeConferenceHeroMutation>;
+  about?: InputMaybe<HomeConferenceAboutMutation>;
+  focusAreas?: InputMaybe<HomeConferenceFocusAreasMutation>;
+  featuredSpeakers?: InputMaybe<HomeConferenceFeaturedSpeakersMutation>;
+  agenda?: InputMaybe<HomeConferenceAgendaMutation>;
+  registration?: InputMaybe<HomeConferenceRegistrationMutation>;
+  venue?: InputMaybe<HomeConferenceVenueMutation>;
+  sponsors?: InputMaybe<HomeConferenceSponsorsMutation>;
 };
 
 export type HomeMutation = {
@@ -686,12 +1866,94 @@ export type AboutAboutConferenceHeaderMutation = {
   additionalDescription?: InputMaybe<Scalars['String']['input']>;
 };
 
+export type AboutAboutConferenceVisionMissionVisionMutation = {
+  title?: InputMaybe<Scalars['String']['input']>;
+  content?: InputMaybe<Scalars['String']['input']>;
+  additionalContent?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type AboutAboutConferenceVisionMissionMissionMutation = {
+  title?: InputMaybe<Scalars['String']['input']>;
+  content?: InputMaybe<Scalars['String']['input']>;
+  additionalContent?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type AboutAboutConferenceVisionMissionMutation = {
+  vision?: InputMaybe<AboutAboutConferenceVisionMissionVisionMutation>;
+  mission?: InputMaybe<AboutAboutConferenceVisionMissionMissionMutation>;
+};
+
+export type AboutAboutConferenceGoalsItemsMutation = {
+  title?: InputMaybe<Scalars['String']['input']>;
+  description?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type AboutAboutConferenceGoalsMutation = {
+  title?: InputMaybe<Scalars['String']['input']>;
+  subtitle?: InputMaybe<Scalars['String']['input']>;
+  items?: InputMaybe<Array<InputMaybe<AboutAboutConferenceGoalsItemsMutation>>>;
+};
+
+export type AboutAboutConferenceBenefitsItemsMutation = {
+  id?: InputMaybe<Scalars['String']['input']>;
+  title?: InputMaybe<Scalars['String']['input']>;
+  description?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type AboutAboutConferenceBenefitsMutation = {
+  title?: InputMaybe<Scalars['String']['input']>;
+  subtitle?: InputMaybe<Scalars['String']['input']>;
+  items?: InputMaybe<Array<InputMaybe<AboutAboutConferenceBenefitsItemsMutation>>>;
+};
+
+export type AboutAboutConferenceCommitteeMembersMutation = {
+  name?: InputMaybe<Scalars['String']['input']>;
+  role?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type AboutAboutConferenceCommitteeMutation = {
+  title?: InputMaybe<Scalars['String']['input']>;
+  subtitle?: InputMaybe<Scalars['String']['input']>;
+  members?: InputMaybe<Array<InputMaybe<AboutAboutConferenceCommitteeMembersMutation>>>;
+};
+
+export type AboutAboutConferenceFaqsItemsMutation = {
+  question?: InputMaybe<Scalars['String']['input']>;
+  answer?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type AboutAboutConferenceFaqsMutation = {
+  title?: InputMaybe<Scalars['String']['input']>;
+  subtitle?: InputMaybe<Scalars['String']['input']>;
+  items?: InputMaybe<Array<InputMaybe<AboutAboutConferenceFaqsItemsMutation>>>;
+};
+
 export type AboutAboutConferenceMutation = {
   header?: InputMaybe<AboutAboutConferenceHeaderMutation>;
+  visionMission?: InputMaybe<AboutAboutConferenceVisionMissionMutation>;
+  goals?: InputMaybe<AboutAboutConferenceGoalsMutation>;
+  benefits?: InputMaybe<AboutAboutConferenceBenefitsMutation>;
+  committee?: InputMaybe<AboutAboutConferenceCommitteeMutation>;
+  faqs?: InputMaybe<AboutAboutConferenceFaqsMutation>;
 };
 
 export type AboutMutation = {
   aboutConference?: InputMaybe<AboutAboutConferenceMutation>;
+};
+
+export type ContactSectionsItemsMutation = {
+  label?: InputMaybe<Scalars['String']['input']>;
+  value?: InputMaybe<Scalars['String']['input']>;
+  type?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type ContactSectionsMutation = {
+  title?: InputMaybe<Scalars['String']['input']>;
+  items?: InputMaybe<Array<InputMaybe<ContactSectionsItemsMutation>>>;
+};
+
+export type ContactMutation = {
+  sections?: InputMaybe<Array<InputMaybe<ContactSectionsMutation>>>;
 };
 
 export type AgendaConferenceOverviewHeaderMutation = {
@@ -700,8 +1962,37 @@ export type AgendaConferenceOverviewHeaderMutation = {
   description?: InputMaybe<Scalars['String']['input']>;
 };
 
+export type AgendaConferenceOverviewDaysSessionsSessionsMutation = {
+  title?: InputMaybe<Scalars['String']['input']>;
+  description?: InputMaybe<Scalars['String']['input']>;
+  track?: InputMaybe<Scalars['String']['input']>;
+  speaker?: InputMaybe<Scalars['String']['input']>;
+  location?: InputMaybe<Scalars['String']['input']>;
+  format?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type AgendaConferenceOverviewDaysSessionsMutation = {
+  time?: InputMaybe<Scalars['String']['input']>;
+  title?: InputMaybe<Scalars['String']['input']>;
+  description?: InputMaybe<Scalars['String']['input']>;
+  type?: InputMaybe<Scalars['String']['input']>;
+  speaker?: InputMaybe<Scalars['String']['input']>;
+  participants?: InputMaybe<Scalars['String']['input']>;
+  location?: InputMaybe<Scalars['String']['input']>;
+  format?: InputMaybe<Scalars['String']['input']>;
+  sessions?: InputMaybe<Array<InputMaybe<AgendaConferenceOverviewDaysSessionsSessionsMutation>>>;
+};
+
+export type AgendaConferenceOverviewDaysMutation = {
+  title?: InputMaybe<Scalars['String']['input']>;
+  date?: InputMaybe<Scalars['String']['input']>;
+  tracks?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  sessions?: InputMaybe<Array<InputMaybe<AgendaConferenceOverviewDaysSessionsMutation>>>;
+};
+
 export type AgendaConferenceOverviewMutation = {
   header?: InputMaybe<AgendaConferenceOverviewHeaderMutation>;
+  days?: InputMaybe<Array<InputMaybe<AgendaConferenceOverviewDaysMutation>>>;
 };
 
 export type AgendaMutation = {
@@ -716,44 +2007,257 @@ export type VenueConferenceVenueMutation = {
   facilities?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
 };
 
+export type VenueConferenceAboutCoimbatoreHighlightsMutation = {
+  title?: InputMaybe<Scalars['String']['input']>;
+  description?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type VenueConferenceAboutCoimbatoreMutation = {
+  title?: InputMaybe<Scalars['String']['input']>;
+  subtitle?: InputMaybe<Scalars['String']['input']>;
+  highlights?: InputMaybe<Array<InputMaybe<VenueConferenceAboutCoimbatoreHighlightsMutation>>>;
+};
+
+export type VenueConferenceTravelInfoOptionsMutation = {
+  mode?: InputMaybe<Scalars['String']['input']>;
+  details?: InputMaybe<Scalars['String']['input']>;
+  additionalInfo?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type VenueConferenceTravelInfoMutation = {
+  title?: InputMaybe<Scalars['String']['input']>;
+  subtitle?: InputMaybe<Scalars['String']['input']>;
+  options?: InputMaybe<Array<InputMaybe<VenueConferenceTravelInfoOptionsMutation>>>;
+};
+
+export type VenueConferenceAccommodationOptionsMutation = {
+  type?: InputMaybe<Scalars['String']['input']>;
+  description?: InputMaybe<Scalars['String']['input']>;
+  priceRange?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type VenueConferenceAccommodationMutation = {
+  title?: InputMaybe<Scalars['String']['input']>;
+  subtitle?: InputMaybe<Scalars['String']['input']>;
+  description?: InputMaybe<Scalars['String']['input']>;
+  note?: InputMaybe<Scalars['String']['input']>;
+  options?: InputMaybe<Array<InputMaybe<VenueConferenceAccommodationOptionsMutation>>>;
+  footerNote?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type VenueConferenceLocalAttractionsAttractionsMutation = {
+  name?: InputMaybe<Scalars['String']['input']>;
+  description?: InputMaybe<Scalars['String']['input']>;
+  distance?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type VenueConferenceLocalAttractionsMutation = {
+  title?: InputMaybe<Scalars['String']['input']>;
+  subtitle?: InputMaybe<Scalars['String']['input']>;
+  attractions?: InputMaybe<Array<InputMaybe<VenueConferenceLocalAttractionsAttractionsMutation>>>;
+  footerNote?: InputMaybe<Scalars['String']['input']>;
+};
+
 export type VenueConferenceMutation = {
   venue?: InputMaybe<VenueConferenceVenueMutation>;
+  aboutCoimbatore?: InputMaybe<VenueConferenceAboutCoimbatoreMutation>;
+  travelInfo?: InputMaybe<VenueConferenceTravelInfoMutation>;
+  accommodation?: InputMaybe<VenueConferenceAccommodationMutation>;
+  localAttractions?: InputMaybe<VenueConferenceLocalAttractionsMutation>;
 };
 
 export type VenueMutation = {
   conference?: InputMaybe<VenueConferenceMutation>;
 };
 
-export type SpeakersMutation = {
+export type SpeakersSpeakersHeaderMutation = {
   title?: InputMaybe<Scalars['String']['input']>;
   subtitle?: InputMaybe<Scalars['String']['input']>;
   description?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type SpeakersSpeakersKeynoteSpeakersSpeakersMutation = {
+  name?: InputMaybe<Scalars['String']['input']>;
+  title?: InputMaybe<Scalars['String']['input']>;
+  affiliation?: InputMaybe<Scalars['String']['input']>;
+  image?: InputMaybe<Scalars['String']['input']>;
+  category?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type SpeakersSpeakersKeynoteSpeakersMutation = {
+  title?: InputMaybe<Scalars['String']['input']>;
+  subtitle?: InputMaybe<Scalars['String']['input']>;
+  speakers?: InputMaybe<Array<InputMaybe<SpeakersSpeakersKeynoteSpeakersSpeakersMutation>>>;
+};
+
+export type SpeakersSpeakersIndustrySpeakersTracksSpeakersMutation = {
+  name?: InputMaybe<Scalars['String']['input']>;
+  title?: InputMaybe<Scalars['String']['input']>;
+  affiliation?: InputMaybe<Scalars['String']['input']>;
+  image?: InputMaybe<Scalars['String']['input']>;
+  category?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type SpeakersSpeakersIndustrySpeakersTracksMutation = {
+  name?: InputMaybe<Scalars['String']['input']>;
+  speakers?: InputMaybe<Array<InputMaybe<SpeakersSpeakersIndustrySpeakersTracksSpeakersMutation>>>;
+};
+
+export type SpeakersSpeakersIndustrySpeakersMutation = {
+  title?: InputMaybe<Scalars['String']['input']>;
+  subtitle?: InputMaybe<Scalars['String']['input']>;
+  tracks?: InputMaybe<Array<InputMaybe<SpeakersSpeakersIndustrySpeakersTracksMutation>>>;
+};
+
+export type SpeakersSpeakersBecomeSpeakerTimelineMutation = {
+  date?: InputMaybe<Scalars['String']['input']>;
+  event?: InputMaybe<Scalars['String']['input']>;
+  description?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type SpeakersSpeakersBecomeSpeakerMutation = {
+  title?: InputMaybe<Scalars['String']['input']>;
+  subtitle?: InputMaybe<Scalars['String']['input']>;
+  description?: InputMaybe<Scalars['String']['input']>;
+  benefits?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  timeline?: InputMaybe<Array<InputMaybe<SpeakersSpeakersBecomeSpeakerTimelineMutation>>>;
+};
+
+export type SpeakersSpeakersMutation = {
+  header?: InputMaybe<SpeakersSpeakersHeaderMutation>;
+  keynoteSpeakers?: InputMaybe<SpeakersSpeakersKeynoteSpeakersMutation>;
+  industrySpeakers?: InputMaybe<SpeakersSpeakersIndustrySpeakersMutation>;
+  becomeSpeaker?: InputMaybe<SpeakersSpeakersBecomeSpeakerMutation>;
+};
+
+export type SpeakersMutation = {
+  speakers?: InputMaybe<SpeakersSpeakersMutation>;
+};
+
+export type SponsorsSponsorsHeaderMutation = {
+  title?: InputMaybe<Scalars['String']['input']>;
+  subtitle?: InputMaybe<Scalars['String']['input']>;
+  description?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type SponsorsSponsorsTiersPlatinumSponsorsMutation = {
+  name?: InputMaybe<Scalars['String']['input']>;
+  cta?: InputMaybe<Scalars['String']['input']>;
+  placeholder?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+export type SponsorsSponsorsTiersPlatinumMutation = {
+  title?: InputMaybe<Scalars['String']['input']>;
+  sponsors?: InputMaybe<Array<InputMaybe<SponsorsSponsorsTiersPlatinumSponsorsMutation>>>;
+};
+
+export type SponsorsSponsorsTiersGoldSponsorsMutation = {
+  name?: InputMaybe<Scalars['String']['input']>;
+  cta?: InputMaybe<Scalars['String']['input']>;
+  placeholder?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+export type SponsorsSponsorsTiersGoldMutation = {
+  title?: InputMaybe<Scalars['String']['input']>;
+  sponsors?: InputMaybe<Array<InputMaybe<SponsorsSponsorsTiersGoldSponsorsMutation>>>;
+};
+
+export type SponsorsSponsorsTiersSilverSponsorsMutation = {
+  name?: InputMaybe<Scalars['String']['input']>;
+  placeholder?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+export type SponsorsSponsorsTiersSilverMutation = {
+  title?: InputMaybe<Scalars['String']['input']>;
+  sponsors?: InputMaybe<Array<InputMaybe<SponsorsSponsorsTiersSilverSponsorsMutation>>>;
+};
+
+export type SponsorsSponsorsTiersBronzeSponsorsMutation = {
+  name?: InputMaybe<Scalars['String']['input']>;
+  placeholder?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+export type SponsorsSponsorsTiersBronzeMutation = {
+  title?: InputMaybe<Scalars['String']['input']>;
+  sponsors?: InputMaybe<Array<InputMaybe<SponsorsSponsorsTiersBronzeSponsorsMutation>>>;
+};
+
+export type SponsorsSponsorsTiersMutation = {
+  platinum?: InputMaybe<SponsorsSponsorsTiersPlatinumMutation>;
+  gold?: InputMaybe<SponsorsSponsorsTiersGoldMutation>;
+  silver?: InputMaybe<SponsorsSponsorsTiersSilverMutation>;
+  bronze?: InputMaybe<SponsorsSponsorsTiersBronzeMutation>;
+};
+
+export type SponsorsSponsorsPackagesTiersMutation = {
+  name?: InputMaybe<Scalars['String']['input']>;
+  price?: InputMaybe<Scalars['String']['input']>;
+  benefits?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+export type SponsorsSponsorsPackagesMutation = {
+  title?: InputMaybe<Scalars['String']['input']>;
+  subtitle?: InputMaybe<Scalars['String']['input']>;
+  description?: InputMaybe<Scalars['String']['input']>;
+  tiers?: InputMaybe<Array<InputMaybe<SponsorsSponsorsPackagesTiersMutation>>>;
+};
+
+export type SponsorsSponsorsCustomOptionsMutation = {
+  name?: InputMaybe<Scalars['String']['input']>;
+  description?: InputMaybe<Scalars['String']['input']>;
+  price?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type SponsorsSponsorsCustomMutation = {
+  title?: InputMaybe<Scalars['String']['input']>;
+  subtitle?: InputMaybe<Scalars['String']['input']>;
+  description?: InputMaybe<Scalars['String']['input']>;
+  options?: InputMaybe<Array<InputMaybe<SponsorsSponsorsCustomOptionsMutation>>>;
+  cta?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type SponsorsSponsorsBenefitsItemsMutation = {
+  title?: InputMaybe<Scalars['String']['input']>;
+  description?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type SponsorsSponsorsBenefitsMutation = {
+  title?: InputMaybe<Scalars['String']['input']>;
+  items?: InputMaybe<Array<InputMaybe<SponsorsSponsorsBenefitsItemsMutation>>>;
+};
+
+export type SponsorsSponsorsMutation = {
+  header?: InputMaybe<SponsorsSponsorsHeaderMutation>;
+  tiers?: InputMaybe<SponsorsSponsorsTiersMutation>;
+  packages?: InputMaybe<SponsorsSponsorsPackagesMutation>;
+  custom?: InputMaybe<SponsorsSponsorsCustomMutation>;
+  benefits?: InputMaybe<SponsorsSponsorsBenefitsMutation>;
 };
 
 export type SponsorsMutation = {
-  title?: InputMaybe<Scalars['String']['input']>;
-  subtitle?: InputMaybe<Scalars['String']['input']>;
-  description?: InputMaybe<Scalars['String']['input']>;
+  sponsors?: InputMaybe<SponsorsSponsorsMutation>;
 };
 
-export type HomePartsFragment = { __typename: 'Home', conference?: { __typename: 'HomeConference', hero?: { __typename: 'HomeConferenceHero', title?: string | null, tagline?: string | null, date?: string | null, location?: string | null, description?: string | null } | null } | null };
+export type HomePartsFragment = { __typename: 'Home', conference?: { __typename: 'HomeConference', hero?: { __typename: 'HomeConferenceHero', title?: string | null, tagline?: string | null, date?: string | null, location?: string | null, description?: string | null, countdown?: { __typename: 'HomeConferenceHeroCountdown', days?: number | null, hours?: number | null, minutes?: number | null, seconds?: number | null } | null } | null, about?: { __typename: 'HomeConferenceAbout', title?: string | null, description?: string | null, vision?: { __typename: 'HomeConferenceAboutVision', title?: string | null, content?: string | null } | null, mission?: { __typename: 'HomeConferenceAboutMission', title?: string | null, content?: string | null } | null, stats?: Array<{ __typename: 'HomeConferenceAboutStats', value?: string | null, label?: string | null } | null> | null } | null, focusAreas?: { __typename: 'HomeConferenceFocusAreas', title?: string | null, subtitle?: string | null, areas?: Array<{ __typename: 'HomeConferenceFocusAreasAreas', title?: string | null, description?: string | null } | null> | null } | null, featuredSpeakers?: { __typename: 'HomeConferenceFeaturedSpeakers', title?: string | null, subtitle?: string | null, speakers?: Array<{ __typename: 'HomeConferenceFeaturedSpeakersSpeakers', name?: string | null, title?: string | null, image?: string | null } | null> | null } | null, agenda?: { __typename: 'HomeConferenceAgenda', title?: string | null, subtitle?: string | null, days?: Array<{ __typename: 'HomeConferenceAgendaDays', title?: string | null, sessions?: Array<{ __typename: 'HomeConferenceAgendaDaysSessions', time?: string | null, title?: string | null, description?: string | null } | null> | null } | null> | null } | null, registration?: { __typename: 'HomeConferenceRegistration', title?: string | null, description?: string | null, note?: string | null, tickets?: Array<{ __typename: 'HomeConferenceRegistrationTickets', type?: string | null, description?: string | null } | null> | null, earlyBird?: { __typename: 'HomeConferenceRegistrationEarlyBird', text?: string | null, date?: string | null, countdown?: { __typename: 'HomeConferenceRegistrationEarlyBirdCountdown', days?: number | null, hours?: number | null, minutes?: number | null } | null } | null } | null, venue?: { __typename: 'HomeConferenceVenue', title?: string | null, subtitle?: string | null, name?: string | null, location?: string | null, description?: string | null, details?: string | null, features?: Array<string | null> | null } | null, sponsors?: { __typename: 'HomeConferenceSponsors', title?: string | null, subtitle?: string | null, tiers?: Array<{ __typename: 'HomeConferenceSponsorsTiers', name?: string | null, count?: number | null, placeholder?: boolean | null } | null> | null, cta?: { __typename: 'HomeConferenceSponsorsCta', text?: string | null, description?: string | null } | null } | null } | null };
 
-export type AboutPartsFragment = { __typename: 'About', aboutConference?: { __typename: 'AboutAboutConference', header?: { __typename: 'AboutAboutConferenceHeader', title?: string | null, subtitle?: string | null, description?: string | null, additionalDescription?: string | null } | null } | null };
+export type AboutPartsFragment = { __typename: 'About', aboutConference?: { __typename: 'AboutAboutConference', header?: { __typename: 'AboutAboutConferenceHeader', title?: string | null, subtitle?: string | null, description?: string | null, additionalDescription?: string | null } | null, visionMission?: { __typename: 'AboutAboutConferenceVisionMission', vision?: { __typename: 'AboutAboutConferenceVisionMissionVision', title?: string | null, content?: string | null, additionalContent?: string | null } | null, mission?: { __typename: 'AboutAboutConferenceVisionMissionMission', title?: string | null, content?: string | null, additionalContent?: string | null } | null } | null, goals?: { __typename: 'AboutAboutConferenceGoals', title?: string | null, subtitle?: string | null, items?: Array<{ __typename: 'AboutAboutConferenceGoalsItems', title?: string | null, description?: string | null } | null> | null } | null, benefits?: { __typename: 'AboutAboutConferenceBenefits', title?: string | null, subtitle?: string | null, items?: Array<{ __typename: 'AboutAboutConferenceBenefitsItems', id?: string | null, title?: string | null, description?: string | null } | null> | null } | null, committee?: { __typename: 'AboutAboutConferenceCommittee', title?: string | null, subtitle?: string | null, members?: Array<{ __typename: 'AboutAboutConferenceCommitteeMembers', name?: string | null, role?: string | null } | null> | null } | null, faqs?: { __typename: 'AboutAboutConferenceFaqs', title?: string | null, subtitle?: string | null, items?: Array<{ __typename: 'AboutAboutConferenceFaqsItems', question?: string | null, answer?: string | null } | null> | null } | null } | null };
 
-export type AgendaPartsFragment = { __typename: 'Agenda', conferenceOverview?: { __typename: 'AgendaConferenceOverview', header?: { __typename: 'AgendaConferenceOverviewHeader', title?: string | null, subtitle?: string | null, description?: string | null } | null } | null };
+export type ContactPartsFragment = { __typename: 'Contact', sections?: Array<{ __typename: 'ContactSections', title?: string | null, items?: Array<{ __typename: 'ContactSectionsItems', label?: string | null, value?: string | null, type?: string | null } | null> | null } | null> | null };
 
-export type VenuePartsFragment = { __typename: 'Venue', conference?: { __typename: 'VenueConference', venue?: { __typename: 'VenueConferenceVenue', title?: string | null, location?: string | null, description?: string | null, description2?: string | null, facilities?: Array<string | null> | null } | null } | null };
+export type AgendaPartsFragment = { __typename: 'Agenda', conferenceOverview?: { __typename: 'AgendaConferenceOverview', header?: { __typename: 'AgendaConferenceOverviewHeader', title?: string | null, subtitle?: string | null, description?: string | null } | null, days?: Array<{ __typename: 'AgendaConferenceOverviewDays', title?: string | null, date?: string | null, tracks?: Array<string | null> | null, sessions?: Array<{ __typename: 'AgendaConferenceOverviewDaysSessions', time?: string | null, title?: string | null, description?: string | null, type?: string | null, speaker?: string | null, participants?: string | null, location?: string | null, format?: string | null, sessions?: Array<{ __typename: 'AgendaConferenceOverviewDaysSessionsSessions', title?: string | null, description?: string | null, track?: string | null, speaker?: string | null, location?: string | null, format?: string | null } | null> | null } | null> | null } | null> | null } | null };
 
-export type SpeakersPartsFragment = { __typename: 'Speakers', title?: string | null, subtitle?: string | null, description?: string | null };
+export type VenuePartsFragment = { __typename: 'Venue', conference?: { __typename: 'VenueConference', venue?: { __typename: 'VenueConferenceVenue', title?: string | null, location?: string | null, description?: string | null, description2?: string | null, facilities?: Array<string | null> | null } | null, aboutCoimbatore?: { __typename: 'VenueConferenceAboutCoimbatore', title?: string | null, subtitle?: string | null, highlights?: Array<{ __typename: 'VenueConferenceAboutCoimbatoreHighlights', title?: string | null, description?: string | null } | null> | null } | null, travelInfo?: { __typename: 'VenueConferenceTravelInfo', title?: string | null, subtitle?: string | null, options?: Array<{ __typename: 'VenueConferenceTravelInfoOptions', mode?: string | null, details?: string | null, additionalInfo?: string | null } | null> | null } | null, accommodation?: { __typename: 'VenueConferenceAccommodation', title?: string | null, subtitle?: string | null, description?: string | null, note?: string | null, footerNote?: string | null, options?: Array<{ __typename: 'VenueConferenceAccommodationOptions', type?: string | null, description?: string | null, priceRange?: string | null } | null> | null } | null, localAttractions?: { __typename: 'VenueConferenceLocalAttractions', title?: string | null, subtitle?: string | null, footerNote?: string | null, attractions?: Array<{ __typename: 'VenueConferenceLocalAttractionsAttractions', name?: string | null, description?: string | null, distance?: string | null } | null> | null } | null } | null };
 
-export type SponsorsPartsFragment = { __typename: 'Sponsors', title?: string | null, subtitle?: string | null, description?: string | null };
+export type SpeakersPartsFragment = { __typename: 'Speakers', speakers?: { __typename: 'SpeakersSpeakers', header?: { __typename: 'SpeakersSpeakersHeader', title?: string | null, subtitle?: string | null, description?: string | null } | null, keynoteSpeakers?: { __typename: 'SpeakersSpeakersKeynoteSpeakers', title?: string | null, subtitle?: string | null, speakers?: Array<{ __typename: 'SpeakersSpeakersKeynoteSpeakersSpeakers', name?: string | null, title?: string | null, affiliation?: string | null, image?: string | null, category?: string | null } | null> | null } | null, industrySpeakers?: { __typename: 'SpeakersSpeakersIndustrySpeakers', title?: string | null, subtitle?: string | null, tracks?: Array<{ __typename: 'SpeakersSpeakersIndustrySpeakersTracks', name?: string | null, speakers?: Array<{ __typename: 'SpeakersSpeakersIndustrySpeakersTracksSpeakers', name?: string | null, title?: string | null, affiliation?: string | null, image?: string | null, category?: string | null } | null> | null } | null> | null } | null, becomeSpeaker?: { __typename: 'SpeakersSpeakersBecomeSpeaker', title?: string | null, subtitle?: string | null, description?: string | null, benefits?: Array<string | null> | null, timeline?: Array<{ __typename: 'SpeakersSpeakersBecomeSpeakerTimeline', date?: string | null, event?: string | null, description?: string | null } | null> | null } | null } | null };
+
+export type SponsorsPartsFragment = { __typename: 'Sponsors', sponsors?: { __typename: 'SponsorsSponsors', header?: { __typename: 'SponsorsSponsorsHeader', title?: string | null, subtitle?: string | null, description?: string | null } | null, tiers?: { __typename: 'SponsorsSponsorsTiers', platinum?: { __typename: 'SponsorsSponsorsTiersPlatinum', title?: string | null, sponsors?: Array<{ __typename: 'SponsorsSponsorsTiersPlatinumSponsors', name?: string | null, cta?: string | null, placeholder?: boolean | null } | null> | null } | null, gold?: { __typename: 'SponsorsSponsorsTiersGold', title?: string | null, sponsors?: Array<{ __typename: 'SponsorsSponsorsTiersGoldSponsors', name?: string | null, cta?: string | null, placeholder?: boolean | null } | null> | null } | null, silver?: { __typename: 'SponsorsSponsorsTiersSilver', title?: string | null, sponsors?: Array<{ __typename: 'SponsorsSponsorsTiersSilverSponsors', name?: string | null, placeholder?: boolean | null } | null> | null } | null, bronze?: { __typename: 'SponsorsSponsorsTiersBronze', title?: string | null, sponsors?: Array<{ __typename: 'SponsorsSponsorsTiersBronzeSponsors', name?: string | null, placeholder?: boolean | null } | null> | null } | null } | null, packages?: { __typename: 'SponsorsSponsorsPackages', title?: string | null, subtitle?: string | null, description?: string | null, tiers?: Array<{ __typename: 'SponsorsSponsorsPackagesTiers', name?: string | null, price?: string | null, benefits?: Array<string | null> | null } | null> | null } | null, custom?: { __typename: 'SponsorsSponsorsCustom', title?: string | null, subtitle?: string | null, description?: string | null, cta?: string | null, options?: Array<{ __typename: 'SponsorsSponsorsCustomOptions', name?: string | null, description?: string | null, price?: string | null } | null> | null } | null, benefits?: { __typename: 'SponsorsSponsorsBenefits', title?: string | null, items?: Array<{ __typename: 'SponsorsSponsorsBenefitsItems', title?: string | null, description?: string | null } | null> | null } | null } | null };
 
 export type HomeQueryVariables = Exact<{
   relativePath: Scalars['String']['input'];
 }>;
 
 
-export type HomeQuery = { __typename?: 'Query', home: { __typename: 'Home', id: string, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, conference?: { __typename: 'HomeConference', hero?: { __typename: 'HomeConferenceHero', title?: string | null, tagline?: string | null, date?: string | null, location?: string | null, description?: string | null } | null } | null } };
+export type HomeQuery = { __typename?: 'Query', home: { __typename: 'Home', id: string, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, conference?: { __typename: 'HomeConference', hero?: { __typename: 'HomeConferenceHero', title?: string | null, tagline?: string | null, date?: string | null, location?: string | null, description?: string | null, countdown?: { __typename: 'HomeConferenceHeroCountdown', days?: number | null, hours?: number | null, minutes?: number | null, seconds?: number | null } | null } | null, about?: { __typename: 'HomeConferenceAbout', title?: string | null, description?: string | null, vision?: { __typename: 'HomeConferenceAboutVision', title?: string | null, content?: string | null } | null, mission?: { __typename: 'HomeConferenceAboutMission', title?: string | null, content?: string | null } | null, stats?: Array<{ __typename: 'HomeConferenceAboutStats', value?: string | null, label?: string | null } | null> | null } | null, focusAreas?: { __typename: 'HomeConferenceFocusAreas', title?: string | null, subtitle?: string | null, areas?: Array<{ __typename: 'HomeConferenceFocusAreasAreas', title?: string | null, description?: string | null } | null> | null } | null, featuredSpeakers?: { __typename: 'HomeConferenceFeaturedSpeakers', title?: string | null, subtitle?: string | null, speakers?: Array<{ __typename: 'HomeConferenceFeaturedSpeakersSpeakers', name?: string | null, title?: string | null, image?: string | null } | null> | null } | null, agenda?: { __typename: 'HomeConferenceAgenda', title?: string | null, subtitle?: string | null, days?: Array<{ __typename: 'HomeConferenceAgendaDays', title?: string | null, sessions?: Array<{ __typename: 'HomeConferenceAgendaDaysSessions', time?: string | null, title?: string | null, description?: string | null } | null> | null } | null> | null } | null, registration?: { __typename: 'HomeConferenceRegistration', title?: string | null, description?: string | null, note?: string | null, tickets?: Array<{ __typename: 'HomeConferenceRegistrationTickets', type?: string | null, description?: string | null } | null> | null, earlyBird?: { __typename: 'HomeConferenceRegistrationEarlyBird', text?: string | null, date?: string | null, countdown?: { __typename: 'HomeConferenceRegistrationEarlyBirdCountdown', days?: number | null, hours?: number | null, minutes?: number | null } | null } | null } | null, venue?: { __typename: 'HomeConferenceVenue', title?: string | null, subtitle?: string | null, name?: string | null, location?: string | null, description?: string | null, details?: string | null, features?: Array<string | null> | null } | null, sponsors?: { __typename: 'HomeConferenceSponsors', title?: string | null, subtitle?: string | null, tiers?: Array<{ __typename: 'HomeConferenceSponsorsTiers', name?: string | null, count?: number | null, placeholder?: boolean | null } | null> | null, cta?: { __typename: 'HomeConferenceSponsorsCta', text?: string | null, description?: string | null } | null } | null } | null } };
 
 export type HomeConnectionQueryVariables = Exact<{
   before?: InputMaybe<Scalars['String']['input']>;
@@ -765,14 +2269,14 @@ export type HomeConnectionQueryVariables = Exact<{
 }>;
 
 
-export type HomeConnectionQuery = { __typename?: 'Query', homeConnection: { __typename?: 'HomeConnection', totalCount: number, pageInfo: { __typename?: 'PageInfo', hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges?: Array<{ __typename?: 'HomeConnectionEdges', cursor: string, node?: { __typename: 'Home', id: string, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, conference?: { __typename: 'HomeConference', hero?: { __typename: 'HomeConferenceHero', title?: string | null, tagline?: string | null, date?: string | null, location?: string | null, description?: string | null } | null } | null } | null } | null> | null } };
+export type HomeConnectionQuery = { __typename?: 'Query', homeConnection: { __typename?: 'HomeConnection', totalCount: number, pageInfo: { __typename?: 'PageInfo', hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges?: Array<{ __typename?: 'HomeConnectionEdges', cursor: string, node?: { __typename: 'Home', id: string, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, conference?: { __typename: 'HomeConference', hero?: { __typename: 'HomeConferenceHero', title?: string | null, tagline?: string | null, date?: string | null, location?: string | null, description?: string | null, countdown?: { __typename: 'HomeConferenceHeroCountdown', days?: number | null, hours?: number | null, minutes?: number | null, seconds?: number | null } | null } | null, about?: { __typename: 'HomeConferenceAbout', title?: string | null, description?: string | null, vision?: { __typename: 'HomeConferenceAboutVision', title?: string | null, content?: string | null } | null, mission?: { __typename: 'HomeConferenceAboutMission', title?: string | null, content?: string | null } | null, stats?: Array<{ __typename: 'HomeConferenceAboutStats', value?: string | null, label?: string | null } | null> | null } | null, focusAreas?: { __typename: 'HomeConferenceFocusAreas', title?: string | null, subtitle?: string | null, areas?: Array<{ __typename: 'HomeConferenceFocusAreasAreas', title?: string | null, description?: string | null } | null> | null } | null, featuredSpeakers?: { __typename: 'HomeConferenceFeaturedSpeakers', title?: string | null, subtitle?: string | null, speakers?: Array<{ __typename: 'HomeConferenceFeaturedSpeakersSpeakers', name?: string | null, title?: string | null, image?: string | null } | null> | null } | null, agenda?: { __typename: 'HomeConferenceAgenda', title?: string | null, subtitle?: string | null, days?: Array<{ __typename: 'HomeConferenceAgendaDays', title?: string | null, sessions?: Array<{ __typename: 'HomeConferenceAgendaDaysSessions', time?: string | null, title?: string | null, description?: string | null } | null> | null } | null> | null } | null, registration?: { __typename: 'HomeConferenceRegistration', title?: string | null, description?: string | null, note?: string | null, tickets?: Array<{ __typename: 'HomeConferenceRegistrationTickets', type?: string | null, description?: string | null } | null> | null, earlyBird?: { __typename: 'HomeConferenceRegistrationEarlyBird', text?: string | null, date?: string | null, countdown?: { __typename: 'HomeConferenceRegistrationEarlyBirdCountdown', days?: number | null, hours?: number | null, minutes?: number | null } | null } | null } | null, venue?: { __typename: 'HomeConferenceVenue', title?: string | null, subtitle?: string | null, name?: string | null, location?: string | null, description?: string | null, details?: string | null, features?: Array<string | null> | null } | null, sponsors?: { __typename: 'HomeConferenceSponsors', title?: string | null, subtitle?: string | null, tiers?: Array<{ __typename: 'HomeConferenceSponsorsTiers', name?: string | null, count?: number | null, placeholder?: boolean | null } | null> | null, cta?: { __typename: 'HomeConferenceSponsorsCta', text?: string | null, description?: string | null } | null } | null } | null } | null } | null> | null } };
 
 export type AboutQueryVariables = Exact<{
   relativePath: Scalars['String']['input'];
 }>;
 
 
-export type AboutQuery = { __typename?: 'Query', about: { __typename: 'About', id: string, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, aboutConference?: { __typename: 'AboutAboutConference', header?: { __typename: 'AboutAboutConferenceHeader', title?: string | null, subtitle?: string | null, description?: string | null, additionalDescription?: string | null } | null } | null } };
+export type AboutQuery = { __typename?: 'Query', about: { __typename: 'About', id: string, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, aboutConference?: { __typename: 'AboutAboutConference', header?: { __typename: 'AboutAboutConferenceHeader', title?: string | null, subtitle?: string | null, description?: string | null, additionalDescription?: string | null } | null, visionMission?: { __typename: 'AboutAboutConferenceVisionMission', vision?: { __typename: 'AboutAboutConferenceVisionMissionVision', title?: string | null, content?: string | null, additionalContent?: string | null } | null, mission?: { __typename: 'AboutAboutConferenceVisionMissionMission', title?: string | null, content?: string | null, additionalContent?: string | null } | null } | null, goals?: { __typename: 'AboutAboutConferenceGoals', title?: string | null, subtitle?: string | null, items?: Array<{ __typename: 'AboutAboutConferenceGoalsItems', title?: string | null, description?: string | null } | null> | null } | null, benefits?: { __typename: 'AboutAboutConferenceBenefits', title?: string | null, subtitle?: string | null, items?: Array<{ __typename: 'AboutAboutConferenceBenefitsItems', id?: string | null, title?: string | null, description?: string | null } | null> | null } | null, committee?: { __typename: 'AboutAboutConferenceCommittee', title?: string | null, subtitle?: string | null, members?: Array<{ __typename: 'AboutAboutConferenceCommitteeMembers', name?: string | null, role?: string | null } | null> | null } | null, faqs?: { __typename: 'AboutAboutConferenceFaqs', title?: string | null, subtitle?: string | null, items?: Array<{ __typename: 'AboutAboutConferenceFaqsItems', question?: string | null, answer?: string | null } | null> | null } | null } | null } };
 
 export type AboutConnectionQueryVariables = Exact<{
   before?: InputMaybe<Scalars['String']['input']>;
@@ -784,14 +2288,33 @@ export type AboutConnectionQueryVariables = Exact<{
 }>;
 
 
-export type AboutConnectionQuery = { __typename?: 'Query', aboutConnection: { __typename?: 'AboutConnection', totalCount: number, pageInfo: { __typename?: 'PageInfo', hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges?: Array<{ __typename?: 'AboutConnectionEdges', cursor: string, node?: { __typename: 'About', id: string, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, aboutConference?: { __typename: 'AboutAboutConference', header?: { __typename: 'AboutAboutConferenceHeader', title?: string | null, subtitle?: string | null, description?: string | null, additionalDescription?: string | null } | null } | null } | null } | null> | null } };
+export type AboutConnectionQuery = { __typename?: 'Query', aboutConnection: { __typename?: 'AboutConnection', totalCount: number, pageInfo: { __typename?: 'PageInfo', hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges?: Array<{ __typename?: 'AboutConnectionEdges', cursor: string, node?: { __typename: 'About', id: string, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, aboutConference?: { __typename: 'AboutAboutConference', header?: { __typename: 'AboutAboutConferenceHeader', title?: string | null, subtitle?: string | null, description?: string | null, additionalDescription?: string | null } | null, visionMission?: { __typename: 'AboutAboutConferenceVisionMission', vision?: { __typename: 'AboutAboutConferenceVisionMissionVision', title?: string | null, content?: string | null, additionalContent?: string | null } | null, mission?: { __typename: 'AboutAboutConferenceVisionMissionMission', title?: string | null, content?: string | null, additionalContent?: string | null } | null } | null, goals?: { __typename: 'AboutAboutConferenceGoals', title?: string | null, subtitle?: string | null, items?: Array<{ __typename: 'AboutAboutConferenceGoalsItems', title?: string | null, description?: string | null } | null> | null } | null, benefits?: { __typename: 'AboutAboutConferenceBenefits', title?: string | null, subtitle?: string | null, items?: Array<{ __typename: 'AboutAboutConferenceBenefitsItems', id?: string | null, title?: string | null, description?: string | null } | null> | null } | null, committee?: { __typename: 'AboutAboutConferenceCommittee', title?: string | null, subtitle?: string | null, members?: Array<{ __typename: 'AboutAboutConferenceCommitteeMembers', name?: string | null, role?: string | null } | null> | null } | null, faqs?: { __typename: 'AboutAboutConferenceFaqs', title?: string | null, subtitle?: string | null, items?: Array<{ __typename: 'AboutAboutConferenceFaqsItems', question?: string | null, answer?: string | null } | null> | null } | null } | null } | null } | null> | null } };
+
+export type ContactQueryVariables = Exact<{
+  relativePath: Scalars['String']['input'];
+}>;
+
+
+export type ContactQuery = { __typename?: 'Query', contact: { __typename: 'Contact', id: string, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, sections?: Array<{ __typename: 'ContactSections', title?: string | null, items?: Array<{ __typename: 'ContactSectionsItems', label?: string | null, value?: string | null, type?: string | null } | null> | null } | null> | null } };
+
+export type ContactConnectionQueryVariables = Exact<{
+  before?: InputMaybe<Scalars['String']['input']>;
+  after?: InputMaybe<Scalars['String']['input']>;
+  first?: InputMaybe<Scalars['Float']['input']>;
+  last?: InputMaybe<Scalars['Float']['input']>;
+  sort?: InputMaybe<Scalars['String']['input']>;
+  filter?: InputMaybe<ContactFilter>;
+}>;
+
+
+export type ContactConnectionQuery = { __typename?: 'Query', contactConnection: { __typename?: 'ContactConnection', totalCount: number, pageInfo: { __typename?: 'PageInfo', hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges?: Array<{ __typename?: 'ContactConnectionEdges', cursor: string, node?: { __typename: 'Contact', id: string, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, sections?: Array<{ __typename: 'ContactSections', title?: string | null, items?: Array<{ __typename: 'ContactSectionsItems', label?: string | null, value?: string | null, type?: string | null } | null> | null } | null> | null } | null } | null> | null } };
 
 export type AgendaQueryVariables = Exact<{
   relativePath: Scalars['String']['input'];
 }>;
 
 
-export type AgendaQuery = { __typename?: 'Query', agenda: { __typename: 'Agenda', id: string, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, conferenceOverview?: { __typename: 'AgendaConferenceOverview', header?: { __typename: 'AgendaConferenceOverviewHeader', title?: string | null, subtitle?: string | null, description?: string | null } | null } | null } };
+export type AgendaQuery = { __typename?: 'Query', agenda: { __typename: 'Agenda', id: string, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, conferenceOverview?: { __typename: 'AgendaConferenceOverview', header?: { __typename: 'AgendaConferenceOverviewHeader', title?: string | null, subtitle?: string | null, description?: string | null } | null, days?: Array<{ __typename: 'AgendaConferenceOverviewDays', title?: string | null, date?: string | null, tracks?: Array<string | null> | null, sessions?: Array<{ __typename: 'AgendaConferenceOverviewDaysSessions', time?: string | null, title?: string | null, description?: string | null, type?: string | null, speaker?: string | null, participants?: string | null, location?: string | null, format?: string | null, sessions?: Array<{ __typename: 'AgendaConferenceOverviewDaysSessionsSessions', title?: string | null, description?: string | null, track?: string | null, speaker?: string | null, location?: string | null, format?: string | null } | null> | null } | null> | null } | null> | null } | null } };
 
 export type AgendaConnectionQueryVariables = Exact<{
   before?: InputMaybe<Scalars['String']['input']>;
@@ -803,14 +2326,14 @@ export type AgendaConnectionQueryVariables = Exact<{
 }>;
 
 
-export type AgendaConnectionQuery = { __typename?: 'Query', agendaConnection: { __typename?: 'AgendaConnection', totalCount: number, pageInfo: { __typename?: 'PageInfo', hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges?: Array<{ __typename?: 'AgendaConnectionEdges', cursor: string, node?: { __typename: 'Agenda', id: string, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, conferenceOverview?: { __typename: 'AgendaConferenceOverview', header?: { __typename: 'AgendaConferenceOverviewHeader', title?: string | null, subtitle?: string | null, description?: string | null } | null } | null } | null } | null> | null } };
+export type AgendaConnectionQuery = { __typename?: 'Query', agendaConnection: { __typename?: 'AgendaConnection', totalCount: number, pageInfo: { __typename?: 'PageInfo', hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges?: Array<{ __typename?: 'AgendaConnectionEdges', cursor: string, node?: { __typename: 'Agenda', id: string, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, conferenceOverview?: { __typename: 'AgendaConferenceOverview', header?: { __typename: 'AgendaConferenceOverviewHeader', title?: string | null, subtitle?: string | null, description?: string | null } | null, days?: Array<{ __typename: 'AgendaConferenceOverviewDays', title?: string | null, date?: string | null, tracks?: Array<string | null> | null, sessions?: Array<{ __typename: 'AgendaConferenceOverviewDaysSessions', time?: string | null, title?: string | null, description?: string | null, type?: string | null, speaker?: string | null, participants?: string | null, location?: string | null, format?: string | null, sessions?: Array<{ __typename: 'AgendaConferenceOverviewDaysSessionsSessions', title?: string | null, description?: string | null, track?: string | null, speaker?: string | null, location?: string | null, format?: string | null } | null> | null } | null> | null } | null> | null } | null } | null } | null> | null } };
 
 export type VenueQueryVariables = Exact<{
   relativePath: Scalars['String']['input'];
 }>;
 
 
-export type VenueQuery = { __typename?: 'Query', venue: { __typename: 'Venue', id: string, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, conference?: { __typename: 'VenueConference', venue?: { __typename: 'VenueConferenceVenue', title?: string | null, location?: string | null, description?: string | null, description2?: string | null, facilities?: Array<string | null> | null } | null } | null } };
+export type VenueQuery = { __typename?: 'Query', venue: { __typename: 'Venue', id: string, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, conference?: { __typename: 'VenueConference', venue?: { __typename: 'VenueConferenceVenue', title?: string | null, location?: string | null, description?: string | null, description2?: string | null, facilities?: Array<string | null> | null } | null, aboutCoimbatore?: { __typename: 'VenueConferenceAboutCoimbatore', title?: string | null, subtitle?: string | null, highlights?: Array<{ __typename: 'VenueConferenceAboutCoimbatoreHighlights', title?: string | null, description?: string | null } | null> | null } | null, travelInfo?: { __typename: 'VenueConferenceTravelInfo', title?: string | null, subtitle?: string | null, options?: Array<{ __typename: 'VenueConferenceTravelInfoOptions', mode?: string | null, details?: string | null, additionalInfo?: string | null } | null> | null } | null, accommodation?: { __typename: 'VenueConferenceAccommodation', title?: string | null, subtitle?: string | null, description?: string | null, note?: string | null, footerNote?: string | null, options?: Array<{ __typename: 'VenueConferenceAccommodationOptions', type?: string | null, description?: string | null, priceRange?: string | null } | null> | null } | null, localAttractions?: { __typename: 'VenueConferenceLocalAttractions', title?: string | null, subtitle?: string | null, footerNote?: string | null, attractions?: Array<{ __typename: 'VenueConferenceLocalAttractionsAttractions', name?: string | null, description?: string | null, distance?: string | null } | null> | null } | null } | null } };
 
 export type VenueConnectionQueryVariables = Exact<{
   before?: InputMaybe<Scalars['String']['input']>;
@@ -822,14 +2345,14 @@ export type VenueConnectionQueryVariables = Exact<{
 }>;
 
 
-export type VenueConnectionQuery = { __typename?: 'Query', venueConnection: { __typename?: 'VenueConnection', totalCount: number, pageInfo: { __typename?: 'PageInfo', hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges?: Array<{ __typename?: 'VenueConnectionEdges', cursor: string, node?: { __typename: 'Venue', id: string, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, conference?: { __typename: 'VenueConference', venue?: { __typename: 'VenueConferenceVenue', title?: string | null, location?: string | null, description?: string | null, description2?: string | null, facilities?: Array<string | null> | null } | null } | null } | null } | null> | null } };
+export type VenueConnectionQuery = { __typename?: 'Query', venueConnection: { __typename?: 'VenueConnection', totalCount: number, pageInfo: { __typename?: 'PageInfo', hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges?: Array<{ __typename?: 'VenueConnectionEdges', cursor: string, node?: { __typename: 'Venue', id: string, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, conference?: { __typename: 'VenueConference', venue?: { __typename: 'VenueConferenceVenue', title?: string | null, location?: string | null, description?: string | null, description2?: string | null, facilities?: Array<string | null> | null } | null, aboutCoimbatore?: { __typename: 'VenueConferenceAboutCoimbatore', title?: string | null, subtitle?: string | null, highlights?: Array<{ __typename: 'VenueConferenceAboutCoimbatoreHighlights', title?: string | null, description?: string | null } | null> | null } | null, travelInfo?: { __typename: 'VenueConferenceTravelInfo', title?: string | null, subtitle?: string | null, options?: Array<{ __typename: 'VenueConferenceTravelInfoOptions', mode?: string | null, details?: string | null, additionalInfo?: string | null } | null> | null } | null, accommodation?: { __typename: 'VenueConferenceAccommodation', title?: string | null, subtitle?: string | null, description?: string | null, note?: string | null, footerNote?: string | null, options?: Array<{ __typename: 'VenueConferenceAccommodationOptions', type?: string | null, description?: string | null, priceRange?: string | null } | null> | null } | null, localAttractions?: { __typename: 'VenueConferenceLocalAttractions', title?: string | null, subtitle?: string | null, footerNote?: string | null, attractions?: Array<{ __typename: 'VenueConferenceLocalAttractionsAttractions', name?: string | null, description?: string | null, distance?: string | null } | null> | null } | null } | null } | null } | null> | null } };
 
 export type SpeakersQueryVariables = Exact<{
   relativePath: Scalars['String']['input'];
 }>;
 
 
-export type SpeakersQuery = { __typename?: 'Query', speakers: { __typename: 'Speakers', id: string, title?: string | null, subtitle?: string | null, description?: string | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } };
+export type SpeakersQuery = { __typename?: 'Query', speakers: { __typename: 'Speakers', id: string, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, speakers?: { __typename: 'SpeakersSpeakers', header?: { __typename: 'SpeakersSpeakersHeader', title?: string | null, subtitle?: string | null, description?: string | null } | null, keynoteSpeakers?: { __typename: 'SpeakersSpeakersKeynoteSpeakers', title?: string | null, subtitle?: string | null, speakers?: Array<{ __typename: 'SpeakersSpeakersKeynoteSpeakersSpeakers', name?: string | null, title?: string | null, affiliation?: string | null, image?: string | null, category?: string | null } | null> | null } | null, industrySpeakers?: { __typename: 'SpeakersSpeakersIndustrySpeakers', title?: string | null, subtitle?: string | null, tracks?: Array<{ __typename: 'SpeakersSpeakersIndustrySpeakersTracks', name?: string | null, speakers?: Array<{ __typename: 'SpeakersSpeakersIndustrySpeakersTracksSpeakers', name?: string | null, title?: string | null, affiliation?: string | null, image?: string | null, category?: string | null } | null> | null } | null> | null } | null, becomeSpeaker?: { __typename: 'SpeakersSpeakersBecomeSpeaker', title?: string | null, subtitle?: string | null, description?: string | null, benefits?: Array<string | null> | null, timeline?: Array<{ __typename: 'SpeakersSpeakersBecomeSpeakerTimeline', date?: string | null, event?: string | null, description?: string | null } | null> | null } | null } | null } };
 
 export type SpeakersConnectionQueryVariables = Exact<{
   before?: InputMaybe<Scalars['String']['input']>;
@@ -841,14 +2364,14 @@ export type SpeakersConnectionQueryVariables = Exact<{
 }>;
 
 
-export type SpeakersConnectionQuery = { __typename?: 'Query', speakersConnection: { __typename?: 'SpeakersConnection', totalCount: number, pageInfo: { __typename?: 'PageInfo', hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges?: Array<{ __typename?: 'SpeakersConnectionEdges', cursor: string, node?: { __typename: 'Speakers', id: string, title?: string | null, subtitle?: string | null, description?: string | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } | null } | null> | null } };
+export type SpeakersConnectionQuery = { __typename?: 'Query', speakersConnection: { __typename?: 'SpeakersConnection', totalCount: number, pageInfo: { __typename?: 'PageInfo', hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges?: Array<{ __typename?: 'SpeakersConnectionEdges', cursor: string, node?: { __typename: 'Speakers', id: string, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, speakers?: { __typename: 'SpeakersSpeakers', header?: { __typename: 'SpeakersSpeakersHeader', title?: string | null, subtitle?: string | null, description?: string | null } | null, keynoteSpeakers?: { __typename: 'SpeakersSpeakersKeynoteSpeakers', title?: string | null, subtitle?: string | null, speakers?: Array<{ __typename: 'SpeakersSpeakersKeynoteSpeakersSpeakers', name?: string | null, title?: string | null, affiliation?: string | null, image?: string | null, category?: string | null } | null> | null } | null, industrySpeakers?: { __typename: 'SpeakersSpeakersIndustrySpeakers', title?: string | null, subtitle?: string | null, tracks?: Array<{ __typename: 'SpeakersSpeakersIndustrySpeakersTracks', name?: string | null, speakers?: Array<{ __typename: 'SpeakersSpeakersIndustrySpeakersTracksSpeakers', name?: string | null, title?: string | null, affiliation?: string | null, image?: string | null, category?: string | null } | null> | null } | null> | null } | null, becomeSpeaker?: { __typename: 'SpeakersSpeakersBecomeSpeaker', title?: string | null, subtitle?: string | null, description?: string | null, benefits?: Array<string | null> | null, timeline?: Array<{ __typename: 'SpeakersSpeakersBecomeSpeakerTimeline', date?: string | null, event?: string | null, description?: string | null } | null> | null } | null } | null } | null } | null> | null } };
 
 export type SponsorsQueryVariables = Exact<{
   relativePath: Scalars['String']['input'];
 }>;
 
 
-export type SponsorsQuery = { __typename?: 'Query', sponsors: { __typename: 'Sponsors', id: string, title?: string | null, subtitle?: string | null, description?: string | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } };
+export type SponsorsQuery = { __typename?: 'Query', sponsors: { __typename: 'Sponsors', id: string, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, sponsors?: { __typename: 'SponsorsSponsors', header?: { __typename: 'SponsorsSponsorsHeader', title?: string | null, subtitle?: string | null, description?: string | null } | null, tiers?: { __typename: 'SponsorsSponsorsTiers', platinum?: { __typename: 'SponsorsSponsorsTiersPlatinum', title?: string | null, sponsors?: Array<{ __typename: 'SponsorsSponsorsTiersPlatinumSponsors', name?: string | null, cta?: string | null, placeholder?: boolean | null } | null> | null } | null, gold?: { __typename: 'SponsorsSponsorsTiersGold', title?: string | null, sponsors?: Array<{ __typename: 'SponsorsSponsorsTiersGoldSponsors', name?: string | null, cta?: string | null, placeholder?: boolean | null } | null> | null } | null, silver?: { __typename: 'SponsorsSponsorsTiersSilver', title?: string | null, sponsors?: Array<{ __typename: 'SponsorsSponsorsTiersSilverSponsors', name?: string | null, placeholder?: boolean | null } | null> | null } | null, bronze?: { __typename: 'SponsorsSponsorsTiersBronze', title?: string | null, sponsors?: Array<{ __typename: 'SponsorsSponsorsTiersBronzeSponsors', name?: string | null, placeholder?: boolean | null } | null> | null } | null } | null, packages?: { __typename: 'SponsorsSponsorsPackages', title?: string | null, subtitle?: string | null, description?: string | null, tiers?: Array<{ __typename: 'SponsorsSponsorsPackagesTiers', name?: string | null, price?: string | null, benefits?: Array<string | null> | null } | null> | null } | null, custom?: { __typename: 'SponsorsSponsorsCustom', title?: string | null, subtitle?: string | null, description?: string | null, cta?: string | null, options?: Array<{ __typename: 'SponsorsSponsorsCustomOptions', name?: string | null, description?: string | null, price?: string | null } | null> | null } | null, benefits?: { __typename: 'SponsorsSponsorsBenefits', title?: string | null, items?: Array<{ __typename: 'SponsorsSponsorsBenefitsItems', title?: string | null, description?: string | null } | null> | null } | null } | null } };
 
 export type SponsorsConnectionQueryVariables = Exact<{
   before?: InputMaybe<Scalars['String']['input']>;
@@ -860,7 +2383,7 @@ export type SponsorsConnectionQueryVariables = Exact<{
 }>;
 
 
-export type SponsorsConnectionQuery = { __typename?: 'Query', sponsorsConnection: { __typename?: 'SponsorsConnection', totalCount: number, pageInfo: { __typename?: 'PageInfo', hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges?: Array<{ __typename?: 'SponsorsConnectionEdges', cursor: string, node?: { __typename: 'Sponsors', id: string, title?: string | null, subtitle?: string | null, description?: string | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } | null } | null> | null } };
+export type SponsorsConnectionQuery = { __typename?: 'Query', sponsorsConnection: { __typename?: 'SponsorsConnection', totalCount: number, pageInfo: { __typename?: 'PageInfo', hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges?: Array<{ __typename?: 'SponsorsConnectionEdges', cursor: string, node?: { __typename: 'Sponsors', id: string, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, sponsors?: { __typename: 'SponsorsSponsors', header?: { __typename: 'SponsorsSponsorsHeader', title?: string | null, subtitle?: string | null, description?: string | null } | null, tiers?: { __typename: 'SponsorsSponsorsTiers', platinum?: { __typename: 'SponsorsSponsorsTiersPlatinum', title?: string | null, sponsors?: Array<{ __typename: 'SponsorsSponsorsTiersPlatinumSponsors', name?: string | null, cta?: string | null, placeholder?: boolean | null } | null> | null } | null, gold?: { __typename: 'SponsorsSponsorsTiersGold', title?: string | null, sponsors?: Array<{ __typename: 'SponsorsSponsorsTiersGoldSponsors', name?: string | null, cta?: string | null, placeholder?: boolean | null } | null> | null } | null, silver?: { __typename: 'SponsorsSponsorsTiersSilver', title?: string | null, sponsors?: Array<{ __typename: 'SponsorsSponsorsTiersSilverSponsors', name?: string | null, placeholder?: boolean | null } | null> | null } | null, bronze?: { __typename: 'SponsorsSponsorsTiersBronze', title?: string | null, sponsors?: Array<{ __typename: 'SponsorsSponsorsTiersBronzeSponsors', name?: string | null, placeholder?: boolean | null } | null> | null } | null } | null, packages?: { __typename: 'SponsorsSponsorsPackages', title?: string | null, subtitle?: string | null, description?: string | null, tiers?: Array<{ __typename: 'SponsorsSponsorsPackagesTiers', name?: string | null, price?: string | null, benefits?: Array<string | null> | null } | null> | null } | null, custom?: { __typename: 'SponsorsSponsorsCustom', title?: string | null, subtitle?: string | null, description?: string | null, cta?: string | null, options?: Array<{ __typename: 'SponsorsSponsorsCustomOptions', name?: string | null, description?: string | null, price?: string | null } | null> | null } | null, benefits?: { __typename: 'SponsorsSponsorsBenefits', title?: string | null, items?: Array<{ __typename: 'SponsorsSponsorsBenefitsItems', title?: string | null, description?: string | null } | null> | null } | null } | null } | null } | null> | null } };
 
 export const HomePartsFragmentDoc = gql`
     fragment HomeParts on Home {
@@ -874,6 +2397,117 @@ export const HomePartsFragmentDoc = gql`
       date
       location
       description
+      countdown {
+        __typename
+        days
+        hours
+        minutes
+        seconds
+      }
+    }
+    about {
+      __typename
+      title
+      description
+      vision {
+        __typename
+        title
+        content
+      }
+      mission {
+        __typename
+        title
+        content
+      }
+      stats {
+        __typename
+        value
+        label
+      }
+    }
+    focusAreas {
+      __typename
+      title
+      subtitle
+      areas {
+        __typename
+        title
+        description
+      }
+    }
+    featuredSpeakers {
+      __typename
+      title
+      subtitle
+      speakers {
+        __typename
+        name
+        title
+        image
+      }
+    }
+    agenda {
+      __typename
+      title
+      subtitle
+      days {
+        __typename
+        title
+        sessions {
+          __typename
+          time
+          title
+          description
+        }
+      }
+    }
+    registration {
+      __typename
+      title
+      description
+      tickets {
+        __typename
+        type
+        description
+      }
+      earlyBird {
+        __typename
+        text
+        date
+        countdown {
+          __typename
+          days
+          hours
+          minutes
+        }
+      }
+      note
+    }
+    venue {
+      __typename
+      title
+      subtitle
+      name
+      location
+      description
+      details
+      features
+    }
+    sponsors {
+      __typename
+      title
+      subtitle
+      tiers {
+        __typename
+        name
+        count
+        placeholder
+      }
+      cta {
+        __typename
+        text
+        description
+      }
     }
   }
 }
@@ -890,6 +2524,77 @@ export const AboutPartsFragmentDoc = gql`
       description
       additionalDescription
     }
+    visionMission {
+      __typename
+      vision {
+        __typename
+        title
+        content
+        additionalContent
+      }
+      mission {
+        __typename
+        title
+        content
+        additionalContent
+      }
+    }
+    goals {
+      __typename
+      title
+      subtitle
+      items {
+        __typename
+        title
+        description
+      }
+    }
+    benefits {
+      __typename
+      title
+      subtitle
+      items {
+        __typename
+        id
+        title
+        description
+      }
+    }
+    committee {
+      __typename
+      title
+      subtitle
+      members {
+        __typename
+        name
+        role
+      }
+    }
+    faqs {
+      __typename
+      title
+      subtitle
+      items {
+        __typename
+        question
+        answer
+      }
+    }
+  }
+}
+    `;
+export const ContactPartsFragmentDoc = gql`
+    fragment ContactParts on Contact {
+  __typename
+  sections {
+    __typename
+    title
+    items {
+      __typename
+      label
+      value
+      type
+    }
   }
 }
     `;
@@ -903,6 +2608,32 @@ export const AgendaPartsFragmentDoc = gql`
       title
       subtitle
       description
+    }
+    days {
+      __typename
+      title
+      date
+      tracks
+      sessions {
+        __typename
+        time
+        title
+        description
+        type
+        speaker
+        participants
+        location
+        format
+        sessions {
+          __typename
+          title
+          description
+          track
+          speaker
+          location
+          format
+        }
+      }
     }
   }
 }
@@ -920,23 +2651,200 @@ export const VenuePartsFragmentDoc = gql`
       description2
       facilities
     }
+    aboutCoimbatore {
+      __typename
+      title
+      subtitle
+      highlights {
+        __typename
+        title
+        description
+      }
+    }
+    travelInfo {
+      __typename
+      title
+      subtitle
+      options {
+        __typename
+        mode
+        details
+        additionalInfo
+      }
+    }
+    accommodation {
+      __typename
+      title
+      subtitle
+      description
+      note
+      options {
+        __typename
+        type
+        description
+        priceRange
+      }
+      footerNote
+    }
+    localAttractions {
+      __typename
+      title
+      subtitle
+      attractions {
+        __typename
+        name
+        description
+        distance
+      }
+      footerNote
+    }
   }
 }
     `;
 export const SpeakersPartsFragmentDoc = gql`
     fragment SpeakersParts on Speakers {
   __typename
-  title
-  subtitle
-  description
+  speakers {
+    __typename
+    header {
+      __typename
+      title
+      subtitle
+      description
+    }
+    keynoteSpeakers {
+      __typename
+      title
+      subtitle
+      speakers {
+        __typename
+        name
+        title
+        affiliation
+        image
+        category
+      }
+    }
+    industrySpeakers {
+      __typename
+      title
+      subtitle
+      tracks {
+        __typename
+        name
+        speakers {
+          __typename
+          name
+          title
+          affiliation
+          image
+          category
+        }
+      }
+    }
+    becomeSpeaker {
+      __typename
+      title
+      subtitle
+      description
+      benefits
+      timeline {
+        __typename
+        date
+        event
+        description
+      }
+    }
+  }
 }
     `;
 export const SponsorsPartsFragmentDoc = gql`
     fragment SponsorsParts on Sponsors {
   __typename
-  title
-  subtitle
-  description
+  sponsors {
+    __typename
+    header {
+      __typename
+      title
+      subtitle
+      description
+    }
+    tiers {
+      __typename
+      platinum {
+        __typename
+        title
+        sponsors {
+          __typename
+          name
+          cta
+          placeholder
+        }
+      }
+      gold {
+        __typename
+        title
+        sponsors {
+          __typename
+          name
+          cta
+          placeholder
+        }
+      }
+      silver {
+        __typename
+        title
+        sponsors {
+          __typename
+          name
+          placeholder
+        }
+      }
+      bronze {
+        __typename
+        title
+        sponsors {
+          __typename
+          name
+          placeholder
+        }
+      }
+    }
+    packages {
+      __typename
+      title
+      subtitle
+      description
+      tiers {
+        __typename
+        name
+        price
+        benefits
+      }
+    }
+    custom {
+      __typename
+      title
+      subtitle
+      description
+      options {
+        __typename
+        name
+        description
+        price
+      }
+      cta
+    }
+    benefits {
+      __typename
+      title
+      items {
+        __typename
+        title
+        description
+      }
+    }
+  }
 }
     `;
 export const HomeDocument = gql`
@@ -1053,6 +2961,63 @@ export const AboutConnectionDocument = gql`
   }
 }
     ${AboutPartsFragmentDoc}`;
+export const ContactDocument = gql`
+    query contact($relativePath: String!) {
+  contact(relativePath: $relativePath) {
+    ... on Document {
+      _sys {
+        filename
+        basename
+        hasReferences
+        breadcrumbs
+        path
+        relativePath
+        extension
+      }
+      id
+    }
+    ...ContactParts
+  }
+}
+    ${ContactPartsFragmentDoc}`;
+export const ContactConnectionDocument = gql`
+    query contactConnection($before: String, $after: String, $first: Float, $last: Float, $sort: String, $filter: ContactFilter) {
+  contactConnection(
+    before: $before
+    after: $after
+    first: $first
+    last: $last
+    sort: $sort
+    filter: $filter
+  ) {
+    pageInfo {
+      hasPreviousPage
+      hasNextPage
+      startCursor
+      endCursor
+    }
+    totalCount
+    edges {
+      cursor
+      node {
+        ... on Document {
+          _sys {
+            filename
+            basename
+            hasReferences
+            breadcrumbs
+            path
+            relativePath
+            extension
+          }
+          id
+        }
+        ...ContactParts
+      }
+    }
+  }
+}
+    ${ContactPartsFragmentDoc}`;
 export const AgendaDocument = gql`
     query agenda($relativePath: String!) {
   agenda(relativePath: $relativePath) {
@@ -1295,6 +3260,12 @@ export type Requester<C= {}> = <R, V>(doc: DocumentNode, vars?: V, options?: C) 
       },
     aboutConnection(variables?: AboutConnectionQueryVariables, options?: C): Promise<{data: AboutConnectionQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: AboutConnectionQueryVariables, query: string}> {
         return requester<{data: AboutConnectionQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: AboutConnectionQueryVariables, query: string}, AboutConnectionQueryVariables>(AboutConnectionDocument, variables, options);
+      },
+    contact(variables: ContactQueryVariables, options?: C): Promise<{data: ContactQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: ContactQueryVariables, query: string}> {
+        return requester<{data: ContactQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: ContactQueryVariables, query: string}, ContactQueryVariables>(ContactDocument, variables, options);
+      },
+    contactConnection(variables?: ContactConnectionQueryVariables, options?: C): Promise<{data: ContactConnectionQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: ContactConnectionQueryVariables, query: string}> {
+        return requester<{data: ContactConnectionQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: ContactConnectionQueryVariables, query: string}, ContactConnectionQueryVariables>(ContactConnectionDocument, variables, options);
       },
     agenda(variables: AgendaQueryVariables, options?: C): Promise<{data: AgendaQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: AgendaQueryVariables, query: string}> {
         return requester<{data: AgendaQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: AgendaQueryVariables, query: string}, AgendaQueryVariables>(AgendaDocument, variables, options);

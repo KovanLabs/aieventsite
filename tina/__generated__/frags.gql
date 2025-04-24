@@ -9,6 +9,117 @@ fragment HomeParts on Home {
       date
       location
       description
+      countdown {
+        __typename
+        days
+        hours
+        minutes
+        seconds
+      }
+    }
+    about {
+      __typename
+      title
+      description
+      vision {
+        __typename
+        title
+        content
+      }
+      mission {
+        __typename
+        title
+        content
+      }
+      stats {
+        __typename
+        value
+        label
+      }
+    }
+    focusAreas {
+      __typename
+      title
+      subtitle
+      areas {
+        __typename
+        title
+        description
+      }
+    }
+    featuredSpeakers {
+      __typename
+      title
+      subtitle
+      speakers {
+        __typename
+        name
+        title
+        image
+      }
+    }
+    agenda {
+      __typename
+      title
+      subtitle
+      days {
+        __typename
+        title
+        sessions {
+          __typename
+          time
+          title
+          description
+        }
+      }
+    }
+    registration {
+      __typename
+      title
+      description
+      tickets {
+        __typename
+        type
+        description
+      }
+      earlyBird {
+        __typename
+        text
+        date
+        countdown {
+          __typename
+          days
+          hours
+          minutes
+        }
+      }
+      note
+    }
+    venue {
+      __typename
+      title
+      subtitle
+      name
+      location
+      description
+      details
+      features
+    }
+    sponsors {
+      __typename
+      title
+      subtitle
+      tiers {
+        __typename
+        name
+        count
+        placeholder
+      }
+      cta {
+        __typename
+        text
+        description
+      }
     }
   }
 }
@@ -24,6 +135,76 @@ fragment AboutParts on About {
       description
       additionalDescription
     }
+    visionMission {
+      __typename
+      vision {
+        __typename
+        title
+        content
+        additionalContent
+      }
+      mission {
+        __typename
+        title
+        content
+        additionalContent
+      }
+    }
+    goals {
+      __typename
+      title
+      subtitle
+      items {
+        __typename
+        title
+        description
+      }
+    }
+    benefits {
+      __typename
+      title
+      subtitle
+      items {
+        __typename
+        id
+        title
+        description
+      }
+    }
+    committee {
+      __typename
+      title
+      subtitle
+      members {
+        __typename
+        name
+        role
+      }
+    }
+    faqs {
+      __typename
+      title
+      subtitle
+      items {
+        __typename
+        question
+        answer
+      }
+    }
+  }
+}
+
+fragment ContactParts on Contact {
+  __typename
+  sections {
+    __typename
+    title
+    items {
+      __typename
+      label
+      value
+      type
+    }
   }
 }
 
@@ -36,6 +217,32 @@ fragment AgendaParts on Agenda {
       title
       subtitle
       description
+    }
+    days {
+      __typename
+      title
+      date
+      tracks
+      sessions {
+        __typename
+        time
+        title
+        description
+        type
+        speaker
+        participants
+        location
+        format
+        sessions {
+          __typename
+          title
+          description
+          track
+          speaker
+          location
+          format
+        }
+      }
     }
   }
 }
@@ -52,19 +259,196 @@ fragment VenueParts on Venue {
       description2
       facilities
     }
+    aboutCoimbatore {
+      __typename
+      title
+      subtitle
+      highlights {
+        __typename
+        title
+        description
+      }
+    }
+    travelInfo {
+      __typename
+      title
+      subtitle
+      options {
+        __typename
+        mode
+        details
+        additionalInfo
+      }
+    }
+    accommodation {
+      __typename
+      title
+      subtitle
+      description
+      note
+      options {
+        __typename
+        type
+        description
+        priceRange
+      }
+      footerNote
+    }
+    localAttractions {
+      __typename
+      title
+      subtitle
+      attractions {
+        __typename
+        name
+        description
+        distance
+      }
+      footerNote
+    }
   }
 }
 
 fragment SpeakersParts on Speakers {
   __typename
-  title
-  subtitle
-  description
+  speakers {
+    __typename
+    header {
+      __typename
+      title
+      subtitle
+      description
+    }
+    keynoteSpeakers {
+      __typename
+      title
+      subtitle
+      speakers {
+        __typename
+        name
+        title
+        affiliation
+        image
+        category
+      }
+    }
+    industrySpeakers {
+      __typename
+      title
+      subtitle
+      tracks {
+        __typename
+        name
+        speakers {
+          __typename
+          name
+          title
+          affiliation
+          image
+          category
+        }
+      }
+    }
+    becomeSpeaker {
+      __typename
+      title
+      subtitle
+      description
+      benefits
+      timeline {
+        __typename
+        date
+        event
+        description
+      }
+    }
+  }
 }
 
 fragment SponsorsParts on Sponsors {
   __typename
-  title
-  subtitle
-  description
+  sponsors {
+    __typename
+    header {
+      __typename
+      title
+      subtitle
+      description
+    }
+    tiers {
+      __typename
+      platinum {
+        __typename
+        title
+        sponsors {
+          __typename
+          name
+          cta
+          placeholder
+        }
+      }
+      gold {
+        __typename
+        title
+        sponsors {
+          __typename
+          name
+          cta
+          placeholder
+        }
+      }
+      silver {
+        __typename
+        title
+        sponsors {
+          __typename
+          name
+          placeholder
+        }
+      }
+      bronze {
+        __typename
+        title
+        sponsors {
+          __typename
+          name
+          placeholder
+        }
+      }
+    }
+    packages {
+      __typename
+      title
+      subtitle
+      description
+      tiers {
+        __typename
+        name
+        price
+        benefits
+      }
+    }
+    custom {
+      __typename
+      title
+      subtitle
+      description
+      options {
+        __typename
+        name
+        description
+        price
+      }
+      cta
+    }
+    benefits {
+      __typename
+      title
+      items {
+        __typename
+        title
+        description
+      }
+    }
+  }
 }

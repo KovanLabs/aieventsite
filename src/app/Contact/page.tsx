@@ -1,67 +1,6 @@
 "use client";
 import JsonAccordion from "@/components/Accordition";
-
-
-
-const contactData = {
-    sections: [
-        {
-            title: "Email Us",
-            items: [
-                {
-                    label: "For general inquiries:",
-                    value: "info@kovaiconference.com",
-                    type: "email"
-                },
-                {
-                    label: "For sponsorship inquiries:",
-                    value: "sponsors@kovaiconference.com",
-                    type: "email"
-                },
-                {
-                    label: "For speaker inquiries:",
-                    value: "speakers@kovaiconference.com",
-                    type: "email"
-                }
-            ]
-        },
-        {
-            title: "Call Us",
-            items: [
-                {
-                    label: "Conference Helpline:",
-                    value: "+91 98765 43210",
-                    type: "phone"
-                },
-                {
-                    label: "Registration Support:",
-                    value: "+91 98765 43211",
-                    type: "phone"
-                },
-                {
-                    label: "Office Hours:",
-                    value: "Monday to Friday: 9:00 AM - 6:00 PM IST\nSaturday: 9:00 AM - 1:00 PM IST",
-                    type: "text"
-                }
-            ]
-        },
-        {
-            title: "Visit Us",
-            items: [
-                {
-                    label: "KovAI Conference Organizing Office:",
-                    value: "123 Tech Park, Avinashi Road\nCoimbatore, Tamil Nadu 641014\nIndia",
-                    type: "address"
-                },
-                {
-                    label: "Conference Venue:",
-                    value: "To be announced",
-                    type: "address"
-                }
-            ]
-        }
-    ]
-};
+import contact from "../../Data/Contact.json";
 
 function ContactPage() {
 
@@ -74,7 +13,7 @@ function ContactPage() {
                 >Get In Touch</h1>
 
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-12">
-                    {contactData.sections.map((section, sectionIndex) => (
+                    {contact.sections.map((section, sectionIndex) => (
                         <div 
                             key={sectionIndex}
                             className="bg-black/40 backdrop-blur-xl rounded-2xl p-8 shadow-[0_4px_30px_rgba(64,255,170,0.15)] group overflow-hidden relative before:content-[''] before:absolute before:inset-0 before:border-2 before:border-[#40ffaa]/20 before:rounded-2xl before:scale-[0.98] before:transition-transform group-hover:before:scale-100 transition-all duration-500"
