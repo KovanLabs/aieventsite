@@ -1,6 +1,15 @@
 [build]
-  command = "npm run build"
-  publish = ".netlify/static"
+  command = "npm run build:local"
+  publish = ".next"
 
 [[plugins]]
   package = "@netlify/plugin-nextjs"
+
+[build.environment]
+  NEXT_USE_NETLIFY_EDGE = "true"
+  TINA_PUBLIC_IS_LOCAL = "true"
+
+[[redirects]]
+  from = "/admin/*"
+  to = "/admin/index.html"
+  status = 200
