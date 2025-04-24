@@ -82,6 +82,18 @@ export type Query = {
   collections: Array<Collection>;
   node: Node;
   document: DocumentNode;
+  home: Home;
+  homeConnection: HomeConnection;
+  about: About;
+  aboutConnection: AboutConnection;
+  agenda: Agenda;
+  agendaConnection: AgendaConnection;
+  venue: Venue;
+  venueConnection: VenueConnection;
+  speakers: Speakers;
+  speakersConnection: SpeakersConnection;
+  sponsors: Sponsors;
+  sponsorsConnection: SponsorsConnection;
 };
 
 
@@ -105,7 +117,104 @@ export type QueryDocumentArgs = {
   relativePath?: InputMaybe<Scalars['String']['input']>;
 };
 
-export type DocumentFilter = {};
+
+export type QueryHomeArgs = {
+  relativePath?: InputMaybe<Scalars['String']['input']>;
+};
+
+
+export type QueryHomeConnectionArgs = {
+  before?: InputMaybe<Scalars['String']['input']>;
+  after?: InputMaybe<Scalars['String']['input']>;
+  first?: InputMaybe<Scalars['Float']['input']>;
+  last?: InputMaybe<Scalars['Float']['input']>;
+  sort?: InputMaybe<Scalars['String']['input']>;
+  filter?: InputMaybe<HomeFilter>;
+};
+
+
+export type QueryAboutArgs = {
+  relativePath?: InputMaybe<Scalars['String']['input']>;
+};
+
+
+export type QueryAboutConnectionArgs = {
+  before?: InputMaybe<Scalars['String']['input']>;
+  after?: InputMaybe<Scalars['String']['input']>;
+  first?: InputMaybe<Scalars['Float']['input']>;
+  last?: InputMaybe<Scalars['Float']['input']>;
+  sort?: InputMaybe<Scalars['String']['input']>;
+  filter?: InputMaybe<AboutFilter>;
+};
+
+
+export type QueryAgendaArgs = {
+  relativePath?: InputMaybe<Scalars['String']['input']>;
+};
+
+
+export type QueryAgendaConnectionArgs = {
+  before?: InputMaybe<Scalars['String']['input']>;
+  after?: InputMaybe<Scalars['String']['input']>;
+  first?: InputMaybe<Scalars['Float']['input']>;
+  last?: InputMaybe<Scalars['Float']['input']>;
+  sort?: InputMaybe<Scalars['String']['input']>;
+  filter?: InputMaybe<AgendaFilter>;
+};
+
+
+export type QueryVenueArgs = {
+  relativePath?: InputMaybe<Scalars['String']['input']>;
+};
+
+
+export type QueryVenueConnectionArgs = {
+  before?: InputMaybe<Scalars['String']['input']>;
+  after?: InputMaybe<Scalars['String']['input']>;
+  first?: InputMaybe<Scalars['Float']['input']>;
+  last?: InputMaybe<Scalars['Float']['input']>;
+  sort?: InputMaybe<Scalars['String']['input']>;
+  filter?: InputMaybe<VenueFilter>;
+};
+
+
+export type QuerySpeakersArgs = {
+  relativePath?: InputMaybe<Scalars['String']['input']>;
+};
+
+
+export type QuerySpeakersConnectionArgs = {
+  before?: InputMaybe<Scalars['String']['input']>;
+  after?: InputMaybe<Scalars['String']['input']>;
+  first?: InputMaybe<Scalars['Float']['input']>;
+  last?: InputMaybe<Scalars['Float']['input']>;
+  sort?: InputMaybe<Scalars['String']['input']>;
+  filter?: InputMaybe<SpeakersFilter>;
+};
+
+
+export type QuerySponsorsArgs = {
+  relativePath?: InputMaybe<Scalars['String']['input']>;
+};
+
+
+export type QuerySponsorsConnectionArgs = {
+  before?: InputMaybe<Scalars['String']['input']>;
+  after?: InputMaybe<Scalars['String']['input']>;
+  first?: InputMaybe<Scalars['Float']['input']>;
+  last?: InputMaybe<Scalars['Float']['input']>;
+  sort?: InputMaybe<Scalars['String']['input']>;
+  filter?: InputMaybe<SponsorsFilter>;
+};
+
+export type DocumentFilter = {
+  home?: InputMaybe<HomeFilter>;
+  about?: InputMaybe<AboutFilter>;
+  agenda?: InputMaybe<AgendaFilter>;
+  venue?: InputMaybe<VenueFilter>;
+  speakers?: InputMaybe<SpeakersFilter>;
+  sponsors?: InputMaybe<SponsorsFilter>;
+};
 
 export type DocumentConnectionEdges = {
   __typename?: 'DocumentConnectionEdges';
@@ -144,7 +253,270 @@ export type CollectionDocumentsArgs = {
   folder?: InputMaybe<Scalars['String']['input']>;
 };
 
-export type DocumentNode = Folder;
+export type DocumentNode = Home | About | Agenda | Venue | Speakers | Sponsors | Folder;
+
+export type HomeConferenceHero = {
+  __typename?: 'HomeConferenceHero';
+  title?: Maybe<Scalars['String']['output']>;
+  tagline?: Maybe<Scalars['String']['output']>;
+  date?: Maybe<Scalars['String']['output']>;
+  location?: Maybe<Scalars['String']['output']>;
+  description?: Maybe<Scalars['String']['output']>;
+};
+
+export type HomeConference = {
+  __typename?: 'HomeConference';
+  hero?: Maybe<HomeConferenceHero>;
+};
+
+export type Home = Node & Document & {
+  __typename?: 'Home';
+  conference?: Maybe<HomeConference>;
+  id: Scalars['ID']['output'];
+  _sys: SystemInfo;
+  _values: Scalars['JSON']['output'];
+};
+
+export type StringFilter = {
+  startsWith?: InputMaybe<Scalars['String']['input']>;
+  eq?: InputMaybe<Scalars['String']['input']>;
+  exists?: InputMaybe<Scalars['Boolean']['input']>;
+  in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+export type HomeConferenceHeroFilter = {
+  title?: InputMaybe<StringFilter>;
+  tagline?: InputMaybe<StringFilter>;
+  date?: InputMaybe<StringFilter>;
+  location?: InputMaybe<StringFilter>;
+  description?: InputMaybe<StringFilter>;
+};
+
+export type HomeConferenceFilter = {
+  hero?: InputMaybe<HomeConferenceHeroFilter>;
+};
+
+export type HomeFilter = {
+  conference?: InputMaybe<HomeConferenceFilter>;
+};
+
+export type HomeConnectionEdges = {
+  __typename?: 'HomeConnectionEdges';
+  cursor: Scalars['String']['output'];
+  node?: Maybe<Home>;
+};
+
+export type HomeConnection = Connection & {
+  __typename?: 'HomeConnection';
+  pageInfo: PageInfo;
+  totalCount: Scalars['Float']['output'];
+  edges?: Maybe<Array<Maybe<HomeConnectionEdges>>>;
+};
+
+export type AboutAboutConferenceHeader = {
+  __typename?: 'AboutAboutConferenceHeader';
+  title?: Maybe<Scalars['String']['output']>;
+  subtitle?: Maybe<Scalars['String']['output']>;
+  description?: Maybe<Scalars['String']['output']>;
+  additionalDescription?: Maybe<Scalars['String']['output']>;
+};
+
+export type AboutAboutConference = {
+  __typename?: 'AboutAboutConference';
+  header?: Maybe<AboutAboutConferenceHeader>;
+};
+
+export type About = Node & Document & {
+  __typename?: 'About';
+  aboutConference?: Maybe<AboutAboutConference>;
+  id: Scalars['ID']['output'];
+  _sys: SystemInfo;
+  _values: Scalars['JSON']['output'];
+};
+
+export type AboutAboutConferenceHeaderFilter = {
+  title?: InputMaybe<StringFilter>;
+  subtitle?: InputMaybe<StringFilter>;
+  description?: InputMaybe<StringFilter>;
+  additionalDescription?: InputMaybe<StringFilter>;
+};
+
+export type AboutAboutConferenceFilter = {
+  header?: InputMaybe<AboutAboutConferenceHeaderFilter>;
+};
+
+export type AboutFilter = {
+  aboutConference?: InputMaybe<AboutAboutConferenceFilter>;
+};
+
+export type AboutConnectionEdges = {
+  __typename?: 'AboutConnectionEdges';
+  cursor: Scalars['String']['output'];
+  node?: Maybe<About>;
+};
+
+export type AboutConnection = Connection & {
+  __typename?: 'AboutConnection';
+  pageInfo: PageInfo;
+  totalCount: Scalars['Float']['output'];
+  edges?: Maybe<Array<Maybe<AboutConnectionEdges>>>;
+};
+
+export type AgendaConferenceOverviewHeader = {
+  __typename?: 'AgendaConferenceOverviewHeader';
+  title?: Maybe<Scalars['String']['output']>;
+  subtitle?: Maybe<Scalars['String']['output']>;
+  description?: Maybe<Scalars['String']['output']>;
+};
+
+export type AgendaConferenceOverview = {
+  __typename?: 'AgendaConferenceOverview';
+  header?: Maybe<AgendaConferenceOverviewHeader>;
+};
+
+export type Agenda = Node & Document & {
+  __typename?: 'Agenda';
+  conferenceOverview?: Maybe<AgendaConferenceOverview>;
+  id: Scalars['ID']['output'];
+  _sys: SystemInfo;
+  _values: Scalars['JSON']['output'];
+};
+
+export type AgendaConferenceOverviewHeaderFilter = {
+  title?: InputMaybe<StringFilter>;
+  subtitle?: InputMaybe<StringFilter>;
+  description?: InputMaybe<StringFilter>;
+};
+
+export type AgendaConferenceOverviewFilter = {
+  header?: InputMaybe<AgendaConferenceOverviewHeaderFilter>;
+};
+
+export type AgendaFilter = {
+  conferenceOverview?: InputMaybe<AgendaConferenceOverviewFilter>;
+};
+
+export type AgendaConnectionEdges = {
+  __typename?: 'AgendaConnectionEdges';
+  cursor: Scalars['String']['output'];
+  node?: Maybe<Agenda>;
+};
+
+export type AgendaConnection = Connection & {
+  __typename?: 'AgendaConnection';
+  pageInfo: PageInfo;
+  totalCount: Scalars['Float']['output'];
+  edges?: Maybe<Array<Maybe<AgendaConnectionEdges>>>;
+};
+
+export type VenueConferenceVenue = {
+  __typename?: 'VenueConferenceVenue';
+  title?: Maybe<Scalars['String']['output']>;
+  location?: Maybe<Scalars['String']['output']>;
+  description?: Maybe<Scalars['String']['output']>;
+  description2?: Maybe<Scalars['String']['output']>;
+  facilities?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
+};
+
+export type VenueConference = {
+  __typename?: 'VenueConference';
+  venue?: Maybe<VenueConferenceVenue>;
+};
+
+export type Venue = Node & Document & {
+  __typename?: 'Venue';
+  conference?: Maybe<VenueConference>;
+  id: Scalars['ID']['output'];
+  _sys: SystemInfo;
+  _values: Scalars['JSON']['output'];
+};
+
+export type VenueConferenceVenueFilter = {
+  title?: InputMaybe<StringFilter>;
+  location?: InputMaybe<StringFilter>;
+  description?: InputMaybe<StringFilter>;
+  description2?: InputMaybe<StringFilter>;
+  facilities?: InputMaybe<StringFilter>;
+};
+
+export type VenueConferenceFilter = {
+  venue?: InputMaybe<VenueConferenceVenueFilter>;
+};
+
+export type VenueFilter = {
+  conference?: InputMaybe<VenueConferenceFilter>;
+};
+
+export type VenueConnectionEdges = {
+  __typename?: 'VenueConnectionEdges';
+  cursor: Scalars['String']['output'];
+  node?: Maybe<Venue>;
+};
+
+export type VenueConnection = Connection & {
+  __typename?: 'VenueConnection';
+  pageInfo: PageInfo;
+  totalCount: Scalars['Float']['output'];
+  edges?: Maybe<Array<Maybe<VenueConnectionEdges>>>;
+};
+
+export type Speakers = Node & Document & {
+  __typename?: 'Speakers';
+  title?: Maybe<Scalars['String']['output']>;
+  subtitle?: Maybe<Scalars['String']['output']>;
+  description?: Maybe<Scalars['String']['output']>;
+  id: Scalars['ID']['output'];
+  _sys: SystemInfo;
+  _values: Scalars['JSON']['output'];
+};
+
+export type SpeakersFilter = {
+  title?: InputMaybe<StringFilter>;
+  subtitle?: InputMaybe<StringFilter>;
+  description?: InputMaybe<StringFilter>;
+};
+
+export type SpeakersConnectionEdges = {
+  __typename?: 'SpeakersConnectionEdges';
+  cursor: Scalars['String']['output'];
+  node?: Maybe<Speakers>;
+};
+
+export type SpeakersConnection = Connection & {
+  __typename?: 'SpeakersConnection';
+  pageInfo: PageInfo;
+  totalCount: Scalars['Float']['output'];
+  edges?: Maybe<Array<Maybe<SpeakersConnectionEdges>>>;
+};
+
+export type Sponsors = Node & Document & {
+  __typename?: 'Sponsors';
+  title?: Maybe<Scalars['String']['output']>;
+  subtitle?: Maybe<Scalars['String']['output']>;
+  description?: Maybe<Scalars['String']['output']>;
+  id: Scalars['ID']['output'];
+  _sys: SystemInfo;
+  _values: Scalars['JSON']['output'];
+};
+
+export type SponsorsFilter = {
+  title?: InputMaybe<StringFilter>;
+  subtitle?: InputMaybe<StringFilter>;
+  description?: InputMaybe<StringFilter>;
+};
+
+export type SponsorsConnectionEdges = {
+  __typename?: 'SponsorsConnectionEdges';
+  cursor: Scalars['String']['output'];
+  node?: Maybe<Sponsors>;
+};
+
+export type SponsorsConnection = Connection & {
+  __typename?: 'SponsorsConnection';
+  pageInfo: PageInfo;
+  totalCount: Scalars['Float']['output'];
+  edges?: Maybe<Array<Maybe<SponsorsConnectionEdges>>>;
+};
 
 export type Mutation = {
   __typename?: 'Mutation';
@@ -153,6 +525,18 @@ export type Mutation = {
   deleteDocument: DocumentNode;
   createDocument: DocumentNode;
   createFolder: DocumentNode;
+  updateHome: Home;
+  createHome: Home;
+  updateAbout: About;
+  createAbout: About;
+  updateAgenda: Agenda;
+  createAgenda: Agenda;
+  updateVenue: Venue;
+  createVenue: Venue;
+  updateSpeakers: Speakers;
+  createSpeakers: Speakers;
+  updateSponsors: Sponsors;
+  createSponsors: Sponsors;
 };
 
 
@@ -188,17 +572,754 @@ export type MutationCreateFolderArgs = {
   relativePath: Scalars['String']['input'];
 };
 
+
+export type MutationUpdateHomeArgs = {
+  relativePath: Scalars['String']['input'];
+  params: HomeMutation;
+};
+
+
+export type MutationCreateHomeArgs = {
+  relativePath: Scalars['String']['input'];
+  params: HomeMutation;
+};
+
+
+export type MutationUpdateAboutArgs = {
+  relativePath: Scalars['String']['input'];
+  params: AboutMutation;
+};
+
+
+export type MutationCreateAboutArgs = {
+  relativePath: Scalars['String']['input'];
+  params: AboutMutation;
+};
+
+
+export type MutationUpdateAgendaArgs = {
+  relativePath: Scalars['String']['input'];
+  params: AgendaMutation;
+};
+
+
+export type MutationCreateAgendaArgs = {
+  relativePath: Scalars['String']['input'];
+  params: AgendaMutation;
+};
+
+
+export type MutationUpdateVenueArgs = {
+  relativePath: Scalars['String']['input'];
+  params: VenueMutation;
+};
+
+
+export type MutationCreateVenueArgs = {
+  relativePath: Scalars['String']['input'];
+  params: VenueMutation;
+};
+
+
+export type MutationUpdateSpeakersArgs = {
+  relativePath: Scalars['String']['input'];
+  params: SpeakersMutation;
+};
+
+
+export type MutationCreateSpeakersArgs = {
+  relativePath: Scalars['String']['input'];
+  params: SpeakersMutation;
+};
+
+
+export type MutationUpdateSponsorsArgs = {
+  relativePath: Scalars['String']['input'];
+  params: SponsorsMutation;
+};
+
+
+export type MutationCreateSponsorsArgs = {
+  relativePath: Scalars['String']['input'];
+  params: SponsorsMutation;
+};
+
 export type DocumentUpdateMutation = {
+  home?: InputMaybe<HomeMutation>;
+  about?: InputMaybe<AboutMutation>;
+  agenda?: InputMaybe<AgendaMutation>;
+  venue?: InputMaybe<VenueMutation>;
+  speakers?: InputMaybe<SpeakersMutation>;
+  sponsors?: InputMaybe<SponsorsMutation>;
   relativePath?: InputMaybe<Scalars['String']['input']>;
 };
 
-export type DocumentMutation = {};
+export type DocumentMutation = {
+  home?: InputMaybe<HomeMutation>;
+  about?: InputMaybe<AboutMutation>;
+  agenda?: InputMaybe<AgendaMutation>;
+  venue?: InputMaybe<VenueMutation>;
+  speakers?: InputMaybe<SpeakersMutation>;
+  sponsors?: InputMaybe<SponsorsMutation>;
+};
+
+export type HomeConferenceHeroMutation = {
+  title?: InputMaybe<Scalars['String']['input']>;
+  tagline?: InputMaybe<Scalars['String']['input']>;
+  date?: InputMaybe<Scalars['String']['input']>;
+  location?: InputMaybe<Scalars['String']['input']>;
+  description?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type HomeConferenceMutation = {
+  hero?: InputMaybe<HomeConferenceHeroMutation>;
+};
+
+export type HomeMutation = {
+  conference?: InputMaybe<HomeConferenceMutation>;
+};
+
+export type AboutAboutConferenceHeaderMutation = {
+  title?: InputMaybe<Scalars['String']['input']>;
+  subtitle?: InputMaybe<Scalars['String']['input']>;
+  description?: InputMaybe<Scalars['String']['input']>;
+  additionalDescription?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type AboutAboutConferenceMutation = {
+  header?: InputMaybe<AboutAboutConferenceHeaderMutation>;
+};
+
+export type AboutMutation = {
+  aboutConference?: InputMaybe<AboutAboutConferenceMutation>;
+};
+
+export type AgendaConferenceOverviewHeaderMutation = {
+  title?: InputMaybe<Scalars['String']['input']>;
+  subtitle?: InputMaybe<Scalars['String']['input']>;
+  description?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type AgendaConferenceOverviewMutation = {
+  header?: InputMaybe<AgendaConferenceOverviewHeaderMutation>;
+};
+
+export type AgendaMutation = {
+  conferenceOverview?: InputMaybe<AgendaConferenceOverviewMutation>;
+};
+
+export type VenueConferenceVenueMutation = {
+  title?: InputMaybe<Scalars['String']['input']>;
+  location?: InputMaybe<Scalars['String']['input']>;
+  description?: InputMaybe<Scalars['String']['input']>;
+  description2?: InputMaybe<Scalars['String']['input']>;
+  facilities?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+export type VenueConferenceMutation = {
+  venue?: InputMaybe<VenueConferenceVenueMutation>;
+};
+
+export type VenueMutation = {
+  conference?: InputMaybe<VenueConferenceMutation>;
+};
+
+export type SpeakersMutation = {
+  title?: InputMaybe<Scalars['String']['input']>;
+  subtitle?: InputMaybe<Scalars['String']['input']>;
+  description?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type SponsorsMutation = {
+  title?: InputMaybe<Scalars['String']['input']>;
+  subtitle?: InputMaybe<Scalars['String']['input']>;
+  description?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type HomePartsFragment = { __typename: 'Home', conference?: { __typename: 'HomeConference', hero?: { __typename: 'HomeConferenceHero', title?: string | null, tagline?: string | null, date?: string | null, location?: string | null, description?: string | null } | null } | null };
+
+export type AboutPartsFragment = { __typename: 'About', aboutConference?: { __typename: 'AboutAboutConference', header?: { __typename: 'AboutAboutConferenceHeader', title?: string | null, subtitle?: string | null, description?: string | null, additionalDescription?: string | null } | null } | null };
+
+export type AgendaPartsFragment = { __typename: 'Agenda', conferenceOverview?: { __typename: 'AgendaConferenceOverview', header?: { __typename: 'AgendaConferenceOverviewHeader', title?: string | null, subtitle?: string | null, description?: string | null } | null } | null };
+
+export type VenuePartsFragment = { __typename: 'Venue', conference?: { __typename: 'VenueConference', venue?: { __typename: 'VenueConferenceVenue', title?: string | null, location?: string | null, description?: string | null, description2?: string | null, facilities?: Array<string | null> | null } | null } | null };
+
+export type SpeakersPartsFragment = { __typename: 'Speakers', title?: string | null, subtitle?: string | null, description?: string | null };
+
+export type SponsorsPartsFragment = { __typename: 'Sponsors', title?: string | null, subtitle?: string | null, description?: string | null };
+
+export type HomeQueryVariables = Exact<{
+  relativePath: Scalars['String']['input'];
+}>;
 
 
+export type HomeQuery = { __typename?: 'Query', home: { __typename: 'Home', id: string, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, conference?: { __typename: 'HomeConference', hero?: { __typename: 'HomeConferenceHero', title?: string | null, tagline?: string | null, date?: string | null, location?: string | null, description?: string | null } | null } | null } };
+
+export type HomeConnectionQueryVariables = Exact<{
+  before?: InputMaybe<Scalars['String']['input']>;
+  after?: InputMaybe<Scalars['String']['input']>;
+  first?: InputMaybe<Scalars['Float']['input']>;
+  last?: InputMaybe<Scalars['Float']['input']>;
+  sort?: InputMaybe<Scalars['String']['input']>;
+  filter?: InputMaybe<HomeFilter>;
+}>;
+
+
+export type HomeConnectionQuery = { __typename?: 'Query', homeConnection: { __typename?: 'HomeConnection', totalCount: number, pageInfo: { __typename?: 'PageInfo', hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges?: Array<{ __typename?: 'HomeConnectionEdges', cursor: string, node?: { __typename: 'Home', id: string, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, conference?: { __typename: 'HomeConference', hero?: { __typename: 'HomeConferenceHero', title?: string | null, tagline?: string | null, date?: string | null, location?: string | null, description?: string | null } | null } | null } | null } | null> | null } };
+
+export type AboutQueryVariables = Exact<{
+  relativePath: Scalars['String']['input'];
+}>;
+
+
+export type AboutQuery = { __typename?: 'Query', about: { __typename: 'About', id: string, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, aboutConference?: { __typename: 'AboutAboutConference', header?: { __typename: 'AboutAboutConferenceHeader', title?: string | null, subtitle?: string | null, description?: string | null, additionalDescription?: string | null } | null } | null } };
+
+export type AboutConnectionQueryVariables = Exact<{
+  before?: InputMaybe<Scalars['String']['input']>;
+  after?: InputMaybe<Scalars['String']['input']>;
+  first?: InputMaybe<Scalars['Float']['input']>;
+  last?: InputMaybe<Scalars['Float']['input']>;
+  sort?: InputMaybe<Scalars['String']['input']>;
+  filter?: InputMaybe<AboutFilter>;
+}>;
+
+
+export type AboutConnectionQuery = { __typename?: 'Query', aboutConnection: { __typename?: 'AboutConnection', totalCount: number, pageInfo: { __typename?: 'PageInfo', hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges?: Array<{ __typename?: 'AboutConnectionEdges', cursor: string, node?: { __typename: 'About', id: string, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, aboutConference?: { __typename: 'AboutAboutConference', header?: { __typename: 'AboutAboutConferenceHeader', title?: string | null, subtitle?: string | null, description?: string | null, additionalDescription?: string | null } | null } | null } | null } | null> | null } };
+
+export type AgendaQueryVariables = Exact<{
+  relativePath: Scalars['String']['input'];
+}>;
+
+
+export type AgendaQuery = { __typename?: 'Query', agenda: { __typename: 'Agenda', id: string, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, conferenceOverview?: { __typename: 'AgendaConferenceOverview', header?: { __typename: 'AgendaConferenceOverviewHeader', title?: string | null, subtitle?: string | null, description?: string | null } | null } | null } };
+
+export type AgendaConnectionQueryVariables = Exact<{
+  before?: InputMaybe<Scalars['String']['input']>;
+  after?: InputMaybe<Scalars['String']['input']>;
+  first?: InputMaybe<Scalars['Float']['input']>;
+  last?: InputMaybe<Scalars['Float']['input']>;
+  sort?: InputMaybe<Scalars['String']['input']>;
+  filter?: InputMaybe<AgendaFilter>;
+}>;
+
+
+export type AgendaConnectionQuery = { __typename?: 'Query', agendaConnection: { __typename?: 'AgendaConnection', totalCount: number, pageInfo: { __typename?: 'PageInfo', hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges?: Array<{ __typename?: 'AgendaConnectionEdges', cursor: string, node?: { __typename: 'Agenda', id: string, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, conferenceOverview?: { __typename: 'AgendaConferenceOverview', header?: { __typename: 'AgendaConferenceOverviewHeader', title?: string | null, subtitle?: string | null, description?: string | null } | null } | null } | null } | null> | null } };
+
+export type VenueQueryVariables = Exact<{
+  relativePath: Scalars['String']['input'];
+}>;
+
+
+export type VenueQuery = { __typename?: 'Query', venue: { __typename: 'Venue', id: string, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, conference?: { __typename: 'VenueConference', venue?: { __typename: 'VenueConferenceVenue', title?: string | null, location?: string | null, description?: string | null, description2?: string | null, facilities?: Array<string | null> | null } | null } | null } };
+
+export type VenueConnectionQueryVariables = Exact<{
+  before?: InputMaybe<Scalars['String']['input']>;
+  after?: InputMaybe<Scalars['String']['input']>;
+  first?: InputMaybe<Scalars['Float']['input']>;
+  last?: InputMaybe<Scalars['Float']['input']>;
+  sort?: InputMaybe<Scalars['String']['input']>;
+  filter?: InputMaybe<VenueFilter>;
+}>;
+
+
+export type VenueConnectionQuery = { __typename?: 'Query', venueConnection: { __typename?: 'VenueConnection', totalCount: number, pageInfo: { __typename?: 'PageInfo', hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges?: Array<{ __typename?: 'VenueConnectionEdges', cursor: string, node?: { __typename: 'Venue', id: string, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, conference?: { __typename: 'VenueConference', venue?: { __typename: 'VenueConferenceVenue', title?: string | null, location?: string | null, description?: string | null, description2?: string | null, facilities?: Array<string | null> | null } | null } | null } | null } | null> | null } };
+
+export type SpeakersQueryVariables = Exact<{
+  relativePath: Scalars['String']['input'];
+}>;
+
+
+export type SpeakersQuery = { __typename?: 'Query', speakers: { __typename: 'Speakers', id: string, title?: string | null, subtitle?: string | null, description?: string | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } };
+
+export type SpeakersConnectionQueryVariables = Exact<{
+  before?: InputMaybe<Scalars['String']['input']>;
+  after?: InputMaybe<Scalars['String']['input']>;
+  first?: InputMaybe<Scalars['Float']['input']>;
+  last?: InputMaybe<Scalars['Float']['input']>;
+  sort?: InputMaybe<Scalars['String']['input']>;
+  filter?: InputMaybe<SpeakersFilter>;
+}>;
+
+
+export type SpeakersConnectionQuery = { __typename?: 'Query', speakersConnection: { __typename?: 'SpeakersConnection', totalCount: number, pageInfo: { __typename?: 'PageInfo', hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges?: Array<{ __typename?: 'SpeakersConnectionEdges', cursor: string, node?: { __typename: 'Speakers', id: string, title?: string | null, subtitle?: string | null, description?: string | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } | null } | null> | null } };
+
+export type SponsorsQueryVariables = Exact<{
+  relativePath: Scalars['String']['input'];
+}>;
+
+
+export type SponsorsQuery = { __typename?: 'Query', sponsors: { __typename: 'Sponsors', id: string, title?: string | null, subtitle?: string | null, description?: string | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } };
+
+export type SponsorsConnectionQueryVariables = Exact<{
+  before?: InputMaybe<Scalars['String']['input']>;
+  after?: InputMaybe<Scalars['String']['input']>;
+  first?: InputMaybe<Scalars['Float']['input']>;
+  last?: InputMaybe<Scalars['Float']['input']>;
+  sort?: InputMaybe<Scalars['String']['input']>;
+  filter?: InputMaybe<SponsorsFilter>;
+}>;
+
+
+export type SponsorsConnectionQuery = { __typename?: 'Query', sponsorsConnection: { __typename?: 'SponsorsConnection', totalCount: number, pageInfo: { __typename?: 'PageInfo', hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges?: Array<{ __typename?: 'SponsorsConnectionEdges', cursor: string, node?: { __typename: 'Sponsors', id: string, title?: string | null, subtitle?: string | null, description?: string | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } | null } | null> | null } };
+
+export const HomePartsFragmentDoc = gql`
+    fragment HomeParts on Home {
+  __typename
+  conference {
+    __typename
+    hero {
+      __typename
+      title
+      tagline
+      date
+      location
+      description
+    }
+  }
+}
+    `;
+export const AboutPartsFragmentDoc = gql`
+    fragment AboutParts on About {
+  __typename
+  aboutConference {
+    __typename
+    header {
+      __typename
+      title
+      subtitle
+      description
+      additionalDescription
+    }
+  }
+}
+    `;
+export const AgendaPartsFragmentDoc = gql`
+    fragment AgendaParts on Agenda {
+  __typename
+  conferenceOverview {
+    __typename
+    header {
+      __typename
+      title
+      subtitle
+      description
+    }
+  }
+}
+    `;
+export const VenuePartsFragmentDoc = gql`
+    fragment VenueParts on Venue {
+  __typename
+  conference {
+    __typename
+    venue {
+      __typename
+      title
+      location
+      description
+      description2
+      facilities
+    }
+  }
+}
+    `;
+export const SpeakersPartsFragmentDoc = gql`
+    fragment SpeakersParts on Speakers {
+  __typename
+  title
+  subtitle
+  description
+}
+    `;
+export const SponsorsPartsFragmentDoc = gql`
+    fragment SponsorsParts on Sponsors {
+  __typename
+  title
+  subtitle
+  description
+}
+    `;
+export const HomeDocument = gql`
+    query home($relativePath: String!) {
+  home(relativePath: $relativePath) {
+    ... on Document {
+      _sys {
+        filename
+        basename
+        hasReferences
+        breadcrumbs
+        path
+        relativePath
+        extension
+      }
+      id
+    }
+    ...HomeParts
+  }
+}
+    ${HomePartsFragmentDoc}`;
+export const HomeConnectionDocument = gql`
+    query homeConnection($before: String, $after: String, $first: Float, $last: Float, $sort: String, $filter: HomeFilter) {
+  homeConnection(
+    before: $before
+    after: $after
+    first: $first
+    last: $last
+    sort: $sort
+    filter: $filter
+  ) {
+    pageInfo {
+      hasPreviousPage
+      hasNextPage
+      startCursor
+      endCursor
+    }
+    totalCount
+    edges {
+      cursor
+      node {
+        ... on Document {
+          _sys {
+            filename
+            basename
+            hasReferences
+            breadcrumbs
+            path
+            relativePath
+            extension
+          }
+          id
+        }
+        ...HomeParts
+      }
+    }
+  }
+}
+    ${HomePartsFragmentDoc}`;
+export const AboutDocument = gql`
+    query about($relativePath: String!) {
+  about(relativePath: $relativePath) {
+    ... on Document {
+      _sys {
+        filename
+        basename
+        hasReferences
+        breadcrumbs
+        path
+        relativePath
+        extension
+      }
+      id
+    }
+    ...AboutParts
+  }
+}
+    ${AboutPartsFragmentDoc}`;
+export const AboutConnectionDocument = gql`
+    query aboutConnection($before: String, $after: String, $first: Float, $last: Float, $sort: String, $filter: AboutFilter) {
+  aboutConnection(
+    before: $before
+    after: $after
+    first: $first
+    last: $last
+    sort: $sort
+    filter: $filter
+  ) {
+    pageInfo {
+      hasPreviousPage
+      hasNextPage
+      startCursor
+      endCursor
+    }
+    totalCount
+    edges {
+      cursor
+      node {
+        ... on Document {
+          _sys {
+            filename
+            basename
+            hasReferences
+            breadcrumbs
+            path
+            relativePath
+            extension
+          }
+          id
+        }
+        ...AboutParts
+      }
+    }
+  }
+}
+    ${AboutPartsFragmentDoc}`;
+export const AgendaDocument = gql`
+    query agenda($relativePath: String!) {
+  agenda(relativePath: $relativePath) {
+    ... on Document {
+      _sys {
+        filename
+        basename
+        hasReferences
+        breadcrumbs
+        path
+        relativePath
+        extension
+      }
+      id
+    }
+    ...AgendaParts
+  }
+}
+    ${AgendaPartsFragmentDoc}`;
+export const AgendaConnectionDocument = gql`
+    query agendaConnection($before: String, $after: String, $first: Float, $last: Float, $sort: String, $filter: AgendaFilter) {
+  agendaConnection(
+    before: $before
+    after: $after
+    first: $first
+    last: $last
+    sort: $sort
+    filter: $filter
+  ) {
+    pageInfo {
+      hasPreviousPage
+      hasNextPage
+      startCursor
+      endCursor
+    }
+    totalCount
+    edges {
+      cursor
+      node {
+        ... on Document {
+          _sys {
+            filename
+            basename
+            hasReferences
+            breadcrumbs
+            path
+            relativePath
+            extension
+          }
+          id
+        }
+        ...AgendaParts
+      }
+    }
+  }
+}
+    ${AgendaPartsFragmentDoc}`;
+export const VenueDocument = gql`
+    query venue($relativePath: String!) {
+  venue(relativePath: $relativePath) {
+    ... on Document {
+      _sys {
+        filename
+        basename
+        hasReferences
+        breadcrumbs
+        path
+        relativePath
+        extension
+      }
+      id
+    }
+    ...VenueParts
+  }
+}
+    ${VenuePartsFragmentDoc}`;
+export const VenueConnectionDocument = gql`
+    query venueConnection($before: String, $after: String, $first: Float, $last: Float, $sort: String, $filter: VenueFilter) {
+  venueConnection(
+    before: $before
+    after: $after
+    first: $first
+    last: $last
+    sort: $sort
+    filter: $filter
+  ) {
+    pageInfo {
+      hasPreviousPage
+      hasNextPage
+      startCursor
+      endCursor
+    }
+    totalCount
+    edges {
+      cursor
+      node {
+        ... on Document {
+          _sys {
+            filename
+            basename
+            hasReferences
+            breadcrumbs
+            path
+            relativePath
+            extension
+          }
+          id
+        }
+        ...VenueParts
+      }
+    }
+  }
+}
+    ${VenuePartsFragmentDoc}`;
+export const SpeakersDocument = gql`
+    query speakers($relativePath: String!) {
+  speakers(relativePath: $relativePath) {
+    ... on Document {
+      _sys {
+        filename
+        basename
+        hasReferences
+        breadcrumbs
+        path
+        relativePath
+        extension
+      }
+      id
+    }
+    ...SpeakersParts
+  }
+}
+    ${SpeakersPartsFragmentDoc}`;
+export const SpeakersConnectionDocument = gql`
+    query speakersConnection($before: String, $after: String, $first: Float, $last: Float, $sort: String, $filter: SpeakersFilter) {
+  speakersConnection(
+    before: $before
+    after: $after
+    first: $first
+    last: $last
+    sort: $sort
+    filter: $filter
+  ) {
+    pageInfo {
+      hasPreviousPage
+      hasNextPage
+      startCursor
+      endCursor
+    }
+    totalCount
+    edges {
+      cursor
+      node {
+        ... on Document {
+          _sys {
+            filename
+            basename
+            hasReferences
+            breadcrumbs
+            path
+            relativePath
+            extension
+          }
+          id
+        }
+        ...SpeakersParts
+      }
+    }
+  }
+}
+    ${SpeakersPartsFragmentDoc}`;
+export const SponsorsDocument = gql`
+    query sponsors($relativePath: String!) {
+  sponsors(relativePath: $relativePath) {
+    ... on Document {
+      _sys {
+        filename
+        basename
+        hasReferences
+        breadcrumbs
+        path
+        relativePath
+        extension
+      }
+      id
+    }
+    ...SponsorsParts
+  }
+}
+    ${SponsorsPartsFragmentDoc}`;
+export const SponsorsConnectionDocument = gql`
+    query sponsorsConnection($before: String, $after: String, $first: Float, $last: Float, $sort: String, $filter: SponsorsFilter) {
+  sponsorsConnection(
+    before: $before
+    after: $after
+    first: $first
+    last: $last
+    sort: $sort
+    filter: $filter
+  ) {
+    pageInfo {
+      hasPreviousPage
+      hasNextPage
+      startCursor
+      endCursor
+    }
+    totalCount
+    edges {
+      cursor
+      node {
+        ... on Document {
+          _sys {
+            filename
+            basename
+            hasReferences
+            breadcrumbs
+            path
+            relativePath
+            extension
+          }
+          id
+        }
+        ...SponsorsParts
+      }
+    }
+  }
+}
+    ${SponsorsPartsFragmentDoc}`;
 export type Requester<C= {}> = <R, V>(doc: DocumentNode, vars?: V, options?: C) => Promise<R>
   export function getSdk<C>(requester: Requester<C>) {
     return {
-  
+      home(variables: HomeQueryVariables, options?: C): Promise<{data: HomeQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: HomeQueryVariables, query: string}> {
+        return requester<{data: HomeQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: HomeQueryVariables, query: string}, HomeQueryVariables>(HomeDocument, variables, options);
+      },
+    homeConnection(variables?: HomeConnectionQueryVariables, options?: C): Promise<{data: HomeConnectionQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: HomeConnectionQueryVariables, query: string}> {
+        return requester<{data: HomeConnectionQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: HomeConnectionQueryVariables, query: string}, HomeConnectionQueryVariables>(HomeConnectionDocument, variables, options);
+      },
+    about(variables: AboutQueryVariables, options?: C): Promise<{data: AboutQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: AboutQueryVariables, query: string}> {
+        return requester<{data: AboutQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: AboutQueryVariables, query: string}, AboutQueryVariables>(AboutDocument, variables, options);
+      },
+    aboutConnection(variables?: AboutConnectionQueryVariables, options?: C): Promise<{data: AboutConnectionQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: AboutConnectionQueryVariables, query: string}> {
+        return requester<{data: AboutConnectionQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: AboutConnectionQueryVariables, query: string}, AboutConnectionQueryVariables>(AboutConnectionDocument, variables, options);
+      },
+    agenda(variables: AgendaQueryVariables, options?: C): Promise<{data: AgendaQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: AgendaQueryVariables, query: string}> {
+        return requester<{data: AgendaQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: AgendaQueryVariables, query: string}, AgendaQueryVariables>(AgendaDocument, variables, options);
+      },
+    agendaConnection(variables?: AgendaConnectionQueryVariables, options?: C): Promise<{data: AgendaConnectionQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: AgendaConnectionQueryVariables, query: string}> {
+        return requester<{data: AgendaConnectionQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: AgendaConnectionQueryVariables, query: string}, AgendaConnectionQueryVariables>(AgendaConnectionDocument, variables, options);
+      },
+    venue(variables: VenueQueryVariables, options?: C): Promise<{data: VenueQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: VenueQueryVariables, query: string}> {
+        return requester<{data: VenueQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: VenueQueryVariables, query: string}, VenueQueryVariables>(VenueDocument, variables, options);
+      },
+    venueConnection(variables?: VenueConnectionQueryVariables, options?: C): Promise<{data: VenueConnectionQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: VenueConnectionQueryVariables, query: string}> {
+        return requester<{data: VenueConnectionQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: VenueConnectionQueryVariables, query: string}, VenueConnectionQueryVariables>(VenueConnectionDocument, variables, options);
+      },
+    speakers(variables: SpeakersQueryVariables, options?: C): Promise<{data: SpeakersQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: SpeakersQueryVariables, query: string}> {
+        return requester<{data: SpeakersQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: SpeakersQueryVariables, query: string}, SpeakersQueryVariables>(SpeakersDocument, variables, options);
+      },
+    speakersConnection(variables?: SpeakersConnectionQueryVariables, options?: C): Promise<{data: SpeakersConnectionQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: SpeakersConnectionQueryVariables, query: string}> {
+        return requester<{data: SpeakersConnectionQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: SpeakersConnectionQueryVariables, query: string}, SpeakersConnectionQueryVariables>(SpeakersConnectionDocument, variables, options);
+      },
+    sponsors(variables: SponsorsQueryVariables, options?: C): Promise<{data: SponsorsQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: SponsorsQueryVariables, query: string}> {
+        return requester<{data: SponsorsQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: SponsorsQueryVariables, query: string}, SponsorsQueryVariables>(SponsorsDocument, variables, options);
+      },
+    sponsorsConnection(variables?: SponsorsConnectionQueryVariables, options?: C): Promise<{data: SponsorsConnectionQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: SponsorsConnectionQueryVariables, query: string}> {
+        return requester<{data: SponsorsConnectionQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: SponsorsConnectionQueryVariables, query: string}, SponsorsConnectionQueryVariables>(SponsorsConnectionDocument, variables, options);
+      }
     };
   }
   export type Sdk = ReturnType<typeof getSdk>;

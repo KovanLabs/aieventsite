@@ -1,1 +1,70 @@
+fragment HomeParts on Home {
+  __typename
+  conference {
+    __typename
+    hero {
+      __typename
+      title
+      tagline
+      date
+      location
+      description
+    }
+  }
+}
 
+fragment AboutParts on About {
+  __typename
+  aboutConference {
+    __typename
+    header {
+      __typename
+      title
+      subtitle
+      description
+      additionalDescription
+    }
+  }
+}
+
+fragment AgendaParts on Agenda {
+  __typename
+  conferenceOverview {
+    __typename
+    header {
+      __typename
+      title
+      subtitle
+      description
+    }
+  }
+}
+
+fragment VenueParts on Venue {
+  __typename
+  conference {
+    __typename
+    venue {
+      __typename
+      title
+      location
+      description
+      description2
+      facilities
+    }
+  }
+}
+
+fragment SpeakersParts on Speakers {
+  __typename
+  title
+  subtitle
+  description
+}
+
+fragment SponsorsParts on Sponsors {
+  __typename
+  title
+  subtitle
+  description
+}
