@@ -3,7 +3,6 @@ import type { AboutConferenceData } from "../types/Conference"
 import VisionMission from "./Vision-mission"
 import ConferenceGoals from "./Conference-goals"
 import Benefits from "./Benefits"
-import Committee from "./Committee"
 import Faqs from "./Faqs"
 import { motion } from "framer-motion"
 

@@ -1,7 +1,4 @@
 "use client";
-import { useState } from "react";
-import Orb from "@/components/Orb";
-import BlurText from "@/components/Blurtext";
 import JsonAccordion from "@/components/Accordition";
 
 
@@ -67,7 +64,6 @@ const contactData = {
 };
 
 function ContactPage() {
-    const [hoverState, setHoverState] = useState(false);
 
     return (
         <div className="min-h-screen relative py-20 px-4 bg-black">      
@@ -82,8 +78,6 @@ function ContactPage() {
                         <div 
                             key={sectionIndex}
                             className="bg-black/40 backdrop-blur-xl rounded-2xl p-8 shadow-[0_4px_30px_rgba(64,255,170,0.15)] group overflow-hidden relative before:content-[''] before:absolute before:inset-0 before:border-2 before:border-[#40ffaa]/20 before:rounded-2xl before:scale-[0.98] before:transition-transform group-hover:before:scale-100 transition-all duration-500"
-                            onMouseEnter={() => setHoverState(true)}
-                            onMouseLeave={() => setHoverState(false)}
                         >
                             <div className="absolute inset-0 bg-gradient-to-r from-[#40ffaa10] via-transparent to-[#9c40ff10] opacity-40 group-hover:opacity-60" />
                             

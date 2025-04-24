@@ -44,7 +44,7 @@ export default function JsonAccordion({ initialFaqs = [] }: JsonAccordionProps) 
     ]
 
     // Use initialFaqs if provided, otherwise use defaultFaqs
-    const [faqs, setFaqs] = useState<FaqItem[]>(initialFaqs.length > 0 ? initialFaqs : defaultFaqs)
+    const [faqs] = useState<FaqItem[]>(initialFaqs.length > 0 ? initialFaqs : defaultFaqs)
     const [openItem, setOpenItem] = useState<string | null>("item-0")
 
     // Handle accordion item toggle
@@ -89,7 +89,7 @@ export default function JsonAccordion({ initialFaqs = [] }: JsonAccordionProps) 
 
             <div className="text-center mt-12">
                 <p className="text-neutral-300 mb-6">
-                    Didn't find what you're looking for? Contact us directly and we'll be happy to help.
+                    Didn&apos;t find what you&apos;re looking for? Contact us directly and we&apos;ll be happy to help.
                 </p>
                 <button className="px-6 py-3 border border-[#40ffaa] text-[#40ffaa] rounded-full hover:bg-[#40ffaa]/10 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-[#40ffaa]/50 focus:ring-offset-2 focus:ring-offset-black">
                     Email Us

@@ -1,5 +1,5 @@
 "use client";
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 import BlurText from "@/components/Blurtext";
 import Orb from "../components/Orb";
 import GradientText from "@/components/GradientText";
@@ -17,57 +17,57 @@ function Page() {
     hours: 0,
     minutes: 0
   });
-  const [speechEnabled, setSpeechEnabled] = useState(false);
-  const sponsorsScrollRef = useRef<HTMLDivElement>(null);
-  const participantsScrollRef = useRef<HTMLDivElement>(null);
+  const [speechEnabled] = useState(false);
+  // const sponsorsScrollRef = useRef<HTMLDivElement>(null);
+  // const participantsScrollRef = useRef<HTMLDivElement>(null);
 
   // Add this near the top of your component after other state declarations
-  const testSpeechDirectly = () => {
-    if ("speechSynthesis" in window) {
-      // Cancel any ongoing speech
-      window.speechSynthesis.cancel();
+  // const testSpeechDirectly = () => {
+  //   if ("speechSynthesis" in window) {
+  //     // Cancel any ongoing speech
+  //     window.speechSynthesis.cancel();
       
-      setTimeout(() => {
-        const msg = new SpeechSynthesisUtterance("Testing orb speech");
-        msg.volume = 1.0;
-        msg.rate = 1.0;
-        msg.pitch = 1.0;
-        msg.onstart = () => console.log("Direct test speech started");
-        msg.onend = () => console.log("Direct test speech ended");
-        window.speechSynthesis.speak(msg);
-      }, 100);
-    }
-  };
+  //     setTimeout(() => {
+  //       const msg = new SpeechSynthesisUtterance("Testing orb speech");
+  //       msg.volume = 1.0;
+  //       msg.rate = 1.0;
+  //       msg.pitch = 1.0;
+  //       msg.onstart = () => console.log("Direct test speech started");
+  //       msg.onend = () => console.log("Direct test speech ended");
+  //       window.speechSynthesis.speak(msg);
+  //     }, 100);
+  //   }
+  // };
 
   // Update the enableSpeech function
-  const enableSpeech = () => {
-    // Only run if speech isn't already enabled
-    if (!speechEnabled) {
-      setSpeechEnabled(true);
+  // const enableSpeech = () => {
+  //   // Only run if speech isn't already enabled
+  //   if (!speechEnabled) {
+  //     setSpeechEnabled(true);
       
-      // Test speech synthesis with audible feedback
-      if ("speechSynthesis" in window) {
-        // Cancel any ongoing speech first
-        window.speechSynthesis.cancel();
+  //     // Test speech synthesis with audible feedback
+  //     if ("speechSynthesis" in window) {
+  //       // Cancel any ongoing speech first
+  //       window.speechSynthesis.cancel();
         
-        // Wait a moment before speaking to ensure clean state
-        setTimeout(() => {
-          const test = new SpeechSynthesisUtterance("Speech enabled");
-          test.volume = 1.0;
-          test.rate = 1.0;
+  //       // Wait a moment before speaking to ensure clean state
+  //       setTimeout(() => {
+  //         const test = new SpeechSynthesisUtterance("Speech enabled");
+  //         test.volume = 1.0;
+  //         test.rate = 1.0;
           
-          // Add event listeners to track speech progress
-          test.onstart = () => console.log("Test speech started");
-          test.onend = () => console.log("Test speech ended");
-          test.onerror = (e) => console.error("Test speech error:", e);
+  //         // Add event listeners to track speech progress
+  //         test.onstart = () => console.log("Test speech started");
+  //         test.onend = () => console.log("Test speech ended");
+  //         test.onerror = (e) => console.error("Test speech error:", e);
           
-          window.speechSynthesis.speak(test);
-        }, 100);
-      } else {
-        console.warn("Speech synthesis not available in this browser");
-      }
-    }
-  };
+  //         window.speechSynthesis.speak(test);
+  //       }, 100);
+  //     } else {
+  //       console.warn("Speech synthesis not available in this browser");
+  //     }
+  //   }
+  // };
 
   useEffect(() => {
     const targetDate = new Date("2025-10-02T00:00:00");
@@ -103,7 +103,7 @@ function Page() {
           speechEnabled={speechEnabled}
         />
 
-{!speechEnabled ? (
+{/* {!speechEnabled ? (
             <div className="text-center text-white/70 mt-2 animate-pulse">
               <p className="text-sm md:text-base flex items-center justify-center gap-1">
                 <span className="inline-block w-2 h-2 bg-[#40ffaa] rounded-full"></span>
@@ -112,7 +112,7 @@ function Page() {
             </div>
           ) : (
             <div className="h-6"></div> // Empty spacer when speech is enabled
-          )}
+          )} */}
 
           <GradientText
             colors={["#40ffaa", "#4079ff", "#40ffaa", "#4079ff", "#40ffaa"]}

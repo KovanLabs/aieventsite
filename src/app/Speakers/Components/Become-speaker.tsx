@@ -1,6 +1,5 @@
 "use client"
 import { Check } from "lucide-react"
-import { Button } from "@/components/ui/button"
 import { motion } from "framer-motion"
 
 interface TimelineItem {

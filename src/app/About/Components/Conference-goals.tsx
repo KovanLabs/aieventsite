@@ -1,6 +1,5 @@
 import type { GoalsData } from "../types/Conference";
 import { motion } from "framer-motion";
-import { FiArrowRight } from "react-icons/fi";
 
 interface ConferenceGoalsProps {
   data: GoalsData;

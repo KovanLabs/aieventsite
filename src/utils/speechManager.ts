@@ -2,7 +2,7 @@
 
 // Global speech queue management
 let isSpeaking = false;
-let speechQueue: string[] = [];
+const speechQueue: string[] = [];
 
 export const speakText = (text: string): Promise<void> => {
   return new Promise((resolve, reject) => {
