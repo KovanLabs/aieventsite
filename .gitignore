@@ -40,5 +40,9 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
+# Tina generated files
+tina/__generated__/.cache
+tina/__generated__/client.ts
+
 node_modules
 .env
