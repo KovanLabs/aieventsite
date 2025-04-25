@@ -2,7 +2,7 @@ import { createClient } from "tinacms/dist/client";
 import { queries } from "../../tina/__generated__/types";
 
 // Check if we're in local mode
-const isLocal = process.env.TINA_PUBLIC_IS_LOCAL === "true";
+const isLocal = process.env.TINA_PUBLIC_IS_LOCAL === "false";
 
 export const client = createClient({
   queries,
